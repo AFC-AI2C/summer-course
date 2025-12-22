@@ -1,4 +1,4 @@
-# Lesson 14: Introduction to AI and Machine Learning
+# Introduction to AI and Machine Learning
 
 This repository provides a foundational overview of **Artificial Intelligence (AI)**, **Machine Learning (ML)**, and **Data Science**, exploring their relationships, core lifecycles, and the critical role of ethics in modern technology.
 
@@ -52,6 +52,3 @@ As AI systems become more integrated into society, understanding the ethical ris
 
 - **Python:** The most popular language for AI due to its extensive library ecosystem.
 - **Scikit-learn (Sklearn):** A popular ML library for Python that provides built-in models and integrates with data tools like NumPy and Pandas.
-
-
-Would you like to review the **mini case studies** mentioned in the slides, such as the **AI Hiring Tool** or **Predictive Policing**, to see how these ethical risks manifest in the real world?

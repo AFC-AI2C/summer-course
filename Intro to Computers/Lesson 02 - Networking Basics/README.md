@@ -1,4 +1,4 @@
-# Lesson 02: Network Basics
+# Lesson 02 - Network Basics
 
 This repository covers the fundamental principles of networking, focusing on how data is transmitted across the internet and the standardized models that govern these communications.
 

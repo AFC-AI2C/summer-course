@@ -76,6 +76,3 @@ Improving code quality is supported by both social processes and automated tools
 - **Static Analysis:** Tools like **Linters** (Pylint) and **Formatters** (Black) that identify issues without running the code.
 - **Dynamic Analysis:** Using debuggers and profilers to analyze code during execution.
 - **Automation:** Implementing **pre-commit hooks** to handle style and quality issues automatically before code is committed.
-
-
-Would you like me to provide a **Python code example** that demonstrates the "Before" and "After" of applying the **DRY principle**?

@@ -1,4 +1,4 @@
-# Introduction to Linux
+# Lesson 01 - Introduction to Linux
 
 This repository provides an overview of the **Linux Operating System**, its history, core architecture, and fundamental command-line operations used in cloud environments.
 

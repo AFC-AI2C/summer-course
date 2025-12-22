@@ -1,4 +1,4 @@
-# Lesson 01 - Intro to Version Control
+# Intro to Version Control
 
 This repository introduces the core concepts of **Version Control Systems (VCS)**, with a specific focus on **Git**, the industry-standard tool for tracking changes in source code during software development.
 

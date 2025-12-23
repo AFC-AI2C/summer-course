@@ -84,7 +84,7 @@ students = [("Alice", [90, 95]), ("Bob", [85, 88])]
 
 **Goal**: Start at 1 and double the number until it exceeds 1000.
 
-✅ *Check*: Should print powers of 2: 1, 2, 4, ..., up to 1024.
+✅ *Check*: Should print powers of 2: 1, 2, 4, ..., up to 512.
 
 ---
 

@@ -161,7 +161,7 @@ while n <= 1000:
     n *= 2
 ```
 
-✅ *Check*: Should print powers of 2: 1, 2, 4, ..., up to 1024.
+✅ *Check*: Should print powers of 2: 1, 2, 4, ..., up to 512.
 
 ---
 

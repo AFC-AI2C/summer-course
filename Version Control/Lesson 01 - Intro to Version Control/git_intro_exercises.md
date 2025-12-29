@@ -57,7 +57,9 @@ echo "Hello, Git!" > hello.txt
 cat hello.txt
 ```
 
-✅ *Check*: Run `git status` to see the untracked file.  Read the output carefully.  Which branch are you on?  What are the "untracked" file?
+✅ *Check*: Run 'ls' to see the created file in your directory. Run `git status` to see the untracked file.  Read the output carefully.  Which branch are you on?  What are the "untracked" file?  
+INFO: Line 1 Creates the hello.txt file and adds the line "Hello, Git!"  
+INFO: Line 2 'cat' is short for concatenate, it chains files together into a single output, in this example, your screen is the default output
 
 ---
 
@@ -69,7 +71,7 @@ cat hello.txt
 git add hello.txt
 ```
 
-✅ *Check*: Run `git status` again and verify that the change is staged.  How is the output of `git status` different than the previous step?
+✅ *Check*: Run `git status` again and verify that the change is staged.  How is the output of `git status` different than the previous step? You can run 'git add .' to stage all changes at once.
 
 ---
 
@@ -107,7 +109,7 @@ git commit -m "Add second line to hello.txt"
 
 ---
 
-### Exercise 6: Create a Second File
+### Exercise 6: Commit a Second File
 
 **Goal**: Check what happens with unstaged files (no commands for you this time!)
 
@@ -128,7 +130,7 @@ git log         # View commit history
 git diff HEAD~1 # See changes made in the most recent commit
 ```
 
-✅ *Try*: Use `git show <commit-hash>` to view the details of a specific commit.
+✅ *Try*: Use `git show <commit-hash>` to view the details of a specific commit. 
 
 ### Exercise 8: View a Specific Commit
 
@@ -139,7 +141,7 @@ git log --oneline
 git show <commit-hash>
 ```
 
-✅ *Tip*: Replace `<commit-hash>` with the short hash from `git log --oneline`.
+✅ *Tip*: Replace `<commit-hash>` (it should be 7 characters on the left side) with the short hash from `git log --oneline`.
 
 ---
 
@@ -149,7 +151,7 @@ git show <commit-hash>
 
 ```bash
 git log --oneline
-git diff <old-commit> <new-commit>
+git diff <old-commit-hash> <new-commit-hash>
 ```
 
 ✅ *Example*: Compare two specific commits to see what changed between them.

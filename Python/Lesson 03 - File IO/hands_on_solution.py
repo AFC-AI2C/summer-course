@@ -128,4 +128,66 @@ stat = data_csv.stat()
 print('Size:', stat.st_size, 'bytes')
 print('Last modified:', datetime.fromtimestamp(stat.st_mtime).isoformat())
 
-print('\nAll Hands-On #2 exercises completed.')
+print('\nAll Hands-On exercises completed.')
+
+
+
+# Beginner-friendly cleanup: remove demo files and empty demo directories
+# Don't worry about this section; it's just to clean up after ourselves.
+print('\nCleanup: removing demo files and attempting to remove empty demo directories')
+cleanup_files = ['log.txt', 'multi.txt', 'pathlib_example.txt', 'data.csv']
+for name in cleanup_files:
+    p = Path(name)
+    if p.exists() and p.is_file():
+        try:
+            p.unlink()
+            print(f'Removed file: {name}')
+        except Exception:
+            print(f'Could not remove file: {name}')
+
+# Clean up the 'projects' demo folder contents (safe removals only)
+projects = Path('projects')
+if projects.exists() and projects.is_dir():
+    # files we created there
+    for fname in ['renamed_example.txt', 'target_file', 'temp.txt', 'example.txt']:
+        fp = projects / fname
+        if fp.exists() and fp.is_file():
+            try:
+                fp.unlink()
+                print(f'Removed file in projects: {fname}')
+            except Exception:
+                print(f'Could not remove file in projects: {fname}')
+    # try to remove nested directories we created (a/b/c)
+    a = projects / 'a'
+    if a.exists() and a.is_dir():
+        b = a / 'b'
+        c = b / 'c'
+        for d in (c, b):
+            if d.exists() and d.is_dir():
+                try:
+                    d.rmdir()
+                    print(f'Removed dir: {d}')
+                except Exception:
+                    pass
+        try:
+            a.rmdir()
+            print(f'Removed dir: {a}')
+        except Exception:
+            pass
+    # try to remove other simple dirs if empty
+    for dname in ['data', 'old_data', 'target']:
+        dp = projects / dname
+        if dp.exists() and dp.is_dir():
+            try:
+                dp.rmdir()
+                print(f'Removed dir in projects: {dname}')
+            except Exception:
+                pass
+    # attempt to remove the projects dir itself (only if empty)
+    try:
+        projects.rmdir()
+        print('Removed projects directory')
+    except Exception:
+        print('Projects directory not removed (may not be empty)')
+
+print('Cleanup completed.')

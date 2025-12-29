@@ -14,33 +14,36 @@
 - Name: `group[X]-rg` (e.g., `group1-rg`)
 - Location: East US
 
-**Click the "Review + Create" button at the bottom of the page**
+**Click the "Review + Create" button at the bottom of the page.**
 
 ---
 
 
 ## **STEP 2: Create Virtual Network**
-**Location:** Azure Portal > Virtual networks > Create
+**Location:** Azure Portal > Virtual Networks > Create
 
 ### **Basic Settings:**
 - Select: Resource Group from Step 1
 - Name: `group[X]-network` (e.g., `group1-network`)
 - Region: East US
 
-### **IP Addresses Tab:**
+### **IP Addresses Tab (Top of the page under "Create Virtual Network"):**
+- In the center of the tab, replace the default 10.0.0.0/16 address space with your designated group's address space below. 
 - Address space: `10.1.X.0/28`
-  - Group 1: `10.1.X.0/28`
-  - Group 2: `10.1.X.0/28`
-  - Group 3: `10.1.X.0/28`
-  - Group 4: `10.1.X.0/28`
-  - Group 5: `10.1.X.0/28`
+  - Group 1: `10.1.1.0/28`
+  - Group 2: `10.1.2.0/28`
+  - Group 3: `10.1.3.0/28`
+  - Group 4: `10.1.4.0/28`
+  - Group 5: `10.1.5.0/28`
 
 - **Add subnet:**
+  - Click the "+ Add a subnet" button above the address space box.  A box should appear on the right side of your screen with the "Edit subnet" title. 
   - Name: `first-subnet`
-  - Address range: Same as VNet address space `10.1.X.0/28`
+  - Address range: Same as VNet address space above `10.1.X.0/28`
+  - Leave the remaining settings (i.e., Security, Service Endpoints, etc.) as default.
+  - Click the "Add" button at the bottom. 
 
-### **Security/Tags:** Leave defaults
-### **Create**
+### **Click the "Review + Create" button at the bottom of the page.**
 
 ---
 

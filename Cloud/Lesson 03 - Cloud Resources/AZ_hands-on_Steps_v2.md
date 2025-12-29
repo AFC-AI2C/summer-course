@@ -10,13 +10,11 @@
 - Resource Groups can be found by simply typing "Resource Groups" in the Azure Portal Search Bar at the top of the home screen (https://portal.azure.com/).
 - The Create buttom can be found in the top left side of the Resource Groups screen next to a + sign.  
 
-Basic Settings:
-
 ### **Basic Settings:**
 - Name: `group[X]-rg` (e.g., `group1-rg`)
 - Location: East US
 
-**Create**
+**Click the "Review + Create" button at the bottom of the page**
 
 ---
 

@@ -63,6 +63,7 @@ This document outlines key case studies demonstrating the specific upsides of cl
 * **The Challenge:** Faced massive traffic fluctuations—huge spikes during holidays and lulls during off-seasons. Buying servers for "peak" capacity wasted money 90% of the year.
 * **Cloud Upside:** Utilized "Auto Scaling" to automatically add/remove servers based on real-time traffic.
 * **Key Result:** Achieved a **22% reduction in compute costs** while maintaining 99.9% availability during peak seasons.
+* **Source:** [MakeMyTrip Case Study: 22% Cost Reduction via AWS Containers](https://smeoncloud.in/makemytrip-cuts-compute-costs-by-22-with-amazon-ecs-eks/)
 
 ---
 

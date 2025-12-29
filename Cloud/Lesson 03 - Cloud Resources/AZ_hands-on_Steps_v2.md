@@ -197,6 +197,8 @@ exit
 2. Note your **Private IP** from Step 5
 3. Compare private IPs within your group vs other groups
 
+### **See [this link](https://www.geeksforgeeks.org/computer-networks/difference-between-private-and-public-ip-addresses/) for more information about public IPs vs private IPs.**
+
 ---
 
 ## **What You Learned So Far:**

@@ -204,7 +204,7 @@ exit
 ## **What You Learned So Far:**
 
 ### **Key Concepts:**
-- **Compute:** VMs run nginx web server with direct file deployment. 
+- **Compute:** VMs can run nginx web servers using direct file deployment. 
 - **Networking:** VNets provide private network isolation between groups.   
 - **Linux Skills:** File editing, permissions, and system administration. 
 - **Network Understanding:** Private vs Public IP addressing. 
@@ -212,4 +212,4 @@ exit
 ### **Key Demonstrations Completed:**
 - **Direct VM Development:** Copying and editing files on cloud servers. 
 - **Network Isolation:** /28 subnets provide group separation. 
-- **Private IP Communication:** Can ping within group, not across groups. 
+- **Private IP Communication:** Can ping within group, but not across groups. 

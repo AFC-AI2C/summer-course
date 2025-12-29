@@ -75,14 +75,14 @@
 ---
 
 ## **STEP 4: SSH Into Your VM**
-**Location:** Azure Portal > Virtual machines > [your-vm] + Azure Cloud Shell
+**Location:** Azure Portal > Virtual Machines > [your-vm]
 
 ### **Get Connection Info:**
 1. Go to your VM in Azure Portal
-2. Note down your VM's **Public IP address**
+2. Note down your VM's **Public IP address**.  The public IP address will be on the right side of the page under Networking > Public IP Address.
 
 ### **Connect via SSH:**
-1. Open **Cloud Shell** (>_) in top navigation
+1. Open **Cloud Shell** (>_) in top navigation bar.  The Cloud Shell icon should be between the Copilot and Notifications icons.  Once you click on the Cloud Shell icon, a black cloud shell will appear at the bottom of your screen. 
 2. Connect using username/password:
 
 ```bash

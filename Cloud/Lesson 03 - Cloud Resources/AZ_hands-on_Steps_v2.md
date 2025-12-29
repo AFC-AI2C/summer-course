@@ -61,7 +61,7 @@
 - **Authentication type:** Password
 - **Username:** `azureuser`
 - **Password:** Create a strong password (write it down!)
-- Note: You may receive recommendations for specific configurations (i.e., different region, availability zone, etc.) that help the VM deploy.  Not following these recommendations usually results in VM deployment failure.  You can typically follow the recommendations without serious issues.  That said, you will need to assess whether a specific recommendation interferes or breaks other parts of a specific exercise.  For this exercise, make sure that your VM is in the same region as your network group.   
+- Note: You may receive recommendations for specific configurations (i.e., different region, availability zone, etc.) that help the VM deploy.  Not following these recommendations usually results in VM deployment failure.  You will need to assess whether a specific recommendation interferes or breaks other parts of a specific exercise.  For this exercise, make sure that your VM is in the same region as your network group.   
 
 ### **Networking Tab:**
 - Virtual network: Select your `group[X]-network`.  If you cannot see this virtual network, then a recommendation might have placed you in a different region.  If so, then revert back to the original region or consult with your group members about changing the virtual network region. 

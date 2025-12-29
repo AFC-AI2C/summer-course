@@ -12,7 +12,7 @@
 # Find two string methods besides split from the python documentation
 # and use them on your string
 
-# Convert the string to a list and store it in a variable, my_list
+# Convert the string to a list and store it in a variable, new_list
 # (Look at the slides for an example)
 
 

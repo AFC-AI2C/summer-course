@@ -96,7 +96,7 @@ ssh azureuser@[YOUR-VM-PUBLIC-IP]
 
 ```
 3. **You're now inside your VM!** The prompt will change to: `azureuser@student[name]-vm:~$`
----
+```
 
 ## **STEP 5: Install Software and Deploy Website**
 **Location:** Inside your VM via SSH

@@ -1,7 +1,7 @@
 # Azure Hands-On Demo: Personal Website Deployment
 
 ## **STEP 0: Create Azure Account
-- If you have not already done so, visit the following link to create an Azure account: https://azure.microsoft.com/en-au/pricing/purchase-options/azure-account/search ef_id=_k_a753b5c9c0fd189e0456dc9b4f322278_k_&OCID=AIDcmms2uus4dd_SEM__k_a753b5c9c0fd189e0456dc9b4f322278_k_&msclkid=a753b5c9c0fd189e0456dc9b4f322278
+- If you have not already done so, visit the following link to create an Azure account: [Azure Account Creation](https://azure.microsoft.com/en-au/pricing/purchase-options/azure-account/search ef_id=_k_a753b5c9c0fd189e0456dc9b4f322278_k_&OCID=AIDcmms2uus4dd_SEM__k_a753b5c9c0fd189e0456dc9b4f322278_k_&msclkid=a753b5c9c0fd189e0456dc9b4f322278). 
 - If the above link does not work, simply type "create azure account" into a search engine of your choice and click on the appropiate link.
 - You can choose to accept the $200 credit for 30 days or pay as you go for the duration of the prerequisite course.  During the AI Technician Course, you will receive instructions from the CMU faculty on how to receive sufficient student credits for course completion. 
 

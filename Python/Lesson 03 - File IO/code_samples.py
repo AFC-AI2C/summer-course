@@ -1,14 +1,16 @@
-
+#open a file and print each line in it to the terminal
 with open('input.txt', 'r') as file:
     lines = file.readlines()
     for line in lines:
         print(line)
 
+#write this to file
 text_to_write = [
     "This is a new line of text.\n",
     "Here is another line.\n",
     "And yet another line.\n"
 ]
+#this syntax handles the file opening and closing automatically
 with open('output.txt', 'w') as file:
     for text in text_to_write:
         file.write(text)

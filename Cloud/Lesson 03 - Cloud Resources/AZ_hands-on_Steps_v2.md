@@ -130,9 +130,9 @@ sudo rm /var/www/html/index.nginx-debian.html
 2. Locate the starterpack.html file on your local device.  You will likely need to download this file from github.
 3. Upload the starterpack.html file to your VM working directory using the Manage File > Upload feature at the top of the cloud shell.
 4. Use Secure Copy (scp) to transfer the startpack.html file from your cloud shell to your VM.
-    a. This is the general structure of the scp command you need to execute:
+    - This is the general structure of the scp command you need to execute:
         scp [insert the cloud shell path to the starterpack.html file] [your_username@you_vm_ip_address:/path/to/your/VM/working/directory/]
-    b. Example: scp /home/john/starterpack.html azureuser@20.169.243.207:/home/azureuser
+    - Example: scp /home/john/starterpack.html azureuser@20.169.243.207:/home/azureuser
 6. SSH again into your VM.  Confirm the starterpack.html file's presense using the 'ls' command. 
 
 ### **Deploy your starter website:**

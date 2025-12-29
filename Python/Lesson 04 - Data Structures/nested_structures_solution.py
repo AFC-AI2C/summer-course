@@ -1,11 +1,40 @@
 # Exercise 1:  Given a list of numbers, convert the list into a list of triples
 # [1, 2, 3, 4, 5, 6] => [(1, 2, 3), (4, 5, 6)]
+my_list = list(range(1, 7))
+tuple_list = [tuple(my_list[0:3]), tuple(my_list[3:])]
+print('tupled list: ', tuple_list)
 
 # Exercise 2:  Find the last element of a nested list
 # [[1, 2, 3], [4, 5, 6]] => 6
+my_nested_list = [[1, 2, 3], [4, 5, 6]]
+last = my_nested_list[-1][-1]
+print('last element: ', last)
 
 # Exercise 3:  Create a function that lists the first N numbers in a table
 # format with C columns.  Fill any remaining values with None.
+
+import math
+
+
+def list_numbers(N, C, my_numbers):
+    rows = math.ceil(N / C)
+    counter = 0
+    my_table = []
+    while counter < rows * C:
+        for row in range(rows):
+            new_row = []
+            for col in range(C):
+                if counter < N:
+                    new_row.append(my_numbers[counter])
+                else:
+                    new_row.append(None)
+                counter += 1
+                print(new_row, counter)
+            my_table.append(new_row)
+
+my_numbers = [range(25)]
+
+print(list_numbers(16, 4, my_numbers))
 
 # Exercise 4: Create a function called make_table() that takes a number n as its only parameter.  
 # Your function should create a table of size n x n containing random numbers from 1 through 9.

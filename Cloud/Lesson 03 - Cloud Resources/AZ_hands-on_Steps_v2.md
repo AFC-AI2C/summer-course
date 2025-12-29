@@ -14,7 +14,7 @@
 - Name: `group[X]-rg` (e.g., `group1-rg`)
 - Location: East US
 
-**Click the "Review + Create" button at the bottom of the page.**
+### **Click the "Review + Create" button at the bottom of the page.**
 
 ---
 

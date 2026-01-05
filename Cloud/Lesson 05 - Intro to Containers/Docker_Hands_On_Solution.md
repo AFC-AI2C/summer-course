@@ -136,6 +136,11 @@ docker pull python:<version>
 ``` bash
 docker image ls
 ```
+or
+
+``` bash
+docker images
+```
 
 ------------------------------------------------------------------------
 

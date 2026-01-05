@@ -15,7 +15,7 @@ print(my_str[6:])
 me_yelling = my_str.upper()
 print(me_yelling)
 
-# Convert the string to a list and store it in a variable, my_list
+# Convert the string to a list and store it in a variable, new_list
 # (Look at the slides for an example)
 new_list = list(my_str) # OR
 new_list = []

@@ -16,6 +16,12 @@ with them, and managing their lifecycle using the Docker CLI.
 ``` bash
 docker --version
 ```
+or
+
+``` bash
+docker info
+```
+
 
 2.  Run the `hello-world` container:
 
@@ -38,6 +44,12 @@ image successfully.
 docker container ls --all
 ```
 
+or
+
+``` bash
+docker ps --all
+```
+
 -   Run a container in **detached mode** using `nginx`:
 
 ``` bash
@@ -50,10 +62,22 @@ docker run -d nginx
 docker container ls
 ```
 
+or
+
+``` bash
+docker ps
+```
+
 -   Stop a running container (replace `<id>`):
 
 ``` bash
 docker container stop <id>
+```
+
+or
+
+``` bash
+docker stop <id>
 ```
 
 -   Restart a stopped container:
@@ -62,16 +86,34 @@ docker container stop <id>
 docker container start <id>
 ```
 
+or
+
+``` bash
+docker start <id>
+```
+
 -   Remove a stopped container:
 
 ``` bash
 docker container rm <id>
 ```
 
+or
+
+``` bash
+docker rm <id>
+```
+
 -   List all containers again:
 
 ``` bash
 docker container ls --all
+```
+
+or
+
+``` bash
+docker ps --all
 ```
 
 ------------------------------------------------------------------------
@@ -184,6 +226,18 @@ docker run python:mytag
 docker image rm <image>
 ```
 
+or
+
+``` bash
+docker rmi <image>
+```
+
+-   Remove all unused images:
+
+``` bash
+docker image prune
+```
+
 ------------------------------------------------------------------------
 
 ### Exercise 4: Image Size Comparison
@@ -202,6 +256,12 @@ List sizes:
 
 ``` bash
 docker image ls
+```
+
+or
+
+``` bash
+docker images
 ```
 
 ------------------------------------------------------------------------
@@ -224,6 +284,8 @@ apt install -y curl
 ```
 
 3.  Commit the container:
+    1.  exit Ubuntu shell
+    2.  find container_id by listing **all** containers (running + stopped)
 
 ``` bash
 docker commit <container_id> ubuntu:custom

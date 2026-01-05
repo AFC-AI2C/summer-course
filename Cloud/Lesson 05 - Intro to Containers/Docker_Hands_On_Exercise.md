@@ -6,7 +6,7 @@ These exercises introduce Docker containers, running them, interacting
 with them, and managing their lifecycle using the Docker CLI.  It is meant to be exploratory,
 if you run into issues, please consult the solution.
 
-You should make extensive use of the `--help` flag and a docker cheatsheet.  
+You should make extensive use of the `--help` flag and a docker cheatsheet.
 [Here](https://docs.docker.com/get-started/docker_cheatsheet.pdf) is one example
 
 ------------------------------------------------------------------------
@@ -139,7 +139,11 @@ independently.
   Purpose                     Command
   --------------------------- --------------------------------
   Remove all containers       *Fill in the correct command.*
+
   Remove all images           *Fill in the correct command.*
+
   Remove stopped containers   *Fill in the correct command.*
+
   Remove unused images        *Fill in the correct command.*
+  
   Remove unused networks      *Fill in the correct command.*

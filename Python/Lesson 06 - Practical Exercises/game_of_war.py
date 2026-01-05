@@ -23,6 +23,7 @@ import random
 
 
 # 3.1 TODO Create a continuous loop that escapes when either player's deck is empty.
+#     NOTE TODOs 3.2 - 7.3 are written inside this loop.
 # 3.2 TODO Prompt for user input of 'exit' or '+'. 
 # 3.3 TODO If input equals 'exit', print a goodbye message and escape the loop.
 # 3.4 TODO If input equals anything except '+', return to the beginning of the loop.
@@ -44,7 +45,8 @@ import random
 # 6.4 TODO Draw a new card for each player. 
 # 6.5 TODO Store the corresponding values of the new cards to the appropriate ints.
 # 6.6 TODO Print a message displaying the player's card versus the NPC's card.
-#     NOTE This loop will iterate as many times as it needs to until a tie is resolved.
+#     NOTE We are done with this loop, it will iterate as many times as it needs
+#          to until a tie is resolved.
 
 
 # 7.1 TODO Compare whose card value is higher using the appropriate ints you assigned.

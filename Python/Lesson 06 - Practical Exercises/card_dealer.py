@@ -15,7 +15,7 @@ import random
 # 3.  TODO Create a new deck.
 
 
-# 4.  TODO Create continuous loop with prompt to deal card or exit (type '+' or 'exit').
-# 4.1 TODO If '+' inputted, check deck length. If length is 0, create a new deck.
-# 4.2 TODO Generate a random card from the deck, print it, and remove it from the deck.
+# 4.1 TODO Create continuous loop with prompt to deal card or exit (type '+' or 'exit').
+# 4.2 TODO If '+' inputted, check deck length. If length is 0, create a new deck.
+# 4.3 TODO Generate a random card from the deck, print it, and remove it from the deck.
 #     HINT: Use random.choice(list())   

@@ -1,7 +1,7 @@
 # Write a program that calculates however many semiprime 
 # numbers the user specifies and prints them to the screen.
 
-#
+
 # 1.  TODO Write a function that checks if a number is prime.
 
 

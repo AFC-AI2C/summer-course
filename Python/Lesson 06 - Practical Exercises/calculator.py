@@ -11,4 +11,4 @@
 # 3. TODO Determine the operand.
 
 
-# 4 .TODO Evaluate the expression. 
+# 4. TODO Evaluate the expression. 

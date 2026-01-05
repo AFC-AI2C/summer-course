@@ -1,6 +1,8 @@
-Exercise 2: Supervised vs. Unsupervised Sorting
+# Exercise 2: Supervised vs. Unsupervised Sorting
 
-Topic: Types of Machine Learning  Task: For each scenario below, decide if it is Supervised Learning (predicting a label) or Unsupervised Learning (finding patterns).
+## Topic: Types of Machine Learning  
+
+Task: For each scenario below, decide if it is Supervised Learning (predicting a label) or Unsupervised Learning (finding patterns).
 
 Spam Filter: You feed the computer thousands of emails labeled "Spam" or "Not Spam" so it can learn to filter your inbox.
 

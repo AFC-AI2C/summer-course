@@ -4,6 +4,8 @@
 
 ### What is the output of this block of code?
 
+print('\n\nEx 1\n')
+
 def mut_example(list1, list2, list3):
     if len(list1) > 2:
         list1 = list1[:2]
@@ -42,6 +44,8 @@ sorted() is a function that takes a list as input and returns a sorted copy. The
 ### Write a function that doubles the elements in a list.
 
 # without return statement:
+print('\n\nEx 3\n')
+
 def double(my_list):
     for i in range(len(my_list)):
         my_list[i] = 2 * my_list[i]
@@ -90,6 +94,9 @@ print(new_tuple)
 A new tuple must be created and returned from data from the original tuple.
 '''
 ## Exercise 4
+
+print('\n\nEx 4\n')
+
 
 ### Rewrite the pop, count, extend, reverse, and sort functions
 
@@ -161,6 +168,9 @@ output:
 
 ### Write a function that adds two fractions
 
+print('\n\nEx 5\n')
+
+
 def add_fractions(frac1, frac2):
     return ((frac1[0] * frac2[1] + frac1[1] * frac2[0]), frac1[1] * frac2[1])
 
@@ -203,6 +213,8 @@ output:
 ## Exercise 6
 
 ### write a function to calculate distance between two cartesian coordinates
+
+print('\n\nEx 6\n')
 
 
 import math

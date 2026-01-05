@@ -136,14 +136,14 @@ You should make extensive use of the `--help` flag and a docker cheatsheet.
 These are intentionally omitted here so students can research them
 independently.
 
-  Purpose                     Command
+  Purpose:                     Command
   --------------------------- --------------------------------
-  Remove all containers       *Fill in the correct command.*
+  Remove all containers:       <*Fill in the correct command.*>
 
-  Remove all images           *Fill in the correct command.*
+  Remove all images:           <*Fill in the correct command.*>
 
-  Remove stopped containers   *Fill in the correct command.*
+  Remove stopped containers:   <*Fill in the correct command.*>
 
-  Remove unused images        *Fill in the correct command.*
-  
-  Remove unused networks      *Fill in the correct command.*
+  Remove unused images:        <*Fill in the correct command.*>
+
+  Remove unused networks:      <*Fill in the correct command.*>

@@ -16,6 +16,12 @@ with them, and managing their lifecycle using the Docker CLI.
 ``` bash
 docker --version
 ```
+or
+
+``` bash
+docker info
+```
+
 
 2.  Run the `hello-world` container:
 
@@ -38,6 +44,12 @@ image successfully.
 docker container ls --all
 ```
 
+or
+
+``` bash
+docker ps --all
+```
+
 -   Run a container in **detached mode** using `nginx`:
 
 ``` bash
@@ -50,10 +62,22 @@ docker run -d nginx
 docker container ls
 ```
 
+or
+
+``` bash
+docker ps
+```
+
 -   Stop a running container (replace `<id>`):
 
 ``` bash
 docker container stop <id>
+```
+
+or
+
+``` bash
+docker stop <id>
 ```
 
 -   Restart a stopped container:
@@ -62,16 +86,34 @@ docker container stop <id>
 docker container start <id>
 ```
 
+or
+
+``` bash
+docker start <id>
+```
+
 -   Remove a stopped container:
 
 ``` bash
 docker container rm <id>
 ```
 
+or
+
+``` bash
+docker rm <id>
+```
+
 -   List all containers again:
 
 ``` bash
 docker container ls --all
+```
+
+or
+
+``` bash
+docker ps --all
 ```
 
 ------------------------------------------------------------------------
@@ -136,6 +178,11 @@ docker pull python:<version>
 ``` bash
 docker image ls
 ```
+or
+
+``` bash
+docker images
+```
 
 ------------------------------------------------------------------------
 
@@ -179,6 +226,18 @@ docker run python:mytag
 docker image rm <image>
 ```
 
+or
+
+``` bash
+docker rmi <image>
+```
+
+-   Remove all unused images:
+
+``` bash
+docker image prune
+```
+
 ------------------------------------------------------------------------
 
 ### Exercise 4: Image Size Comparison
@@ -197,6 +256,12 @@ List sizes:
 
 ``` bash
 docker image ls
+```
+
+or
+
+``` bash
+docker images
 ```
 
 ------------------------------------------------------------------------
@@ -219,6 +284,8 @@ apt install -y curl
 ```
 
 3.  Commit the container:
+    1.  exit Ubuntu shell
+    2.  find container_id by listing **all** containers (running + stopped)
 
 ``` bash
 docker commit <container_id> ubuntu:custom
@@ -276,6 +343,40 @@ Visit:
 
 ------------------------------------------------------------------------
 
+## Hands-On #4: Task Program Deployment with Docker
+
+### Exercise 1: Make commands.sh script executable
+
+``` bash
+chmod +x commands.sh
+```
+
+### Exercise 2: Run commands.sh script
+
+``` bash
+./commands.sh
+
+```
+or
+
+``` bash
+sudo ./commands.sh
+```
+
+### Exercise 3: Navigate and view program interface
+
+visit http://localhost:8080/todo
+
+### Exercise 4: Verify program is working
+
+-   Create 'test' task using GUI in web browser
+
+### Exercise 5: Stop container program is running in
+
+``` bash
+docker container stop <id>
+```
+
 ## Helpful Commands (Linux)
 
   -----------------------------------------------------------------------------------------------------------------
@@ -290,4 +391,5 @@ Visit:
   Remove unused images              `docker image prune --all`
 
   Remove unused networks            `docker network prune`
+
   -----------------------------------------------------------------------------------------------------------------

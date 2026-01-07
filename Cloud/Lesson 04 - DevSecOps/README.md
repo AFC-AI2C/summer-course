@@ -50,7 +50,7 @@ The application of manufacturing and leadership principles to the software devel
 
 - **Requirement:** The app must be tested, containerized, and approved by a Team Lead.
 - **Conditions:** Use GitHub for version control and any preferred code editor.
-- **Reference:** Complete the exercise using [Coding Kata 1](https://github.com/afc-ai2c/coding-katas/).
+- **Reference:** Complete the practical exercise found in [practical-exercise.md](practical-exercise.md).
 
 
 ## 📚 References

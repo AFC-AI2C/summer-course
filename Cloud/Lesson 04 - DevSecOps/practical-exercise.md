@@ -136,8 +136,77 @@ jobs:
 
 ## Step 9:
 
-- Stop your HTTP server
+- Stop your HTTP server(CTRL + C)
 - Commit the changes you've made and [review the pipeline results](https://docs.github.com/en/actions/how-tos/monitor-workflows/use-the-visualization-graph) in the GitHub UI.
-- At this stage you workflow should still be failing the build job
+- At this stage you workflow should still be failing the build job because you have not created a Dockerfile
 
-## 
+## Step 10:
+
+- Create a Dockerfile in the root directory of your repository. 
+- An example of the Dockerfile is bellow, please review Dockers [official documentation](https://docs.docker.com/reference/dockerfile/#overview) for further details, specifically correct syntaxt and parameters.
+- Also please review the [documentation about image layers](https://docs.docker.com/get-started/docker-concepts/building-images/understanding-image-layers/).
+- Bonus question, how many layers will the docker image have when configured with the provided Dockerfile?
+
+```shell
+# Define the base image to use.
+FROM alpine
+
+# Set the working directory.
+WORKDIR /home/peacefield
+
+# Install Python.
+RUN apk add python3
+
+# Copy our source code.
+COPY backend.py backend.py
+COPY index.html index.html
+
+# Create a non-root user with no password (-D).
+RUN adduser -D peacefield -h /home/peacefield
+
+# Set permissions.
+RUN chown -R peacefield:peacefield /home/peacefield
+
+# Switch to a non-root user.
+USER peacefield
+
+# Identify what TCP port will be used by our server.
+EXPOSE 8000
+
+# Start the server.
+CMD ["python", "backend.py"]
+```
+
+## Step 11:
+
+- [Create a container image](https://docs.docker.com/get-started/introduction/build-and-push-first-image/) using the Dockerfile you created.
+
+```bash
+docker build -t peacefield/backend:v1.0.0 -f Dockerfile .
+```
+
+## Step 12:
+
+- [Create a container](https://docs.docker.com/reference/cli/docker/container/run/) using the image you just created.
+
+```bash
+docker run --name peacefield-backend -d -p 8000:8000 -t peacefield/backend:v1.0.0 
+```
+
+## Step 13:
+
+- Verify your container is working by opening a browser to `http://localhost:8000`.
+- As before, you should see your HTML page. Once you verify the container is working, stop it by using the command below.
+
+```bash
+docker stop peacefield-backend
+```
+
+## Step 14:
+
+- Commit the changes you made and review the pipeline results in the GitLab UI. Address all findings before moving onto the next step.
+
+## Step 15:
+
+- [Submit a Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) using GitHub's UI so your changes are pulled into the main branch.
+

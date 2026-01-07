@@ -38,11 +38,6 @@ This guide walks you through the basic Git workflow: initializing a repository, 
 
 **Goal**: Create a new directory and initialize it as a Git repository.
 
-```bash
-mkdir git-intro
-cd git-intro
-git init
-```
 
 ✅ *Check*: Run `ls -la` to verify that a `.git` directory was created.  Git stores all of its tracking information in a series of files in the `.git` directory.
 
@@ -52,12 +47,10 @@ git init
 
 **Goal**: Create a file and add some content.
 
-```bash
-echo "Hello, Git!" > hello.txt
-cat hello.txt
-```
 
-✅ *Check*: Run `git status` to see the untracked file.  Read the output carefully.  Which branch are you on?  What are the "untracked" file?
+✅ *Check*: Run 'ls' to see the created file in your directory. Run `git status` to see the untracked file.  Read the output carefully.  Which branch are you on?  What are the "untracked" file?  
+INFO: Line 1 Creates the hello.txt file and adds the line "Hello, Git!"  
+INFO: Line 2 'cat' is short for concatenate, it chains files together into a single output, in this example, your screen is the default output
 
 ---
 
@@ -65,11 +58,8 @@ cat hello.txt
 
 **Goal**: Add the file to the staging area.
 
-```bash
-git add hello.txt
-```
 
-✅ *Check*: Run `git status` again and verify that the change is staged.  How is the output of `git status` different than the previous step?
+✅ *Check*: Run `git status` again and verify that the change is staged.  How is the output of `git status` different than the previous step? You can run 'git add .' to stage all changes at once.
 
 ---
 
@@ -79,15 +69,9 @@ git add hello.txt
 
 Git keeps a log of all your commits.  Before we make any commits, let's see what the history says.
 
-```bash
-git log
-```
 
 What does the output show?  Now commit your staged change with a descriptive message.
 
-```bash
-git commit -m "Add hello.txt with greeting"
-```
 
 ✅ *Check*: Run `git status` to see the new status, run `git log` to see your first commit.
 
@@ -97,17 +81,12 @@ git commit -m "Add hello.txt with greeting"
 
 **Goal**: Modify the file, stage, and commit the changes.
 
-```bash
-echo "This is a second line." >> hello.txt
-git add hello.txt
-git commit -m "Add second line to hello.txt"
-```
 
 ✅ *Check*: Use `git log` and `cat hello.txt` to verify your commit and file contents.
 
 ---
 
-### Exercise 6: Create a Second File
+### Exercise 6: Commit a Second File
 
 **Goal**: Check what happens with unstaged files (no commands for you this time!)
 
@@ -123,23 +102,15 @@ Create a second and third file, but only stage and commit the second file.
 
 **Goal**: Explore the commit history and file diffs.
 
-```bash
-git log         # View commit history
-git diff HEAD~1 # See changes made in the most recent commit
-```
 
-✅ *Try*: Use `git show <commit-hash>` to view the details of a specific commit.
+✅ *Try*: Use `git show <commit-hash>` to view the details of a specific commit. 
 
 ### Exercise 8: View a Specific Commit
 
 **Goal**: Use `git show` to view details of a specific commit.
 
-```bash
-git log --oneline
-git show <commit-hash>
-```
 
-✅ *Tip*: Replace `<commit-hash>` with the short hash from `git log --oneline`.
+✅ *Tip*: Replace `<commit-hash>` (it should be 7 characters on the left side) with the short hash from `git log --oneline`.
 
 ---
 
@@ -147,10 +118,6 @@ git show <commit-hash>
 
 **Goal**: Compare two commits.
 
-```bash
-git log --oneline
-git diff <old-commit> <new-commit>
-```
 
 ✅ *Example*: Compare two specific commits to see what changed between them.
 
@@ -160,15 +127,9 @@ git diff <old-commit> <new-commit>
 
 **Goal**: View the commit history for a single file.
 
-```bash
-git log hello.txt
-```
 
 ✅ *Try*: Add `-p` to view diffs in each commit:
 
-```bash
-git log -p hello.txt
-```
 
 ---
 
@@ -176,10 +137,6 @@ git log -p hello.txt
 
 **Goal**: View changes to files before staging.
 
-```bash
-echo "Temporary edit" >> hello.txt
-git diff
-```
 
 ✅ *Check*: The output will show changes that are unstaged.
 
@@ -189,10 +146,6 @@ git diff
 
 **Goal**: View what has been staged before committing.
 
-```bash
-git add hello.txt
-git diff --cached
-```
 
 ✅ *Check*: This shows differences between the index (staged area) and the last commit.
 

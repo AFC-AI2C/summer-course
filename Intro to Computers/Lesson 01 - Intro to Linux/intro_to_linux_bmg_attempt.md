@@ -22,6 +22,7 @@ Welcome! These exercises are designed to help you get comfortable with basic Lin
 1. Open WSL
 2. Run the following command to clone the initial file structure
     ```bash
+    cd~
     git clone https://github.com/shafe123/AI2C-IntroToLinux.git
     ```
 3. Verify the folder was cloned
@@ -30,20 +31,20 @@ ls
 ```   
 4. Change directory into the newly cloned folder
 ```bash
-cd ./AI2C-IntroToLinux/
+cd ~/AI2C-IntroToLinux/
 ```   
 
 ### Exercise 1: Navigation
 
 1. List all files and directories in the current folder.
-   ```bash
-   ls
-   ```
+```bash
+ls
+```
 
 2. Change directory into `notes`, then list the files.
 ```bash
 cd ./notes
-   ```   
+```   
 
 3. Go back to the parent directory.
 ```bash
@@ -66,24 +67,35 @@ more file2.txt
 ### Exercise 3: File Management
 
 1. Copy `file2.txt` into the `docs` directory.
-   
+```bash
+cp file2.txt ./docs/
+```   
 
 2. Move `file1.txt` into the `notes` directory and rename it as file3.
+```bash
+mv file1.txt ./notes/file3.txt
+```   
    
-
 3. Create a new file named `newfile.txt`.
+```bash
+touch newfile.txt
+```   
    
-
 4. Delete `newfile.txt`.
+```bash
+rm newfile.txt
+```   
    
 
 ### Exercise 4: Permissions and Execution
 
 1. View permissions of `scripts/hello.sh`.
+```bash
+```   
    
-
 2. Make `hello.sh` executable and run it.
-   
+```bash
+```      
 
 ## Hands-On #2
 

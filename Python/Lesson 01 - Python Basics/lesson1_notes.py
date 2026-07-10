@@ -1,0 +1,8 @@
+name = input("What is your name? ")
+favorite_number = int(input("What is your favorite number? "))
+#print("Hello " + name)
+#print("Your favorite number is " + str(favorite_number))
+#print("Your favorite number minus 10 is " + str(favorite_number - 10))
+print("Hello ", name)
+print("Your favorite number is ", str(favorite_number))
+print("Your favorite number minus 10 is ", str(favorite_number - 10))

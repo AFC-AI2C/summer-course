@@ -167,24 +167,31 @@ wc */*.txt
 
 1. Connect to the server that your instructor provided with the correct credentials.
 ```bash
+ssh user2@46.225.20.198
+yes
 ```   
   
 
 2. Run a remote command (e.g., list home directory files).
 ```bash
+ls ~
 ```   
   
 
 3. Copy a local file to the remote server.
 ```bash
+echo https://www.cartalk.com/content/lame-jokes-2 > LameJokesFromCarTalk
+scp LameJokesFromCarTalk user2@46.225.20.
+198:/srv/class_share
 ```   
 
 
 4. Leave a message for your peers!
 ```bash
+ssh user2@46.225.20.198
+echo Non Impediti Ratione Cogitationis > Motto_of_Tom.txt && echo Unencumbered by the thought process. >> Motto_of_Tom.txt
 ```   
    
-
 ---
 
 ### Exercise 8: Redirection Operators

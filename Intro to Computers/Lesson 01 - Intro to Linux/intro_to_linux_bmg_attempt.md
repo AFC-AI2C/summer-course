@@ -198,22 +198,36 @@ echo Non Impediti Ratione Cogitationis > Motto_of_Tom.txt && echo Unencumbered b
 
 1. Redirect the output of `ls` into a file.
 ```bash
+ls > ls_output.txt
 ```      
 
 2. Append output to an existing file using echo.
 ```bash
+echo my output >> ls_output.txt
 ```      
 
 3. Use input redirection to provide data to a command.
 ```bash
+wc < file1.txt
+wc file1.txt
+
+echo file1.txt > data_for_my_command.txt
+cat $(< data_for_my_command.txt)
+
+ls | grep $(< data_for_my_command.txt)
+
+echo .txt > more_data_for_a_command.txt
+ls | grep $(< more_data_for_a_command.txt)
 ```      
 
 4. Chain commands with a pipe: count the number of files containing "Note".
 ```bash
+grep -Rl Note | wc
 ```      
 
 5. Combine multiple operators: search a file and save results.
 ```bash
+grep -R Linux | grep -v Linux.git > results_about_Linux.txt
 ```     
 
 ---

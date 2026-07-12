@@ -145,27 +145,44 @@ grep -r ^Note
 ### Exercise 6: WC - Word/Line/Character Count
 
 1. Count the number of lines in `file2.txt`.
-   
+```bash
+wc file2.txt
+```   
 
 2. Count the number of words and characters in `docs/doc1.txt`.
+```bash
+wc docs/doc1.txt
+```   
    
-
 3. Get a summary for all `.txt` files.
+```bash
+wc *.txt
+
+wc */*.txt
+```   
    
 ---
 
 ### Exercise 7: SSH - Remote Access
 
 1. Connect to the server that your instructor provided with the correct credentials.
-   
+```bash
+```   
+  
 
 2. Run a remote command (e.g., list home directory files).
-   
+```bash
+```   
+  
 
 3. Copy a local file to the remote server.
+```bash
+```   
 
 
 4. Leave a message for your peers!
+```bash
+```   
    
 
 ---
@@ -173,19 +190,24 @@ grep -r ^Note
 ### Exercise 8: Redirection Operators
 
 1. Redirect the output of `ls` into a file.
-   
+```bash
+```      
 
 2. Append output to an existing file using echo.
-   
+```bash
+```      
 
 3. Use input redirection to provide data to a command.
-   
+```bash
+```      
 
 4. Chain commands with a pipe: count the number of files containing "Note".
-   
+```bash
+```      
 
 5. Combine multiple operators: search a file and save results.
-   
+```bash
+```     
 
 ---
 

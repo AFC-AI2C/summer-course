@@ -44,6 +44,7 @@ ls
 2. Change directory into `notes`, then list the files.
 ```bash
 cd ./notes
+ls
 ```   
 
 3. Go back to the parent directory.
@@ -92,6 +93,7 @@ rm newfile.txt
 1. View permissions of `scripts/hello.sh`.
 ```bash
 ls -l scripts/hello.sh
+
 stat scripts/hello.sh
 ```   
    
@@ -100,6 +102,7 @@ stat scripts/hello.sh
 stat scripts/hello.sh
 chmod u+x scripts/hello.sh
 ls -l scripts/hello.sh
+
 chmod 0744 scripts/hello.sh
 ls -l scripts/hello.sh
 ```      
@@ -125,12 +128,16 @@ grep -v Linux file1.txt
 
 3. Search recursively in all `.txt` files under the current directory.
 ```bash
-XXX ls -R | grep Linux
+grep -r Linux .
+
+grep -r Linux
 ```
 
 4. Find lines starting with the word "Note".
 ```bash
-XXX grep ^Note file1.txt
+grep -r ^Note .
+
+grep -r ^Note
 ```     
 
 ---

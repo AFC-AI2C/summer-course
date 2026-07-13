@@ -14,7 +14,21 @@ These exercises focus on using `if`, `elif`, and `else` statements to control pr
 
 
 ✅ *Check*: Should print "The number is positive" if the number is greater than 0.
+```python
+def user_int_pos() -> None:
+    user_num = input("Enter an integer: ")
+    while True:
+        try:
+            user_num = int(user_num)
+            break
+        except:
+            print("That is not an integer. Try again.")
+            user_num = input("Enter an integer: ")
+    if user_num > 0:
+        print("The number is positive")
 
+user_int_pos()      
+```
 ---
 
 ### Exercise 2: Even or Odd
@@ -24,7 +38,25 @@ These exercises focus on using `if`, `elif`, and `else` statements to control pr
 
 
 ✅ *Check*: Should print "Even" or "Odd" based on the number.
+```python
+"""Note: This function does not accept 0 as user input."""
+def user_int_even_odd() -> None:
+    user_num = input("Enter an integer: ")
+    while True:
+        try:
+            user_num = int(user_num)
+            1/user_num  #test division by 0
+            break
+        except:
+            print("That is not an acceptable integer. Try again.")
+            user_num = input("Enter an integer: ")
+    if user_num % 2 == 0:
+        print("Even")
+    else:
+        print("Odd")
 
+user_int_even_odd()      
+```
 ---
 
 ### Exercise 3: Age Category
@@ -38,7 +70,28 @@ These exercises focus on using `if`, `elif`, and `else` statements to control pr
 
 
 ✅ *Check*: Should print the correct category based on age.
+```python
+"""Note: This function lacks error handling for leading zeros in decimal integer literals, e.g., 0001."""
+def user_age() -> None:
+    user_age = input("Enter your age: ")
+    while True:
+        try:
+            user_age = int(user_age)
+            break
+        except:
+            print("That is not an acceptable integer. Try again.")
+            user_age = input("Enter your age: ")
+    if user_age >= 65:
+        print("Senior")
+    elif user_age >= 20:
+        print("Adult")
+    elif user_age >= 13:
+        print("Teenager")
+    else:
+        print("Child")
 
+user_age()      
+```
 ---
 
 ### Exercise 4: Compare Two Numbers
@@ -52,6 +105,33 @@ b = 20
 
 ✅ *Check*: Should print "{first_number} is larger", "{second_number} is larger", or "The numbers are equal".
 
+```python
+def compare_user_nums() -> None:
+    first_number = input("Enter a number: ")
+    while True:
+        try:
+            first_number = float(first_number)
+            break
+        except:
+            print("That is not an acceptable number. Try again.")
+            first_number = input("Enter a number: ")
+    second_number = input("Enter another number: ")
+    while True:
+        try:
+            second_number = float(second_number)
+            break
+        except:
+            print("That is not an acceptable number. Try again.")
+            second_number = input("Enter a number: ")
+    if first_number > second_number:
+        print(f"{first_number} is greater than {second_number}")
+    elif first_number < second_number:
+        print(f"{second_number} is greater than {first_number}")
+    else:
+        print(f"The numbers are equal")
+
+compare_user_nums()      
+```
 ---
 
 ### Exercise 5: Grade Converter
@@ -66,7 +146,29 @@ b = 20
 
 
 ✅ *Check*: Should print the correct letter grade.
+```python
+def grader_func() -> None:
+    user_num_grade = input("Enter a numeric grade between 0 and 100: ")
+    while True:
+        try:
+            user_num_grade = int(user_num_grade)
+            break
+        except:
+            print("That is not an acceptable number. Try again.")
+            user_num_grade = input("Enter a numeric grade: ")
+    if user_num_grade >= 90:
+        print("A")
+    elif user_num_grade >= 80:
+        print("B")
+    elif user_num_grade >= 70:
+        print("C")
+    elif user_num_grade >= 60:
+        print("D")
+    else:
+        print("F")
 
+grader_func()
+```
 ---
 
 ### Exercise 6: String Length Check
@@ -76,7 +178,16 @@ b = 20
 
 
 ✅ *Check*: Should print "Long string" if length is greater than 10, otherwise "Short string".
+```python
+def usr_str_len() -> None:
+    usr_str = input("Enter a string: ")
+    if len(usr_str) >= 10:
+        print("Long string")
+    else:
+        print("Short string")
 
+usr_str_len()
+```
 ---
 
 ### Exercise 7: Logical AND Operator
@@ -88,7 +199,23 @@ number = 15
 ```
 
 ✅ *Check*: Should print "Number is in range" if between 10 and 20, otherwise should print "Out of range".
+```python
+def range_10_20() -> None:
+    usr_num = input("Enter a number: ")
+    while True:
+        try:
+            usr_num = float(usr_num)
+            break
+        except:
+            print("That is not an acceptable number. Try again.")
+            usr_num = input("Enter a number: ")
+    if (usr_num >= 10) and (usr_num <= 20):
+        print(f"Number is in range")
+    else:
+        print(f"Out of range.")
 
+range_10_20()
+```
 ---
 
 ### Exercise 8: Logical OR Operator

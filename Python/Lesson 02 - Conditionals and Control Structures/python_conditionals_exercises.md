@@ -225,7 +225,21 @@ range_10_20()
 
 
 ✅ *Check*: Should print "Vowel" if the letter is a, e, i, o, or u, else "Consonant".
+```python
+def vwl_or_cnsnt() -> None:
+    usr_chr = input("Enter a character: ")
+    for vowel in ["a","e","i","o","u"]:
+        if usr_chr == vowel:
+            print("vowel")
+            break
+    for consonant in ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"]:
+        if usr_chr == consonant:
+            print("consonant")
+            break
 
+
+vwl_or_cnsnt()
+```
 ---
 
 ### Stretch:  Exercise 9: Leap Year Checker
@@ -238,7 +252,17 @@ Rules:
 
 
 ✅ *Check*: Should print "Leap year" or "Not a leap year".
+```python
+def leap_year() -> None:
+    usr_yr = int(input("Enter the year: "))
+    if (usr_yr % 4 == 0) and (usr_yr % 100 > 0):
+        print(f"The year {usr_yr} is a leap year.")
+    else:
+        print(f"The year {usr_yr} is not a leap year.")
 
+
+leap_year()
+```
 ---
 
 ### Stretch:  Exercise 10: Nested Conditionals - BMI Calculator
@@ -252,11 +276,25 @@ Rules:
 
 Formula: BMI = weight (kg) / height (m)²
 
-
-
 ✅ *Check*: Should calculate BMI and print the correct category.
+```python
+def ht_wt_bmi() -> None:
+    usr_wt = float(input("Enter your weight in kg: "))
+    usr_ht = float(input("Enter your height in m: "))
+    bmi = usr_wt / usr_ht **2
+    print(f"Your BMI equals {bmi:.2f}.")
+    if bmi < 18.5:
+        print("Underweight")
+    elif bmi < 24.9:
+        print("Normal weight")
+    elif bmi < 29.9:
+        print("Overweight")
+    else:
+        print("Obese")
 
-
+if __name__ == "__main__":
+    ht_wt_bmi()
+```
 
 ---
 ## Hands-On #2:

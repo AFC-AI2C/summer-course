@@ -309,7 +309,11 @@ colors = ["red", "blue", "green"]
 ```
 
 ✅ *Check*: Each color should be printed on a separate line.
-
+```python
+colors = ["red", "blue", "green"]
+for color in colors:
+    print(color)
+```
 ---
 
 ### Exercise 12: List Length
@@ -321,7 +325,10 @@ numbers = [5, 10, 15, 20, 25]
 ```
 
 ✅ *Check*: Should print "The list has 5 items".
-
+```python
+numbers = [5, 10, 15, 20, 25]
+print(f"The list has {len(numbers)} items")
+```
 ---
 
 ### Exercise 13: Append to a List
@@ -333,6 +340,15 @@ my_list = []
 ```
 
 ✅ *Check*: List should contain 5 items after appending.
+```python
+my_list = []
+my_list.append("Clutch Issues")
+my_list.append("Blower Motor/Compressor Noise")
+my_list.append("Subaru Pinging and Brake Noise")
+my_list.append("Oil Cap Mishap")
+my_list.append("Idling vs. Shutting Off")
+print(my_list)
+```
 
 ---
 
@@ -341,7 +357,11 @@ my_list = []
 **Goal**: Use a `for` loop with `range()` to print numbers 1 through 10.
 
 ✅ *Check*: Should print numbers 1, 2, 3, ..., 10.
+```python
+for num in range(1,11):
+    print(num, end=" ")
 
+```
 ---
 
 ### Exercise 15: Sum Numbers in a List
@@ -350,6 +370,11 @@ my_list = []
 
 ```python
 numbers = [4, 7, 2, 9, 12]
+sum = 0
+for number in numbers:
+    sum += number
+
+print(sum)
 ```
 
 ✅ *Check*: Should print the total sum: 34.
@@ -363,6 +388,15 @@ numbers = [4, 7, 2, 9, 12]
 ```python
 available_fruits = ["apple", "banana", "orange", "mango"]
 fruit = "banana"
+def fruit_available(available_fruits = ["apple", "banana", "orange", "mango"], fruit = "banana") -> str:
+    available = "Out of stock"
+    for available_fruit in available_fruits:
+        if fruit == available_fruit:
+            available = "In stock"
+    
+    return(available)
+
+print(fruit_available(fruit="banana"))
 ```
 
 ✅ *Check*: Should print "In stock" if fruit is in the list, else "Out of stock".
@@ -375,6 +409,15 @@ fruit = "banana"
 
 ```python
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+def evens_in_list(numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) -> str:
+    count = 0
+    for num in numbers:
+        if num % 2 == 0:
+            count += 1
+    print(f"There are {count} even numbers")
+
+
+evens_in_list()
 ```
 
 ✅ *Check*: Should print "There are 5 even numbers".
@@ -387,6 +430,13 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 ```python
 count = 10
+def countdown(count = 10) -> None:
+    while count > 0:
+        print(count, end=" ")
+        count -= 1
+    print()
+
+countdown(15)
 ```
 
 ✅ *Check*: Should print 10, 9, 8, ..., 2, 1.
@@ -398,7 +448,14 @@ count = 10
 **Goal**: Use a `while` loop to keep doubling a number until it exceeds 100.
 
 ```python
-number = 1
+def doubling(number=1, cutoff_paramter=100) -> None:
+    while (number < cutoff_paramter):
+        print(number, end=" ")
+        number *= 2
+        
+    print()
+
+doubling()
 ```
 
 ✅ *Check*: Should print: 1, 2, 4, 8, 16, 32, 64.
@@ -408,6 +465,10 @@ number = 1
 ### Stretch: Exercise 20: Create a List with Range
 
 **Goal**: Use `range()` to create a list of even numbers from 0 to 20.
+
+```python
+[x for x in range(0,21,2)]
+```
 
 ✅ *Check*: Should create [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20].
 

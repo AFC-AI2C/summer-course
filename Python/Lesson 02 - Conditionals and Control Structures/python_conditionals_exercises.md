@@ -480,6 +480,10 @@ doubling()
 
 **Goal**: Create a new list containing the squares of numbers 1 through 5.
 
+```python
+[x**2 for x in range(1,6)]
+```
+
 ✅ *Check*: Should create [1, 4, 9, 16, 25].
 
 ---
@@ -489,8 +493,15 @@ doubling()
 **Goal**: Count how many vowels are in a string using a loop.
 
 ```python
-text = "Hello World"
-vowels = "aeiouAEIOU"
+def count_vowels(text = "Hello World") -> None:
+    vowels = "aeiouAEIOU"
+    count = 0
+    for char in text:
+        if char in vowels:
+            count += 1
+    print(count)
+
+count_vowels()
 ```
 
 ✅ *Check*: Should count and print the number of vowels.
@@ -502,7 +513,14 @@ vowels = "aeiouAEIOU"
 **Goal**: Find the largest number in a list using a `for` loop.
 
 ```python
-numbers = [23, 67, 12, 89, 45, 34]
+def max_num_in_list(numbers = [23, 67, 12, 89, 45, 34]) -> None:
+    max_num = numbers[0]
+    for i in range(len(numbers)):
+        if numbers[i] > max_num:
+            max_num = numbers[i]
+    print(f"The maximum is {max_num}")
+
+max_num_in_list()
 ```
 
 ✅ *Check*: Should print "The maximum is 89".
@@ -514,7 +532,16 @@ numbers = [23, 67, 12, 89, 45, 34]
 **Goal**: Loop through a list and stop when you find the number 7.
 
 ```python
-numbers = [2, 5, 7, 10, 15]
+def stop_at_7(numbers = [2, 5, 7, 10, 15]) ->  None:
+    for num in numbers:
+        if num == 7:
+           break 
+        else:
+            print(num, end=" ")
+    if (num == 7) or (num == numbers[-1]):
+        print()
+
+stop_at_7()
 ```
 
 ✅ *Check*: Should print 2, 5, then stop before printing 7.
@@ -525,6 +552,20 @@ numbers = [2, 5, 7, 10, 15]
 
 **Goal**: Print numbers 1 to 10 but skip multiples of 3 using `continue`.
 
+```python
+def skip_3s(start=1,stop=10) -> None:
+    num = start - 1
+    while (num < stop):
+        num += 1
+        if (num % 3 == 0):
+            continue
+        else:
+            print(num, end=" ")
+    print()
+
+skip_3s()
+```
+
 ✅ *Check*: Should skip 3, 6, 9 and print all other numbers.
 
 ---
@@ -532,6 +573,19 @@ numbers = [2, 5, 7, 10, 15]
 ### Exercise 26: Nested Loops - Multiplication Table
 
 **Goal**: Use nested `for` loops to create a 3x3 multiplication table.
+
+```python
+def mult_table(n=3) -> None:
+    max_digits_n = len(str(n))
+    max_digits_prod = len(str(n**2))
+    prod_table = [[x*y for y in range(1,n+1)] for x in range(1,n+1)]
+    for prod_row in prod_table:
+        for prod in prod_row:
+            print(f"{prod:{max_digits_prod}}", end=" ")
+        print()
+
+mult_table()
+```
 
 ✅ *Check*: Should print products for 1×1 through 3×3.
 
@@ -542,7 +596,15 @@ numbers = [2, 5, 7, 10, 15]
 **Goal**: Use a `while` loop to add numbers to a list until the sum exceeds 50.
 
 ```python
-numbers = [5, 10, 8, 15, 12, 7]
+def sum_list_lt_50(numbers = [5,10,8,15,12,7]) -> None:
+    ret_list = []
+    i = 0
+    while sum(ret_list) <= 50 and i < len(numbers):
+        ret_list.append(numbers[i])
+        i += 1
+    print(ret_list)
+
+sum_list_lt_50()
 ```
 
 ✅ *Check*: Should stop adding when sum > 50 and print the final list.
@@ -554,8 +616,23 @@ numbers = [5, 10, 8, 15, 12, 7]
 **Goal**: Loop through a list to find the index position of a specific item.
 
 ```python
-fruits = ["apple", "banana", "cherry", "date"]
-target = "cherry"
+def pos_item(fruits = ["apple", "banana", "cherry", "date"], target = "cherry") -> None:
+    i = 0
+    for i in range(len(fruits)):
+        if fruits[i] == target:
+            print(f"{target} is at index {i}")
+            break
+
+pos_item()
+
+#refactored version from llm to be more pythonic
+def pos_item(fruits: list[str] = ["apple", "banana", "cherry", "date"], target: str = "cherry") -> None:
+    for i, fruit in enumerate(fruits):
+        if fruit == target:
+            print(f"{target} is at index {i}")
+            break
+
+pos_item()
 ```
 
 ✅ *Check*: Should print "cherry is at index 2".
@@ -568,6 +645,18 @@ target = "cherry"
 
 ```python
 original = [10, 20, 30, 40, 50]
+
+reverse = [original[-i] for i in range(1,len(original)+1)]
+print(reverse)
+
+#attempt two without slicing
+original = [10, 20, 30, 40, 50]
+my_copy = original.copy()
+reverse = []
+for x in range(len(original)):
+    reverse.append(my_copy.pop())
+
+print(reverse)
 ```
 
 ✅ *Check*: Should create [50, 40, 30, 20, 10] without using `reverse()` or slicing.
@@ -581,17 +670,28 @@ original = [10, 20, 30, 40, 50]
 Hint: You'll need to track the total count of asterisks printed and use `break` to exit both loops.
 
 ```python
-num_asterisks = 11
-...
+def asterisks(num_asterisks=11) -> None:
+    counter = 0
+    for i in range(num_asterisks):
+        for j in (range(i)):
+            print("*", end="")
+            counter += 1
+            if counter == num_asterisks:
+                break
+        print()
+        if counter == num_asterisks:
+            break
 
+asterisks()
+```
+
+✅ *Check*: Should print exactly 10 asterisks total before stopping (e.g., 1 star, then 2 stars, then 3 stars, then 4 stars = 10 total).
+
+```python
 *
 **
 ***
 ****
-*
-
 ```
-
-✅ *Check*: Should print exactly 10 asterisks total before stopping (e.g., 1 star, then 2 stars, then 3 stars, then 4 stars = 10 total).
 
 ---

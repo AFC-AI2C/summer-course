@@ -68,11 +68,11 @@ Create a file called `documentation_notes.md` or `documentation_notes.txt` to re
 ```
 | Feature           | Python Docs | Requests Docs | FastAPI Docs |
 | ----------------- | ----------- | ------------- | ------------ |
-| Nav Location      |             |               |              |
-| Search Location   |             |               |              |
-| Has Tutorial?     |             |               |              |
-| Has API Ref?      |             |               |              |
-| Version Selector? |             |               |              |
+| Nav Location      | left, main  | left, main    | right        |
+| Search Location   | top         | left          | top          |
+| Has Tutorial?     | yes         | x (quickstart)| yes          |
+| Has API Ref?      | yes         | yes           | yes          |
+| Version Selector? | yes         | x (migrating) | no           |
 ```
 
 **Questions to answer:**

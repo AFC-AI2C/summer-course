@@ -87,7 +87,7 @@ def letter_grade(score: int) -> str:
         return "F"
 
 class Tests:
-    def __init__(self, ):
+    def __init__(self):
         self.counter = 0
         self.scores = []
         self.total_score = 0
@@ -96,16 +96,19 @@ class Tests:
         self.counter += 1
         self.scores.append(score)
         self.total_score += score
-        self.grade = sum(self.scores)/self.counter
+        self.avg_score = sum(self.scores)/self.counter
+        self.grade = letter_grade(sum(self.scores)/self.counter)
 
 class Test:
-    def __init__(self, score):
+    def __init__(self, score, tests_tracker):
         self.score = score
         self.letter_grade = letter_grade(self.score)
         tests_tracker.new_test(self.score)
 
 my_tests = Tests()
 my_tests.__dict__
-test1 = Test(100)
+test1 = Test(100, my_tests)
 test1.__dict__
+my_tests.__dict__
+test2 = Test(70, my_tests)
 my_tests.__dict__

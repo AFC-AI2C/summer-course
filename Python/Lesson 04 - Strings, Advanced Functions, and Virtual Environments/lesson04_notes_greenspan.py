@@ -99,3 +99,13 @@ assert validate_username("abcdef1")
 assert validate_username("ryan2360")
 assert validate_username("bill")
 assert validate_username("TheQuickBrownFox")
+
+from area import rectangle_area, circle_area, tri_area
+
+rectangle_area(10,10)
+circle_area(10)
+tri_area(10,10)
+
+passengers = ["Lopez","Chen","Okafor","Smith","Patel"]
+for seat, passenger in enumerate(passengers, 1):
+    print(f"Seat {seat}: {passenger}")

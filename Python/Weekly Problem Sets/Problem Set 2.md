@@ -40,41 +40,36 @@ Extend `pizzas_needed()` to accept an optional `extra_percent` parameter (defaul
 from math import ceil
 
 class PizzaParty:
-  def __init__(self):
-    print("=== PIZZA PARTY PLANNER ===")
-    self.num_people = int(input("How many guests? "))
-    self.slices_per_person = int(input("Slices per person: "))
-    self.slices_per_pizza = int(input("Slices per pizza: "))
-    self.extra_percent = int(input("[Optional] Buffer (%): ") or 0)
-    self.pizzas_needed = PizzaParty.pizzas_needed(self, self.num_people, self.slices_per_person, self.slices_per_pizza)
-    self.leftover_slices = PizzaParty.leftover_slices(self, self.num_people, self.slices_per_person, self.slices_per_pizza)
-    self.pizzas_needed_w_buffer = PizzaParty.pizzas_needed_w_buffer(self, self.num_people, self.slices_per_person, self.slices_per_pizza, self.extra_percent)
-    print(self)
-  #note it would be better for self to be the only input, however this is the way intended to satisfy the instructors
-  def pizzas_needed(self: PizzaParty, num_people: int, slices_per_person: int, slices_per_pizza: int) -> int:
-    return ceil(num_people * slices_per_person / slices_per_pizza)
-  #note it would be better for self to be the only input, however this is the way to satisfy the instructors
-  def leftover_slices(self: PizzaParty, num_people: int, slices_per_person: int, slices_per_pizza: int) -> int:
-    return slices_per_pizza - (num_people * slices_per_person) % slices_per_pizza
-  def pizzas_needed_w_buffer(self: PizzaParty, num_people: int, slices_per_person: int, slices_per_pizza: int, extra_percent: int) -> int:
-    return ceil((1 + extra_percent/100) * num_people * slices_per_person / slices_per_pizza)
-  def __str__(self):
-    text = f"\n=== PARTY SUMMARY ===\n"
-    text += f"Guests:             {self.num_people}\n"
-    text += f"Pizzas to order:    {self.pizzas_needed}\n"
-    text += f"Total slices:       {self.pizzas_needed*self.slices_per_pizza}\n"
-    text += f"Leftover slices:    {self.leftover_slices}"
-    if self.extra_percent > 0:
-      text += f"\n\nExtra guests (%): {self.extra_percent}\n"
-      text += f"Guests with extras: {(1+self.extra_percent/100)*self.num_people:.1f}\n"
-      text += f"Pizzas to order:    {self.pizzas_needed_w_buffer}\n"
-      text += f"Total slices:       {self.pizzas_needed_w_buffer*self.slices_per_pizza}" 
-    return text
-
+    def __init__(self):
+        print("=== PIZZA PARTY PLANNER ===")
+        self.num_people = int(input("How many guests? "))
+        self.slices_per_person = int(input("Slices per person: "))
+        self.slices_per_pizza = int(input("Slices per pizza: "))
+        self.extra_percent = int(input("[Optional] Buffer (%): ") or 15)
+        self.pizzas_needed__ = self.pizzas_needed(self.num_people, self.slices_per_person, self.slices_per_pizza)
+        self.leftover_slices__ = self.leftover_slices(self.num_people, self.slices_per_person, self.slices_per_pizza)
+        self.needed_pizzas_buffered = self.pizzas_needed(self.num_people, self.slices_per_person, self.slices_per_pizza, self.extra_percent)
+        print(self)
+    def pizzas_needed(self, people: int, slices_per_person: int, slices_per_pizza: int, extra_percent: int = 0) -> int:
+        if extra_percent > 0:
+            people = people * (1 + extra_percent / 100)
+        return ceil(people * slices_per_person / slices_per_pizza)
+    def leftover_slices(self, people: int, slices_per_person: int, slices_per_pizza: int) -> int:
+        total_eaten = people * slices_per_person
+        total_ordered_slices = self.pizzas_needed(people, slices_per_person, slices_per_pizza) * slices_per_pizza
+        return total_ordered_slices - total_eaten
+    def __str__(self):
+        text = f"\n=== PARTY SUMMARY ===\n"
+        text += f"Guests:             {self.num_people}\n"
+        text += f"Pizzas to order:    {self.pizzas_needed__}\n"
+        text += f"Total slices:       {self.pizzas_needed__ * self.slices_per_pizza}\n"
+        text += f"Leftover slices:    {self.leftover_slices__}\n"
+        text += f"\n=== CHALLENGE COMPARISON ({self.extra_percent}% Buffer) ===\n"
+        text += f"Pizzas with {self.extra_percent}% buffer: {self.needed_pizzas_buffered}"
+        return text
 
 my_party = PizzaParty()
 ```
-
 ---
  
 ## Problem 2 — Space Station Oxygen Monitor 🚀
@@ -120,41 +115,40 @@ Add a second function `trend(readings)` that looks at the readings list and retu
 ```python
 readings = [21, 20, 19, 17, 16, 14, 13, 15, 18, 21, 22, 21]
 
-class SpaceStation():
-  def __init__(self, readings):
-    self.o2_readings = readings
-    self.o2_statuses = []
-    for hour, o2_reading in enumerate(self.o2_readings):
-      o2_status = SpaceStation.o2_status(self, hour, o2_reading)
-      self.o2_statuses.append(o2_status)
-      conditional_warning = " *** ALERT: TAKE ACTION IMMEDIATELY ***" * (o2_status == "CRITICAL")
-      print(f"Hour {hour+1:>2d}: {o2_reading:>3d}% - {o2_status}" + conditional_warning)
-    SpaceStation.trend(self)
-    SpaceStation.o2_status_summary(self)
-  def o2_status(self, hour: int, level: int) -> str:
-    if level < 15:
-      return "CRITICAL"
-    elif level <= 18:
-      return "LOW"
-    elif level <= 23:
-      return "NORMAL"
-    else:
-      return "HIGH"
-  def o2_status_summary(self):
-    text = f"\n=== STATUS SUMMARY ===\n"
-    text += f"HIGH:      {sum(o2_status == 'HIGH' for o2_status in self.o2_statuses)} hours\n"  
-    text += f"NORMAL:    {sum(o2_status == 'NORMAL' for o2_status in self.o2_statuses)} hours\n"
-    text += f"LOW:       {sum(o2_status == 'LOW' for o2_status in self.o2_statuses)} hours\n"
-    text += f"CRITICAL:  {sum(o2_status == 'CRITICAL' for o2_status in self.o2_statuses)} hours\n"
-    print(text)
-  def trend(self):
-    print("")
-    if self.o2_readings[-3] < self.o2_readings[-2] and self.o2_readings[-2] < self.o2_readings[-1]:
-      print("IMPROVING")
-    elif self.o2_readings[-3] > self.o2_readings[-2] and self.o2_readings[-2] > self.o2_readings[-1]:
-      print("DECLINING")
-    else:
-      print("STABLE")
+class SpaceStation:
+    def __init__(self, readings):
+        self.o2_readings = readings
+        self.o2_statuses = []
+        for hour, o2_reading in enumerate(self.o2_readings):
+            o2_status = self.o2_status(o2_reading)
+            self.o2_statuses.append(o2_status)
+            print(f"Hour {hour+1:>2d}:  {o2_reading:>2d}%  -  {o2_status}")
+            if o2_status == "CRITICAL":
+                print("*** ALERT: TAKE ACTION IMMEDIATELY ***")
+        self.o2_status_summary()
+    def o2_status(self, level: int) -> str:
+        if level < 15:
+            return "CRITICAL"
+        elif level <= 18:
+            return "LOW"
+        elif level <= 23:
+            return "NORMAL"
+        else:
+            return "HIGH"
+    def o2_status_summary(self):
+        print("\n=== STATUS SUMMARY ===")
+        print(f"NORMAL:    {sum(s == 'NORMAL' for s in self.o2_statuses):2d} hours")
+        print(f"LOW:       {sum(s == 'LOW' for s in self.o2_statuses):2d} hours")
+        print(f"CRITICAL:  {sum(s == 'CRITICAL' for s in self.o2_statuses):2d} hours")
+        print(f"HIGH:      {sum(s == 'HIGH' for s in self.o2_statuses):2d} hours\n")
+        print(f"Trend:     {self.trend()}")
+    def trend(self) -> str:
+        if self.o2_readings[-3] < self.o2_readings[-2] < self.o2_readings[-1]:
+            return "IMPROVING"
+        elif self.o2_readings[-3] > self.o2_readings[-2] > self.o2_readings[-1]:
+            return "DECLINING"
+        else:
+            return "STABLE"
 
 my_space_station = SpaceStation(readings)
 ```
@@ -192,63 +186,51 @@ round 3:  hero hp: 64   |  monster hp: 36
 hero wins! the monster has been defeated.
 ```
 
-```python
-import random
-
-class Sprite():
-  def __init__(self, hp, damage):
-    self.hp = hp 
-    self.damage = damage
-    self.is_alive = Sprite.is_alive(self, hp)
-  def is_alive(self, hp):
-    if self.hp > 0:
-      return True
-    else:
-      return False
-  def attack(self, enemy, defender_hp, damage):
-    enemy.hp = max(enemy.hp - self.damage, 0)
-    enemy.is_alive = Sprite.is_alive(enemy, enemy.hp)
-  def critical_hit(self, enemy, defender_hp, damage):
-    if random.randint(1, 10) <= 2:
-      hero.is_critical = True
-      enemy.hp = max(enemy.hp - self.damage, 0)
-      enemy.is_alive = Sprite.is_alive(enemy, enemy.hp) 
-    else:
-      hero.is_critical = False
-
-class Hero(Sprite):
-  pass
-
-class Monster(Sprite):
-  pass
-
-class Battle:
-  def __init__(self, hero, monster):
-    self.round_ = 0
-    print("=== BATTLE START ===")
-    while (hero.is_alive) and (monster.is_alive):
-      self.round_ += 1
-      Sprite.attack(hero, monster, monster.hp, hero.damage)
-      Sprite.critical_hit(hero, monster, monster.hp, hero.damage)
-      if monster.is_alive:
-        Sprite.attack(monster, hero, hero.hp, monster.damage)
-      print(f"Round {self.round_:2d}:  Hero HP: {hero.hp:3d}    |  Monster HP: {monster.hp:2d}")
-      if hero.is_critical:
-        print("*** CRITICAL HIT! ***")
-    if hero.is_alive:
-      print("HERO WINS! The monster has been defeated.")
-    else:
-      print("MONSTER WINS! The hero has been defeated.")
-
-hero = Hero(hp = 100, damage = 18)
-monster = Monster(hp = 90, damage = 12)
-battle = Battle(hero, monster)
-```
-
 ### challenge
  
 add a `critical_hit(damage)` function that returns double damage 20% of the time (hint: use `random.randint(1, 10)` — import `random` at the top). apply it to the hero's attack each round and print `*** critical hit! ***` when it triggers.
  
+```python
+import random
+class Sprite:
+    def __init__(self, name, hp, damage):
+        self.name = name
+        self.hp = hp 
+        self.damage = damage
+        self.deal_critical = False
+    def is_alive(self):
+        return self.hp > 0
+    def attack(self, enemy):
+        final_damage = self.damage
+        if self.name == "Hero" and random.randint(1, 10) <= 2:
+            final_damage *= 2
+            self.dealt_critical = True
+        else:
+            self.dealt_critical = False
+        enemy.hp = max(enemy.hp - final_damage, 0)
+
+class Battle:
+    def __init__(self, hero, monster):
+        self.round_ = 0
+        print("=== BATTLE START ===")
+        while hero.is_alive() and monster.is_alive():
+            self.round_ += 1
+            hero.attack(monster)
+            if monster.is_alive():
+                monster.attack(hero)
+            print(f"round {self.round_}:  hero hp: {hero.hp:>3} |  monster hp: {monster.hp:>3}")
+            if hero.dealt_critical == True:
+                print("*** CRITICAL HIT! ***")
+        print("---")
+        if hero.is_alive():
+            print("HERO wins! The monster has been defeated.")
+        else:
+            print("MONSTER wins! The hero has been defeated.")
+
+hero = Sprite(name="Hero", hp=100, damage=18)
+monster = Sprite(name="Monster", hp=90, damage=12)
+battle = Battle(hero, monster)
+```
 ---
  
 ## problem 4 — mission clearance system 🪖
@@ -310,52 +292,45 @@ Then use a single `for` loop to run all checks, print each result, and determine
 
 ```python
 class Soldier:
-  def __init__(self):
-    self.name = input("soldier name: ")
-    self.fitness_score = int(input("fitness score: "))
-    self.rank = input("rank: ")
-    self.tis = int(input("years of service: "))
-    self.check_fitness = Soldier.check_fitness(self, self.fitness_score)
-    self.check_rank = Soldier.check_rank(self, self.rank)
-    self.check_service_years = Soldier.check_service_years(self, self.tis)
-    self.checks = [
-        ("Fitness check", self.check_fitness, self.fitness_score),
-        ("Rank check", self.check_rank, self.rank),
-        ("Service check", self.check_service_years, self.tis),
-    ]
-    self.final_check = Soldier.final_check(self)
-    print(self)
-  def check_fitness(self, score):
-    """cleared if score >= 70."""
-    if score >= 70:
-      return "PASS"
-    else:
-      return "FAIL"
-  def check_rank(self, rank):
-    """cleared if rank is 'corporal', 'sergeant', or 'lieutenant'."""
-    if rank.lower() in ['corporal', 'sergeant', 'lieutenant']:
-      return "PASS"
-    else:
-      return "FAIL"
-  def check_service_years(self, years):
-    """cleared if years >= 2."""
-    if years >= 2:
-      return "PASS"
-    else:
-      return "FAIL"
-  def final_check(self):
-    return (all([check[1] == "PASS" for check in self.checks]))
-  def __str__(self):
-    text = f"\n=== MISSION CLEARANCE REPORT ===\n"
-    text += f"Soldier: {self.name.title()}\n"
-    text += f"Fitness check:    {self.check_fitness}\n"
-    text += f"Rank check:       {self.check_rank}\n"
-    text += f"Service check:    {self.check_service_years}\n\n"
-    text += f"FINAL STATUS: {int(1-(self.final_check)) * 'NOT '}CLEARED FOR MISSION."
-    return text
-
-james = Soldier()
-```
+    def __init__(self):
+        self.name = input("soldier name: ")
+        self.fitness_score = int(input("fitness score: "))
+        self.rank = input("rank: ")
+        self.tis = int(input("years of service: "))
+        self.checks = [
+            ("Fitness check", self.check_fitness, self.fitness_score),
+            ("Rank check", self.check_rank, self.rank),
+            ("Service check", self.check_service_years, self.tis),
+        ]
+        self.results = {}
+        self.is_cleared = self.run_clearance_system()
+        print(self)
+    def check_fitness(self, score):
+        """cleared if score >= 70."""
+        return score >= 70
+    def check_rank(self, rank):
+        """cleared if rank is 'corporal', 'sergeant', or 'lieutenant'."""
+        return rank.lower() in ['corporal', 'sergeant', 'lieutenant']
+    def check_service_years(self, years):
+        """cleared if years >= 2."""
+        return years >= 2
+    def run_clearance_system(self):
+        all_passed = True
+        for label, check_func, input_value in self.checks:
+            passed = check_func(input_value) 
+            self.results[label] = "PASS" if passed else "FAIL"
+            if not passed:
+                all_passed = False
+        return all_passed
+    def __str__(self):
+        text = f"\n=== MISSION CLEARANCE REPORT ===\n"
+        text += f"Soldier: {self.name.title()}\n\n"
+        for label, status in self.results.items():
+            text += f"{label+':':<14} {status}\n"
+        final_status = "CLEARED FOR MISSION." if self.is_cleared else "NOT CLEARED FOR MISSION."
+        text += f"\nFINAL STATUS: {final_status}"
+        return text
+my_soldier = Soldier()
 ---
  
 ## Problem 5 — Sports Leaderboard 🏆

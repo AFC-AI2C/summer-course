@@ -307,7 +307,55 @@ checks = [
 ```
  
 Then use a single `for` loop to run all checks, print each result, and determine the final clearance — without any repeated `if` statements for individual checks.
- 
+
+```python
+class Soldier:
+  def __init__(self):
+    self.name = input("soldier name: ")
+    self.fitness_score = int(input("fitness score: "))
+    self.rank = input("rank: ")
+    self.tis = int(input("years of service: "))
+    self.check_fitness = Soldier.check_fitness(self, self.fitness_score)
+    self.check_rank = Soldier.check_rank(self, self.rank)
+    self.check_service_years = Soldier.check_service_years(self, self.tis)
+    self.checks = [
+        ("Fitness check", self.check_fitness, self.fitness_score),
+        ("Rank check", self.check_rank, self.rank),
+        ("Service check", self.check_service_years, self.tis),
+    ]
+    self.final_check = Soldier.final_check(self)
+    print(self)
+  def check_fitness(self, score):
+    """cleared if score >= 70."""
+    if score >= 70:
+      return "PASS"
+    else:
+      return "FAIL"
+  def check_rank(self, rank):
+    """cleared if rank is 'corporal', 'sergeant', or 'lieutenant'."""
+    if rank.lower() in ['corporal', 'sergeant', 'lieutenant']:
+      return "PASS"
+    else:
+      return "FAIL"
+  def check_service_years(self, years):
+    """cleared if years >= 2."""
+    if years >= 2:
+      return "PASS"
+    else:
+      return "FAIL"
+  def final_check(self):
+    return (all([check[1] == "PASS" for check in self.checks]))
+  def __str__(self):
+    text = f"\n=== MISSION CLEARANCE REPORT ===\n"
+    text += f"Soldier: {self.name.title()}\n"
+    text += f"Fitness check:    {self.check_fitness}\n"
+    text += f"Rank check:       {self.check_rank}\n"
+    text += f"Service check:    {self.check_service_years}\n\n"
+    text += f"FINAL STATUS: {int(1-(self.final_check)) * 'NOT '}CLEARED FOR MISSION."
+    return text
+
+james = Soldier()
+```
 ---
  
 ## Problem 5 — Sports Leaderboard 🏆

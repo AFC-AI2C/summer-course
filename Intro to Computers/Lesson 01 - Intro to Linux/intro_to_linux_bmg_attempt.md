@@ -235,6 +235,20 @@ grep -R Linux | grep -v Linux.git > results_about_Linux.txt
 ## Stretch Goals:
 
 **Goal**:  Try to determine how many text files there are in the original repository.
+```bash
+mkdir copy
+cd copy
+git clone https://github.com/shafe123/AI2C-IntroToLinux.git
+ls -R | grep .txt | wc
+```
 
 **Goal**:  Which file in the repository `https://github.com/shafe123/AI2C-LinuxLarge.git` has a hidden message? (hint: you can do this just with grep)
+```bash
+cd ~/AI2C-IntroToLinux/copy/AI2C-LinuxLarge
+git clone https://github.com/shafe123/AI2C-LinuxLarge.git
+grep -R hidden
+cat $(grep -Rl hidden)
 
+grep -R hidden
+grep -Rl hidden | xargs cat
+```

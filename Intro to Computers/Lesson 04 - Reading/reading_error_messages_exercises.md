@@ -71,12 +71,35 @@ NameError: name 'mesage' is not defined. Did you mean: 'message'?
 **Identify these parts:**
 
 1. **Traceback**: Shows the sequence of function calls that led to the error
-2. **File name and line number**: Where the error occurred (`line 3`)
-3. **Error Type**: `NameError` (tells you what kind of error)
-4. **Error Message**: `name 'mesage' is not defined` (explains the problem)
-5. **Helpful Suggestion**: `Did you mean: 'message'?` (Python tries to help!)
-6. **Visual Indicator**: `^^^^^^` points to the exact problem
 
+```
+Traceback (most recent call last):
+```
+2. **File name and line number**: Where the error occurred (`line 3`)
+```
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\error_example.py", line 5, in <module>
+    greet("Alice")
+    ~~~~~^^^^^^^^^
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\error_example.py", line 3, in greet
+    print(mesage)
+```
+3. **Error Type**: `NameError` (tells you what kind of error)
+```
+NameError: name 'mesage' is not defined. Did you mean: 'message'?
+```
+4. **Error Message**: `name 'mesage' is not defined` (explains the problem)
+```
+NameError: name 'mesage' is not defined. Did you mean: 'message'?
+```
+5. **Helpful Suggestion**: `Did you mean: 'message'?` (Python tries to help!)
+```
+NameError: name 'mesage' is not defined. Did you mean: 'message'?
+```
+6. **Visual Indicator**: `^^^^^^` points to the exact problem
+```
+    print(mesage)
+          ^^^^^^
+```
 ✅ *Check*: Fix the typo and verify the program runs successfully.
 
 ---
@@ -99,11 +122,29 @@ calculate_total(10, 5)
 
 Run it and read the error message carefully.
 
+```
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\syntax_errors.py", line 4
+    print(f"Total: {total"
+                         ^
+SyntaxError: f-string: expecting '}'
+```
+
 **Questions to answer:**
 
 1. What line number does the error point to?
+```
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\syntax_errors.py", line 4
+```
 2. What is the specific error message?
+```
+SyntaxError
+```
 3. What punctuation is missing?
+```
+    print(f"Total: {total"
+                         ^
+SyntaxError: f-string: expecting '}'
+```
 
 Fix the error, then add this code to the same file:
 
@@ -116,6 +157,26 @@ greet("Bob")
 ```
 
 Run it again and answer the same questions.
+
+```
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\syntax_errors.py", line 10
+    def greet(name)
+                   ^
+SyntaxError: expected ':'
+```
+
+1. What line number does the error point to?
+```
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\syntax_errors.py", line 10
+```
+2. What is the specific error message?
+```
+SyntaxError: expected ':'
+```
+3. What punctuation is missing?
+```
+SyntaxError: expected ':'
+```
 
 **Common SyntaxErrors:**
 - Missing colons (`:`) after `if`, `for`, `while`, `def`
@@ -142,10 +203,24 @@ user_name = "Charlie"
 
 Run it and observe the error.
 
+```
+Traceback (most recent call last):
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\name_errors.py", line 2, in <module>
+    print(user_name)
+          ^^^^^^^^^
+NameError: name 'user_name' is not defined
+```
 **Exercise steps:**
 
 1. Read the error message - what does it tell you?
+```
+The argument "user_name" is not defined.
+```
 2. Fix the error by reordering the lines
+```
+user_name = "Charlie"
+print(user_name)
+```
 3. Add this code and run again:
 
 ```python
@@ -155,6 +230,13 @@ print(f"My favorite color is {favourite_color}")
 ```
 
 4. Read the error - does Python suggest a fix?
+```
+Traceback (most recent call last):
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\name_errors.py", line 7, in <module>
+    print(f"My favorite color is {favourite_color}")
+                                  ^^^^^^^^^^^^^^^
+NameError: name 'favourite_color' is not defined. Did you mean: 'favorite_color'?
+```
 5. Fix the typo
 
 **Common causes of NameError:**
@@ -182,12 +264,31 @@ print(message)
 ```
 
 Run it and read the error.
+```
+Traceback (most recent call last):
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\type_errors.py", line 3, in <module>
+    message = "I am " + age + " years old"
+              ~~~~~~~~^~~~~
+TypeError: can only concatenate str (not "int") to str
+```
 
 **Questions:**
 
 1. What types is Python trying to combine?
+```
+    message = "I am " + age + " years old"
+              ~~~~~~~~^~~~~
+TypeError: can only concatenate str (not "int") to str
+```
 2. What operation is failing?
+```
+    message = "I am " + age + " years old"
+              ~~~~~~~~^~~~~
+```
 3. How can you fix it? (Two possible solutions)
+```
+    message = "I am " + str(age) + " years old"
+```
 
 Fix it using string conversion, then add:
 
@@ -199,10 +300,27 @@ total = quantity * price
 print(total)
 ```
 
+```
+Traceback (most recent call last):
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\type_errors.py", line 9, in <module>
+    total = quantity * price
+            ~~~~~~~~~^~~~~~~
+TypeError: can't multiply sequence by non-int of type 'float'
+```
 **Exercise:**
 
 1. Predict what error you'll get before running it
+```
+TypeError -- can't multiply string by float
+```
 2. Run it and check if you were right
+```
+Traceback (most recent call last):
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\type_errors.py", line 9, in <module>
+    total = quantity * price
+            ~~~~~~~~~^~~~~~~
+TypeError: can't multiply sequence by non-int of type 'float'
+```
 3. Fix it by converting the string to a number
 
 Add one more:
@@ -235,6 +353,13 @@ print(fruits[3])
 **Exercise:**
 
 1. Run the code and read the error
+```
+Traceback (most recent call last):
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\index_errors.py", line 3, in <module>
+    print(fruits[3])
+          ~~~~~~^^^
+IndexError: list index out of range
+```
 2. What index are you trying to access?
 3. What is the valid range for this list?
 4. Fix it by using a valid index
@@ -288,6 +413,13 @@ print(student["grade"])
 **Exercise:**
 
 1. Run and read the error - what key is missing?
+```
+Traceback (most recent call last):
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\key_errors.py", line 6, in <module>
+    print(student["grade"])
+          ~~~~~~~^^^^^^^^^
+KeyError: 'grade'
+```
 2. Fix it by adding the missing key
 3. Alternative fix: use `.get()` method:
 
@@ -336,6 +468,13 @@ print(text)
 **Exercise:**
 
 1. Run and read the error
+```
+Traceback (most recent call last):
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\attribute_errors.py", line 3, in <module>
+    text.append("!")  # append() is for lists, not strings
+    ^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'append'
+```
 2. What method did you try to use?
 3. What type is `text`?
 4. Fix it using the correct string method (hint: `+` or `.join()`)
@@ -434,6 +573,20 @@ process_scores(scores)
 **Exercise:**
 
 1. Run the code and look at the complete traceback
+```
+Traceback (most recent call last):
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\stack_trace.py", line 18, in <module>
+    process_scores(scores)
+    ~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\stack_trace.py", line 12, in process_scores
+    average = calculate_average(score_list)
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\stack_trace.py", line 8, in calculate_average
+    avg = divide_numbers(total, count)
+  File "C:\Users\Greenspan\dev\summer-course\Intro to Computers\Lesson 04 - Reading\stack_trace.py", line 2, in divide_numbers
+    result = a / b
+             ~~^~~
+ZeroDivisionError: division by zero
+```
 2. Answer these questions:
    - Which function was called first?
    - Which function was called last?

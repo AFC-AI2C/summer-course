@@ -99,29 +99,63 @@ Create a file called `documentation_notes.md` or `documentation_notes.txt` to re
    - Navigate to the Library Reference
    - Find the `json` module documentation
    - What function converts a Python object to a JSON string?
+```
+json.dump()
+```
    - What parameter controls indentation in the output?
+```
+indent
+```
 
 2. **Function Signature Hunt:**
    - Find the documentation for the built-in `sorted()` function
    - What page is it on? (Tutorial, Library Reference, etc.)
+```
+Library
+```
    - How many parameters does it have?
+```
+key, reverse
+```
    - What is the default value of the `reverse` parameter?
+```
+False
+```
 
 3. **String Methods Hunt:**
    - Find the string methods documentation
    - Which method removes whitespace from both ends of a string?
+```
+str.strip()
+```
    - Which method checks if a string starts with a specific prefix?
+```
+str.startswith()
+```
    - Can you find an example showing how to use `str.split()`?
 
 4. **Exception Hunt:**
    - Find the list of built-in exceptions
    - What exception is raised when you divide by zero?
+```
+ZeroDivisionError
+```
    - What's the difference between `ValueError` and `TypeError`?
+```
+ValueError is out of bounds. TypeError is unsupported type.
+```
 
 5. **Tutorial Navigation:**
    - Find the Python Tutorial section
    - Which section covers "Data Structures"?
+```
+5. Data Structures
+```
    - Can you find information about list comprehensions?
+```
+List Comprehensions
+Nested List Comprehensions
+```
 
 **Document your findings:**
 
@@ -141,6 +175,9 @@ Exercise 2 - Scavenger Hunt Answers:
 ```
 
 **Time yourself**: How long did it take to find all answers?
+```
+45 minutes to 1 hour while waiting at the doctor's office
+```
 
 ✅ *Check*: You found all answers using only docs.python.org (no Google!).
 
@@ -175,18 +212,25 @@ Exercise 2 - Scavenger Hunt Answers:
 | Aspect                     | urllib | Requests | httpx |
 | -------------------------- | ------ | -------- | ----- |
 | Quick Start exists?        |        |          |       |
-| Simple GET example lines   |        |          |       |
-| Code examples highlighted? |        |          |       |
+| Simple GET example lines   | bottom | top      | top   |
+| Code examples highlighted? | no     | yes      | yes   |
 | Explains response object?  |        |          |       |
-| Has tutorial section?      |        |          |       |
+| Has tutorial section?      | no     |quickstart|quickst|
 ```
 
 **Answer these questions:**
 
 1. Which library has the simplest/shortest example for making a GET request?
+```
+Requests or httpx
+```
 2. Which documentation explains concepts the most clearly?
 3. Which documentation has the most code examples?
 4. If you were a beginner, which documentation would you prefer? Why?
+
+```
+The homepage of httpx explaining installation and usage would fit in an approximately one-page of document.
+```
 
 **Real-world skill**: When choosing between libraries, documentation quality matters!
 
@@ -209,27 +253,99 @@ Exercise 2 - Scavenger Hunt Answers:
 1. **Finding the Function:**
    - Use the search or navigation to find `requests.get()`
    - What section is it in? (API, User Guide, etc.)
-
+```
+Developer Interface (lead topic) under Main Interface (lead subtopic)
+```
 2. **Function Signature:**
    - What parameters does `requests.get()` accept?
+```
+requests.get(url: _t.UriType, params: _t.ParamsType = None, **kwargs: Unpack[_t.GetKwargs]) → Response[source]¶
+Sends a GET request.
+
+Parameters:
+   url – URL for the new Request object.
+   params – (optional) Dictionary, list of tuples or bytes to send in the query string for the Request.
+   **kwargs – Optional arguments that request takes.
+Returns: Response object
+
+Return type: requests.Response
+```
    - Which parameters are required?
+```
+   url – URL for the new Request object.
+```
    - Which are optional?
+```
+   params – (optional) Dictionary, list of tuples or bytes to send in the query string for the Request.
+   **kwargs – Optional arguments that request takes.
+```
 
 3. **Return Value:**
    - What object does it return?
+```
+Returns: Response object
+
+Return type: requests.Response
+```
    - What attributes/methods does the response object have?
+```
+Refer to class requests.Response at https://requests.readthedocs.io/en/latest/api/#requests.Response
+```
    - How do you get the response body as text?
+```
+response = requests.get("http://api.github.com")
+body_text = response.text
+```
    - How do you get the HTTP status code?
+```
+response.status_code
+```
 
 4. **Examples:**
    - Find at least 2 different examples of using `requests.get()`
+```
+r = requests.get('https://api.github.com/events')
+```
    - What's an example showing how to pass query parameters?
+```
+payload = {'key1': 'value1', 'key2': 'value2'}
+r = requests.get('https://httpbin.org/get', params=payload)
+```
+```
+payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
+r = requests.get('https://httpbin.org/get', params=payload)
+print(r.url)
+```
    - What's an example showing how to handle authentication?
+```
+from requests.auth import HTTPBasicAuth
+basic = HTTPBasicAuth('user', 'pass')
+requests.get('https://httpbin.org/basic-auth/user/pass', auth=basic)
+```
+```
+requests.get('https://httpbin.org/basic-auth/user/pass', auth=('user', 'pass'))
+```
 
 5. **Related Information:**
    - What other HTTP methods are available? (POST, PUT, etc.)
+```
+Requests’ simple API means that all forms of HTTP request are as obvious. For example, this is how you make an HTTP POST request:
+r = requests.post('https://httpbin.org/post', data={'key': 'value'})
+
+Nice, right? What about the other HTTP request types: PUT, DELETE, HEAD and OPTIONS? These are all just as simple:
+r = requests.put('https://httpbin.org/put', data={'key': 'value'})
+r = requests.delete('https://httpbin.org/delete')
+r = requests.head('https://httpbin.org/get')
+r = requests.options('https://httpbin.org/get')
+```
    - Can you find information about handling errors/exceptions?
+```
+The quickstart includes a setion titled Errors and Exceptions.
+```
    - Is there a section about timeouts?
+```
+Yes
+```
 
 **Write a summary:**
 

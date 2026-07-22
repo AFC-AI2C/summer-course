@@ -44,6 +44,7 @@ nano .bashrc
 
 **Goal**: Create a new directory and initialize it as a Git repository.
 
+**Hint**: Make this directory from inside of your home directory (e.g. `~/git_intro`).
 
 ✅ *Check*: Run `ls -la` to verify that a `.git` directory was created.  Git stores all of its tracking information in a series of files in the `.git` directory.
 

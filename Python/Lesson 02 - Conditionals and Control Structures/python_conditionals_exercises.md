@@ -225,7 +225,21 @@ range_10_20()
 
 
 ✅ *Check*: Should print "Vowel" if the letter is a, e, i, o, or u, else "Consonant".
+```python
+def vwl_or_cnsnt() -> None:
+    usr_chr = input("Enter a character: ")
+    for vowel in ["a","e","i","o","u"]:
+        if usr_chr == vowel:
+            print("vowel")
+            break
+    for consonant in ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"]:
+        if usr_chr == consonant:
+            print("consonant")
+            break
 
+
+vwl_or_cnsnt()
+```
 ---
 
 ### Stretch:  Exercise 9: Leap Year Checker
@@ -238,7 +252,17 @@ Rules:
 
 
 ✅ *Check*: Should print "Leap year" or "Not a leap year".
+```python
+def leap_year() -> None:
+    usr_yr = int(input("Enter the year: "))
+    if (usr_yr % 4 == 0) and (usr_yr % 100 > 0):
+        print(f"The year {usr_yr} is a leap year.")
+    else:
+        print(f"The year {usr_yr} is not a leap year.")
 
+
+leap_year()
+```
 ---
 
 ### Stretch:  Exercise 10: Nested Conditionals - BMI Calculator
@@ -252,11 +276,25 @@ Rules:
 
 Formula: BMI = weight (kg) / height (m)²
 
-
-
 ✅ *Check*: Should calculate BMI and print the correct category.
+```python
+def ht_wt_bmi() -> None:
+    usr_wt = float(input("Enter your weight in kg: "))
+    usr_ht = float(input("Enter your height in m: "))
+    bmi = usr_wt / usr_ht **2
+    print(f"Your BMI equals {bmi:.2f}.")
+    if bmi < 18.5:
+        print("Underweight")
+    elif bmi < 24.9:
+        print("Normal weight")
+    elif bmi < 29.9:
+        print("Overweight")
+    else:
+        print("Obese")
 
-
+if __name__ == "__main__":
+    ht_wt_bmi()
+```
 
 ---
 ## Hands-On #2:
@@ -271,7 +309,11 @@ colors = ["red", "blue", "green"]
 ```
 
 ✅ *Check*: Each color should be printed on a separate line.
-
+```python
+colors = ["red", "blue", "green"]
+for color in colors:
+    print(color)
+```
 ---
 
 ### Exercise 12: List Length
@@ -283,7 +325,10 @@ numbers = [5, 10, 15, 20, 25]
 ```
 
 ✅ *Check*: Should print "The list has 5 items".
-
+```python
+numbers = [5, 10, 15, 20, 25]
+print(f"The list has {len(numbers)} items")
+```
 ---
 
 ### Exercise 13: Append to a List
@@ -295,6 +340,15 @@ my_list = []
 ```
 
 ✅ *Check*: List should contain 5 items after appending.
+```python
+my_list = []
+my_list.append("Clutch Issues")
+my_list.append("Blower Motor/Compressor Noise")
+my_list.append("Subaru Pinging and Brake Noise")
+my_list.append("Oil Cap Mishap")
+my_list.append("Idling vs. Shutting Off")
+print(my_list)
+```
 
 ---
 
@@ -303,7 +357,11 @@ my_list = []
 **Goal**: Use a `for` loop with `range()` to print numbers 1 through 10.
 
 ✅ *Check*: Should print numbers 1, 2, 3, ..., 10.
+```python
+for num in range(1,11):
+    print(num, end=" ")
 
+```
 ---
 
 ### Exercise 15: Sum Numbers in a List
@@ -312,6 +370,11 @@ my_list = []
 
 ```python
 numbers = [4, 7, 2, 9, 12]
+sum = 0
+for number in numbers:
+    sum += number
+
+print(sum)
 ```
 
 ✅ *Check*: Should print the total sum: 34.
@@ -325,6 +388,15 @@ numbers = [4, 7, 2, 9, 12]
 ```python
 available_fruits = ["apple", "banana", "orange", "mango"]
 fruit = "banana"
+def fruit_available(available_fruits = ["apple", "banana", "orange", "mango"], fruit = "banana") -> str:
+    available = "Out of stock"
+    for available_fruit in available_fruits:
+        if fruit == available_fruit:
+            available = "In stock"
+    
+    return(available)
+
+print(fruit_available(fruit="banana"))
 ```
 
 ✅ *Check*: Should print "In stock" if fruit is in the list, else "Out of stock".
@@ -337,6 +409,15 @@ fruit = "banana"
 
 ```python
 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+def evens_in_list(numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) -> str:
+    count = 0
+    for num in numbers:
+        if num % 2 == 0:
+            count += 1
+    print(f"There are {count} even numbers")
+
+
+evens_in_list()
 ```
 
 ✅ *Check*: Should print "There are 5 even numbers".
@@ -349,6 +430,13 @@ numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 ```python
 count = 10
+def countdown(count = 10) -> None:
+    while count > 0:
+        print(count, end=" ")
+        count -= 1
+    print()
+
+countdown(15)
 ```
 
 ✅ *Check*: Should print 10, 9, 8, ..., 2, 1.
@@ -360,7 +448,14 @@ count = 10
 **Goal**: Use a `while` loop to keep doubling a number until it exceeds 100.
 
 ```python
-number = 1
+def doubling(number=1, cutoff_paramter=100) -> None:
+    while (number < cutoff_paramter):
+        print(number, end=" ")
+        number *= 2
+        
+    print()
+
+doubling()
 ```
 
 ✅ *Check*: Should print: 1, 2, 4, 8, 16, 32, 64.
@@ -370,6 +465,10 @@ number = 1
 ### Stretch: Exercise 20: Create a List with Range
 
 **Goal**: Use `range()` to create a list of even numbers from 0 to 20.
+
+```python
+[x for x in range(0,21,2)]
+```
 
 ✅ *Check*: Should create [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20].
 
@@ -381,6 +480,10 @@ number = 1
 
 **Goal**: Create a new list containing the squares of numbers 1 through 5.
 
+```python
+[x**2 for x in range(1,6)]
+```
+
 ✅ *Check*: Should create [1, 4, 9, 16, 25].
 
 ---
@@ -390,8 +493,15 @@ number = 1
 **Goal**: Count how many vowels are in a string using a loop.
 
 ```python
-text = "Hello World"
-vowels = "aeiouAEIOU"
+def count_vowels(text = "Hello World") -> None:
+    vowels = "aeiouAEIOU"
+    count = 0
+    for char in text:
+        if char in vowels:
+            count += 1
+    print(count)
+
+count_vowels()
 ```
 
 ✅ *Check*: Should count and print the number of vowels.
@@ -403,7 +513,14 @@ vowels = "aeiouAEIOU"
 **Goal**: Find the largest number in a list using a `for` loop.
 
 ```python
-numbers = [23, 67, 12, 89, 45, 34]
+def max_num_in_list(numbers = [23, 67, 12, 89, 45, 34]) -> None:
+    max_num = numbers[0]
+    for i in range(len(numbers)):
+        if numbers[i] > max_num:
+            max_num = numbers[i]
+    print(f"The maximum is {max_num}")
+
+max_num_in_list()
 ```
 
 ✅ *Check*: Should print "The maximum is 89".
@@ -415,7 +532,16 @@ numbers = [23, 67, 12, 89, 45, 34]
 **Goal**: Loop through a list and stop when you find the number 7.
 
 ```python
-numbers = [2, 5, 7, 10, 15]
+def stop_at_7(numbers = [2, 5, 7, 10, 15]) ->  None:
+    for num in numbers:
+        if num == 7:
+           break 
+        else:
+            print(num, end=" ")
+    if (num == 7) or (num == numbers[-1]):
+        print()
+
+stop_at_7()
 ```
 
 ✅ *Check*: Should print 2, 5, then stop before printing 7.
@@ -426,6 +552,20 @@ numbers = [2, 5, 7, 10, 15]
 
 **Goal**: Print numbers 1 to 10 but skip multiples of 3 using `continue`.
 
+```python
+def skip_3s(start=1,stop=10) -> None:
+    num = start - 1
+    while (num < stop):
+        num += 1
+        if (num % 3 == 0):
+            continue
+        else:
+            print(num, end=" ")
+    print()
+
+skip_3s()
+```
+
 ✅ *Check*: Should skip 3, 6, 9 and print all other numbers.
 
 ---
@@ -433,6 +573,19 @@ numbers = [2, 5, 7, 10, 15]
 ### Exercise 26: Nested Loops - Multiplication Table
 
 **Goal**: Use nested `for` loops to create a 3x3 multiplication table.
+
+```python
+def mult_table(n=3) -> None:
+    max_digits_n = len(str(n))
+    max_digits_prod = len(str(n**2))
+    prod_table = [[x*y for y in range(1,n+1)] for x in range(1,n+1)]
+    for prod_row in prod_table:
+        for prod in prod_row:
+            print(f"{prod:{max_digits_prod}}", end=" ")
+        print()
+
+mult_table()
+```
 
 ✅ *Check*: Should print products for 1×1 through 3×3.
 
@@ -443,7 +596,15 @@ numbers = [2, 5, 7, 10, 15]
 **Goal**: Use a `while` loop to add numbers to a list until the sum exceeds 50.
 
 ```python
-numbers = [5, 10, 8, 15, 12, 7]
+def sum_list_lt_50(numbers = [5,10,8,15,12,7]) -> None:
+    ret_list = []
+    i = 0
+    while sum(ret_list) <= 50 and i < len(numbers):
+        ret_list.append(numbers[i])
+        i += 1
+    print(ret_list)
+
+sum_list_lt_50()
 ```
 
 ✅ *Check*: Should stop adding when sum > 50 and print the final list.
@@ -455,8 +616,23 @@ numbers = [5, 10, 8, 15, 12, 7]
 **Goal**: Loop through a list to find the index position of a specific item.
 
 ```python
-fruits = ["apple", "banana", "cherry", "date"]
-target = "cherry"
+def pos_item(fruits = ["apple", "banana", "cherry", "date"], target = "cherry") -> None:
+    i = 0
+    for i in range(len(fruits)):
+        if fruits[i] == target:
+            print(f"{target} is at index {i}")
+            break
+
+pos_item()
+
+#refactored version from llm to be more pythonic
+def pos_item(fruits: list[str] = ["apple", "banana", "cherry", "date"], target: str = "cherry") -> None:
+    for i, fruit in enumerate(fruits):
+        if fruit == target:
+            print(f"{target} is at index {i}")
+            break
+
+pos_item()
 ```
 
 ✅ *Check*: Should print "cherry is at index 2".
@@ -469,6 +645,18 @@ target = "cherry"
 
 ```python
 original = [10, 20, 30, 40, 50]
+
+reverse = [original[-i] for i in range(1,len(original)+1)]
+print(reverse)
+
+#attempt two without slicing
+original = [10, 20, 30, 40, 50]
+my_copy = original.copy()
+reverse = []
+for x in range(len(original)):
+    reverse.append(my_copy.pop())
+
+print(reverse)
 ```
 
 ✅ *Check*: Should create [50, 40, 30, 20, 10] without using `reverse()` or slicing.
@@ -482,17 +670,28 @@ original = [10, 20, 30, 40, 50]
 Hint: You'll need to track the total count of asterisks printed and use `break` to exit both loops.
 
 ```python
-num_asterisks = 11
-...
+def asterisks(num_asterisks=11) -> None:
+    counter = 0
+    for i in range(num_asterisks):
+        for j in (range(i)):
+            print("*", end="")
+            counter += 1
+            if counter == num_asterisks:
+                break
+        print()
+        if counter == num_asterisks:
+            break
 
+asterisks()
+```
+
+✅ *Check*: Should print exactly 10 asterisks total before stopping (e.g., 1 star, then 2 stars, then 3 stars, then 4 stars = 10 total).
+
+```python
 *
 **
 ***
 ****
-*
-
 ```
-
-✅ *Check*: Should print exactly 10 asterisks total before stopping (e.g., 1 star, then 2 stars, then 3 stars, then 4 stars = 10 total).
 
 ---

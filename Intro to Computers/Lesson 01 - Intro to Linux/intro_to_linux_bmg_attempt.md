@@ -44,6 +44,7 @@ ls
 2. Change directory into `notes`, then list the files.
 ```bash
 cd ./notes
+ls
 ```   
 
 3. Go back to the parent directory.
@@ -92,6 +93,7 @@ rm newfile.txt
 1. View permissions of `scripts/hello.sh`.
 ```bash
 ls -l scripts/hello.sh
+
 stat scripts/hello.sh
 ```   
    
@@ -100,6 +102,7 @@ stat scripts/hello.sh
 stat scripts/hello.sh
 chmod u+x scripts/hello.sh
 ls -l scripts/hello.sh
+
 chmod 0744 scripts/hello.sh
 ls -l scripts/hello.sh
 ```      
@@ -125,12 +128,16 @@ grep -v Linux file1.txt
 
 3. Search recursively in all `.txt` files under the current directory.
 ```bash
-XXX ls -R | grep Linux
+grep -r Linux .
+
+grep -r Linux
 ```
 
 4. Find lines starting with the word "Note".
 ```bash
-XXX grep ^Note file1.txt
+grep -r ^Note .
+
+grep -r ^Note
 ```     
 
 ---
@@ -138,47 +145,90 @@ XXX grep ^Note file1.txt
 ### Exercise 6: WC - Word/Line/Character Count
 
 1. Count the number of lines in `file2.txt`.
-   
+```bash
+wc file2.txt
+```   
 
 2. Count the number of words and characters in `docs/doc1.txt`.
+```bash
+wc docs/doc1.txt
+```   
    
-
 3. Get a summary for all `.txt` files.
+```bash
+wc *.txt
+
+wc */*.txt
+```   
    
 ---
 
 ### Exercise 7: SSH - Remote Access
 
 1. Connect to the server that your instructor provided with the correct credentials.
-   
+```bash
+ssh user2@46.225.20.198
+yes
+```   
+  
 
 2. Run a remote command (e.g., list home directory files).
-   
+```bash
+ls ~
+```   
+  
 
 3. Copy a local file to the remote server.
+```bash
+echo https://www.cartalk.com/content/lame-jokes-2 > LameJokesFromCarTalk
+scp LameJokesFromCarTalk user2@46.225.20.
+198:/srv/class_share
+```   
 
 
 4. Leave a message for your peers!
+```bash
+ssh user2@46.225.20.198
+echo Non Impediti Ratione Cogitationis > Motto_of_Tom.txt && echo Unencumbered by the thought process. >> Motto_of_Tom.txt
+```   
    
-
 ---
 
 ### Exercise 8: Redirection Operators
 
 1. Redirect the output of `ls` into a file.
-   
+```bash
+ls > ls_output.txt
+```      
 
 2. Append output to an existing file using echo.
-   
+```bash
+echo my output >> ls_output.txt
+```      
 
 3. Use input redirection to provide data to a command.
-   
+```bash
+wc < file1.txt
+wc file1.txt
+
+echo file1.txt > data_for_my_command.txt
+cat $(< data_for_my_command.txt)
+
+ls | grep $(< data_for_my_command.txt)
+
+echo .txt > more_data_for_a_command.txt
+ls | grep $(< more_data_for_a_command.txt)
+```      
 
 4. Chain commands with a pipe: count the number of files containing "Note".
-   
+```bash
+grep -Rl Note | wc
+```      
 
 5. Combine multiple operators: search a file and save results.
-   
+```bash
+grep -R Linux | grep -v Linux.git > results_about_Linux.txt
+```     
 
 ---
 

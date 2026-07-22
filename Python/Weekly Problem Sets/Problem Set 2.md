@@ -144,11 +144,11 @@ class SpaceStation:
         print(f"Trend:     {self.trend()}")
     def trend(self) -> str:
         if self.o2_readings[-3] < self.o2_readings[-2] < self.o2_readings[-1]:
-            return "IMPROVING"
+            return "TREND: IMPROVING"
         elif self.o2_readings[-3] > self.o2_readings[-2] > self.o2_readings[-1]:
-            return "DECLINING"
+            return "TREND: DECLINING"
         else:
-            return "STABLE"
+            return "TREND: STABLE"
 
 my_space_station = SpaceStation(readings)
 ```
@@ -372,11 +372,89 @@ athletes = [
  
 Top scorer: Reyes (31 goals)
 ```
+
+- Use a `for` loop to process each athlete, call both functions, and print a formatted leaderboard. Use a conditional to mark MVP candidates with a `*`.
+- After the loop, print the name of the top scorer (most total goals).
+ 
+**Expected output:**
+ 
+```
+  Jordan        82      15      0.18
+  Patel         78      22      0.28    *
+  Okonkwo       90      18      0.20
+  Li            65      9       0.14
+  Reyes         88      31      0.35    *
+  Fischer       72      14      0.19
+ 
+Top scorer: Reyes (31 goals)
+```
  
 ### Challenge
  
 Add a `grade(gpg)` function that returns a letter grade (`A`, `B`, `C`, `D`, or `F`) based on the GPG rate. Define your own grading scale, add the grade to each row, and print a grade distribution summary after the leaderboard using a `for` loop and a dictionary to count grades.
- 
+
+
+```python
+import math
+
+athletes = [
+    ("Jordan",  82, 15),   # (name, games_played, goals_scored)
+    ("Patel",   78, 22),
+    ("Okonkwo", 90, 18),
+    ("Li",      65, 9),
+    ("Reyes",   88, 31),
+    ("Fischer", 72, 14),
+]
+
+def goals_per_game(goals, games):
+    if games == 0:
+        return 0.0
+    return math.floor(goals / games * 100) / 100
+
+def mvp_candidate(gpg):
+    return True if gpg >= 0.25 else False
+
+def gpg_grade(gpg):
+    if gpg >= 0.30:
+        return "A"
+    elif gpg >= 0.25:
+        return "B"
+    elif gpg >= 0.20:
+        return "C"
+    elif gpg >= 0.15:
+        return "D"
+    else:
+        return "F"
+
+def print_results():
+    print("=== SEASON LEADERBOARD ===")
+    print("  Athlete       Games   Goals   GPG     MVP?     GPG Grade")
+    print("  --------------------------------------------------------")
+    for (name, games_played, goals_scored) in athletes:
+        gpg = goals_per_game(goals_scored, games_played)
+        is_mvp_candidate = mvp_candidate(gpg)
+        gpg_grade_ = gpg_grade(gpg)
+        print(f"   {name:<14}{games_played}\t{goals_scored}\t{gpg:.02f}\t{'*' if is_mvp_candidate else ''}\t{gpg_grade_}")
+    max_goals_scored = max([goals_scored for (i, (name, games_played, goals_scored)) in enumerate(athletes)])
+    for (i, (name, games_played, goals_scored)) in enumerate(athletes):
+        if goals_scored == max_goals_scored:
+            print(f"\nTop scorer: {name} ({goals_scored} goals)")
+    print("\n=== GRADE SUMMARY ===")
+    print(f"A:  {sum(s == 'A' for s in gpg_grade_list):2d} athlete(s)")
+    print(f"B:  {sum(s == 'B' for s in gpg_grade_list):2d} athlete(s)")
+    print(f"C:  {sum(s == 'C' for s in gpg_grade_list):2d} athlete(s)")
+    print(f"D:  {sum(s == 'D' for s in gpg_grade_list):2d} athlete(s)")
+    print(f"F:  {sum(s == 'F' for s in gpg_grade_list):2d} athlete(s)")
+
+athletes_dict = {name:  {   "games": games_played, 
+                            "goals": goals_scored, 
+                            "gpg": goals_per_game(games_played, games_played), 
+                            "is_mvp_candidate": mvp_candidate(goals_per_game(goals_scored, games_played)),
+                            "gpg_grade": gpg_grade(goals_per_game(goals_scored, games_played))
+                        } for (name, games_played, goals_scored) in athletes
+                }
+gpg_grade_list = [athletes_dict[athlete]["gpg_grade"] for athlete in athletes_dict]
+print_results()
 ---
  
 ## References

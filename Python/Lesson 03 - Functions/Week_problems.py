@@ -266,36 +266,117 @@
 # HERO WINS! The monster has been defeated.
 
 
+############ come back to this one is confusing ################################3
 
-
-def attack(defender_hp, damage):
-    new_def_hp = defender_hp - damage
+# def attack(defender_healthpoints, damage):
+#     new_def_healthpoints = defender_healthpoints - damage
     
-    return max(0, new_def_hp)
-
-def alive(hp):
-
-count = 1
+#     return max(0, new_def_healthpoints)
 
 
-hero_hp = 100
-monster_hp = 90
-monster_damage = 18
-hero-damage = 12
-
-while hero_hp > 0:
-    count += 1
-    if monster_hp >0 :
-        monster_hp - 18
-
-        
+# def alive(healthpoints):
+#     if healthpoints > 0:
+#         return True
 
 
 
+# count = 1
 
 
+# hero_healthpoints = 100
+# monster_healthpoints = 90
+# monster_damage = 18
+# hero_damage = 12
+
+# while hero_healthpoints > 0:
+#     count += 1
+#     if monster_healthpoints > 0 :
+#         monster_healthpoints 
+
+############################################################################
+
+
+
+
+
+def check_fitness(score)-> bool:
+    if score >= 70:
+        print("PASS")
+        return True
+    else:
+        return False
+
+
+ 
+def check_rank(rank)-> bool:
+    if rank == 'Corporal' or rank == 'Sergeant' or rank == 'Lieutenant':
+        print("PASS")
+        return True
+    else:
+        return False
     
-    
+
+ 
+def check_service_years(years) -> bool:
+    if years >= 2:
+        print("PASS")
+        return True
+    else:
+        return False
+
+soldiers = []
+while True:
+
+    name = input("Enter your first and last name: ").upper()
+    fitness_score = int(input("Enter your Fintess Score:  "))
+    rank = input("Enter your full rank, ('Corporal', 'Sergeant', 'Lieutenant' or ' Other '): ").upper()
+    tis = int(input("Enter your years in service: "))
+
+    soldiers.append({
+        "name" : name,
+        "fitness" : fitness_score,
+        "rank" : rank,
+        "serivce" : tis
+    })
+
+    another_input = input("Do you want to enter another Soldier (Y/N): ").upper()
+
+    if another_input == "N":
+        break
+
+for soldier in soldiers:
+    fitness_check =  check_fitness(soldier["fitness"])
+    rank_check = check_rank(soldier["rank"])
+    tis_check = check_service_years(soldier["service"])
+                   
+    overall_check = (check_fitness(fitness_score)
+    and check_rank(rank)
+    and check_service_years(tis) )
+
+
+
+    if overall_check:
+        print()
+        print("Soldiers Inforamation")
+        print(f"Soldier Name:     {name} ")
+        print(f"Fitness Score:    {fitness_score} ")
+        print(f"Rank:             {rank}")
+        print(f"Years in Service: {tis} ")
+        print()
+        print(" === MISSION CLEARANCE REPORT === ")
+        print()
+        print(f"Soldier: {name}")
+        print(f"    Fitness Check: {'PASS' if fitness_check else 'fail'} ")
+        print(f"    Rank check   : {'PASS' if rank_check else 'fail'} ")
+        print(f"    Service Check: {'PASS' if tis_check else 'fail'} ")
+        print()
+        print("FINAL STATUS: CLEARED FOR MISSION.")
+
+
+    else:
+        print("Service Memeber did not meet standard")
+        print(f"Name: {name} ")
+        print(f"Rank: {rank}")
 
 
 

@@ -30,6 +30,12 @@ This guide walks you through the basic Git workflow: initializing a repository, 
 **Goal**: Get a working environment for git
 
 1. Open a WSL terminal
+```bash
+wsl
+cd ~
+nano .bashrc
+#can add cd~ at the end of the contents of .bashrc to always open wsl at home folder
+```
 2. Verify that `git` is installed by running the command `git --version`
 3. If `git` is not installed, install it by running `apt install git -y`
 
@@ -41,6 +47,11 @@ This guide walks you through the basic Git workflow: initializing a repository, 
 
 ✅ *Check*: Run `ls -la` to verify that a `.git` directory was created.  Git stores all of its tracking information in a series of files in the `.git` directory.
 
+```bash
+mkdir new_directory
+cd new_directory
+git init
+```
 ---
 
 ### Exercise 2: Create and Modify a File
@@ -52,6 +63,12 @@ This guide walks you through the basic Git workflow: initializing a repository, 
 INFO: Line 1 Creates the hello.txt file and adds the line "Hello, Git!"  
 INFO: Line 2 'cat' is short for concatenate, it chains files together into a single output, in this example, your screen is the default output
 
+```bash
+touch new_file
+ls
+git status
+```
+
 ---
 
 ### Exercise 3: Stage the File
@@ -60,7 +77,10 @@ INFO: Line 2 'cat' is short for concatenate, it chains files together into a sin
 
 
 ✅ *Check*: Run `git status` again and verify that the change is staged.  How is the output of `git status` different than the previous step? You can specify a directory to stage all changes in that directory at once.
-
+```bash
+git add .
+git status
+```
 ---
 
 ### Exercise 4: Commit the File
@@ -73,7 +93,11 @@ What does the output show?  Now commit your staged change with a descriptive mes
 
 
 ✅ *Check*: Run `git status` to see the new status, run `git log` to see your first commit.
-
+```bash
+git log
+git commit -m "new commit with new_file"
+git log
+```
 ---
 
 ### Exercise 5: Make a Change and Commit Again
@@ -82,7 +106,15 @@ What does the output show?  Now commit your staged change with a descriptive mes
 
 
 ✅ *Check*: Use `git log` and `cat hello.txt` to verify your commit and file contents.
-
+```bash
+git log
+echo "hello" >> newfile
+git status
+git add .
+git commit -m "append 'hello' to new file"
+git status
+git log
+```
 ---
 
 ### Exercise 6: Commit a Second File
@@ -93,7 +125,14 @@ Create a second and third file, but only stage and commit the second file.
 
 
 ✅ *Check*: Run `git status` (should show nothing to commit), and `git log --oneline` to see a summary of commits.
-
+```bash
+touch second
+touch third
+git add second
+git commit -m "only staged and commit second file, not third"
+git log
+git status
+```
 ---
 
 ## Hands-On #2 Exercises
@@ -104,6 +143,9 @@ Create a second and third file, but only stage and commit the second file.
 
 
 ✅ *Try*: Use `git show <commit-hash>` to view the details of a specific commit. 
+```bash
+git show 3ca56cecd096530444d11c5abd3e7d1ce4990d47
+```
 
 ### Exercise 8: View a Specific Commit
 
@@ -111,7 +153,9 @@ Create a second and third file, but only stage and commit the second file.
 
 
 ✅ *Tip*: Replace `<commit-hash>` (it should be 7 characters on the left side) with the short hash from `git log --oneline`.
-
+```bash
+git show 3ca56ce
+```
 ---
 
 ### Exercise 9: View Differences Between Commits
@@ -120,7 +164,9 @@ Create a second and third file, but only stage and commit the second file.
 
 
 ✅ *Example*: Compare two specific commits to see what changed between them.
-
+```bash
+git diff b56b6c8 861101f
+```
 ---
 
 ### Exercise 10: See File History
@@ -129,8 +175,9 @@ Create a second and third file, but only stage and commit the second file.
 
 
 ✅ *Try*: Add `-p` to view diffs in each commit:
-
-
+```bash
+git log -p
+```
 ---
 
 ### Exercise 11: Check What Changed Before Staging
@@ -139,7 +186,10 @@ Create a second and third file, but only stage and commit the second file.
 
 
 ✅ *Check*: The output will show changes that are unstaged.
-
+```bash
+echo "goodbye" >> newfile
+git diff
+```
 ---
 
 ### Exercise 12: Check What is Staged
@@ -148,7 +198,10 @@ Create a second and third file, but only stage and commit the second file.
 
 
 ✅ *Check*: This shows differences between the index (staged area) and the last commit.
-
+```bash
+git add .
+git diff --cached
+```
 ---
 
 ## Stretch Goals
@@ -156,5 +209,20 @@ Create a second and third file, but only stage and commit the second file.
 **Goal**:  Try to recover after a bad change or commit.
 
 Sometimes people do things they don't mean to and commit bad changes.  Try to revert one of your changes and go back to an old commit.
-
+```bash
+#option 1, modify the last commit
+git log --oneline
+echo "hello\nwhat a lovely day" > newfile 
+git commit --amend
+git log --oneline
+#option 2, undo the last commit but keep the changes unstaged
+git reset HEAD~
+git log --oneline
+git diff
+git add newfile
+git commit -m "isn't it a lovely day"
+git log --oneline
+#option 3, create a new commit that reverses a specific commit
+git log --oneline
+```
 For extra double bonus points, start making changes off of that old commit and see what happens with things like `git log`.

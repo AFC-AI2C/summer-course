@@ -54,10 +54,15 @@ git log --oneline
 ✅ *Check*: View the file with `cat notes.txt`.
 ```bash
 git checkout main
+<<<<<<< HEAD
 echo "create a different mock feature" > "notes.txt"
 cat notes.txt
 git add .
 git commit -m "update main with a different mock feature in notes.txt"
+=======
+echo "create a difference mock feature" > "notes.txt"
+cat notes.txt
+>>>>>>> 5fa716c (create feature-a branch with a mock feature in notes.txt)
 ```
 ---
 

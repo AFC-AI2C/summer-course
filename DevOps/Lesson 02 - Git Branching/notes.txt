@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 create a different mock feature in notes.txt on main
-=======
-<<<<<<< HEAD
 create a feature that mocks the exercises in notes.txt on the feature-a branch
-=======
-create a feature that mocks the exercises in notes.txt on the feature-a branchadd feature 2 to notes.txt on feature-a
+add feature 2 to notes.txt on feature-a
 add feature 3 to notes.txt on feature-a
->>>>>>> feature-a
->>>>>>> 0bf5e5f (squash merge feature-a on main)
+add feature 4 to notes.txt on feature-a
+add feature 5 to notes.txt on feature-a

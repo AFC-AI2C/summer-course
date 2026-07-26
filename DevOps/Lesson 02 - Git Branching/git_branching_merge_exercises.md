@@ -39,7 +39,11 @@ git branch
 
 ✅ *Check*: Run `git log --oneline` to view the commit history.
 ```bash
+<<<<<<< HEAD
 echo "create a mock feature" > "notes.txt"
+=======
+echo "create a mock feature in notes.txt on feature-a" > "notes.txt"
+>>>>>>> feature-a
 git add .
 git commit -m "create feature-a branch with a mock feature in notes.txt"
 git log --oneline
@@ -55,6 +59,7 @@ git log --oneline
 ```bash
 git checkout main
 <<<<<<< HEAD
+<<<<<<< HEAD
 echo "create a different mock feature" > "notes.txt"
 cat notes.txt
 git add .
@@ -63,6 +68,12 @@ git commit -m "update main with a different mock feature in notes.txt"
 echo "create a difference mock feature" > "notes.txt"
 cat notes.txt
 >>>>>>> 5fa716c (create feature-a branch with a mock feature in notes.txt)
+=======
+echo "create a different mock feature in notes.txt on main" > "notes.txt"
+cat notes.txt
+git add .
+git commit -m "update main with a different mock feature in notes.txt"
+>>>>>>> feature-a
 ```
 ---
 

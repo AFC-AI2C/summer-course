@@ -77,7 +77,7 @@ cat notes.txt
 Edit using your favorite text editor to combine or keep one version.
 
 ```bash
-git merge feature-a
+git merge -no-ff feature-a -m "merge feature-a onto main again"
 ```
 ---
 
@@ -87,7 +87,16 @@ git merge feature-a
 
 
 ✅ *Check*: Only one commit should appear in the history after squashing.
-
+```bash
+git switch feature-a
+echo "add feature 2 to notes.txt on feature-a" >> notes.txt
+git commit -am "add feature 2 to notes.txt on feature-a"
+echo "add feature 3 to notes.txt on feature-a" >> notes.txt
+git commit -am "add feature 3 to notes.txt on feature-a"
+git push
+git switch main
+git merge --squash feature-a
+```
 ---
 
 ### Exercise 6: Clean Up Merged Branches

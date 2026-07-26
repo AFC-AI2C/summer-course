@@ -111,7 +111,10 @@ git log --oneline --all
 
 ✅ *Check*: `git log` should show a merge commit.
 ```bash
-
+git switch -c git_branching_exercises_new_branch
+git commit --allow-empty -m "make empty commit to git_branching_exercises_new_branch"
+git switch main
+git merge --no-ff git_branching_exercises_new_branch -m "perform empty no-ff merge of git_branching_exercises_new_branch onto main"
 ```
 ---
 
@@ -121,7 +124,15 @@ git log --oneline --all
 
 
 ✅ *Check*: Run `git log --oneline` — no merge commit is created.
-
+```bash
+git log --oneline
+git switch -c git_branching_exercises_new_branch_2
+git commit --allow-empty -m "make empty commit 1 to git_branching_exercises_new_branch_2"
+git commit --allow-empty -m "make empty commit 2 to git_branching_exercises_new_branch_2"
+git switch main
+git merge --ff git_branching_exercises_new_branch_2 -m "perform empty ff merge of git_branching_exercises_new_branch_2 onto main"
+git log --oneline
+```
 ---
 
 ### Exercise 9: Rebase a Feature Branch

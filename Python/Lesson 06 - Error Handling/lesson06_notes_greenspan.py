@@ -37,6 +37,12 @@ os.system("python -m venv myvenv")
 
 #open bash
 """
+cd into the Lesson 04 folder
+Create a virtual environment there.  
+Activate the virtual environment and install all of the dependencies listed in requirements.txt.  
+After you do this, add this folder to your .gitignore within your repo.
+"""
+"""
 cd '../Lesson 04 - Strings, Advanced Functions, and Virtual Environments'
 python -m venv myvenv
 .\myvenv\Scripts\Activate.ps1
@@ -66,3 +72,20 @@ dir(print("a"))
 print("a")._gt_
 #FileNotFoundError
 open("make_believe", "r")
+
+
+try:
+    len_ = float(input("Enter the length:  "))
+    wid = float(input("Enter the width:  "))
+    len_/wid
+except ValueError as e:
+    print(f"{e} You got a ValueError")
+except ZeroDivisionError:
+    print("You divided by 0")
+except:
+    print("There was some other error")
+else:
+    print("No errors")
+finally:
+    print("This always runs!")
+    raise FileNotFoundError

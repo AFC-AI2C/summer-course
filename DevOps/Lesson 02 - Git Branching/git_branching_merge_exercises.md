@@ -141,7 +141,16 @@ git log --oneline
 
 
 ✅ *Check*: The commit from `rebase-demo` will now appear after the `main` commit as if made later.
-
+```bash
+git log --oneline --graph
+git switch main
+git commit --allow-empty -m "new empty commit on main"
+git switch git_branching_exercises_new_branch 
+git commit --allow-empty -m "new empty commit on feature branch"
+git log --oneline --graph
+git rebase main
+git log --oneline --graph
+```
 ---
 
 ### Exercise 10: Squash Multiple Commits into One

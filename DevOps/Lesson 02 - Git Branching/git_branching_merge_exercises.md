@@ -26,7 +26,10 @@ These exercises guide you through creating branches, merging them, resolving con
 
 
 ✅ *Check*: Use `git branch` to confirm you are now on `feature-a`.
-
+```bash
+git switch -c feature-a
+git branch
+```
 ---
 
 ### Exercise 2: Make a Change in the Feature Branch
@@ -35,7 +38,12 @@ These exercises guide you through creating branches, merging them, resolving con
 
 
 ✅ *Check*: Run `git log --oneline` to view the commit history.
-
+```bash
+echo "create a mock feature" > "notes.txt"
+git add .
+git commit -m "create feature-a branch with a mock feature in notes.txt"
+git log --oneline
+```
 ---
 
 ### Exercise 3: Switch Back to Main and Make a Change
@@ -44,7 +52,13 @@ These exercises guide you through creating branches, merging them, resolving con
 
 
 ✅ *Check*: View the file with `cat notes.txt`.
-
+```bash
+git checkout main
+echo "create a different mock feature" > "notes.txt"
+cat notes.txt
+git add .
+git commit -m "update main with a different mock feature in notes.txt"
+```
 ---
 
 ### Exercise 4: Merge Feature Branch into Main (Expect Conflict)
@@ -57,7 +71,9 @@ These exercises guide you through creating branches, merging them, resolving con
 
 Edit using your favorite text editor to combine or keep one version.
 
-
+```bash
+git merge feature-a
+```
 ---
 
 ### Exercise 5: Squash Merge a Feature Branch

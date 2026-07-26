@@ -39,11 +39,7 @@ git branch
 
 ✅ *Check*: Run `git log --oneline` to view the commit history.
 ```bash
-<<<<<<< HEAD
 echo "create a mock feature" > "notes.txt"
-=======
-echo "create a mock feature in notes.txt on feature-a" > "notes.txt"
->>>>>>> feature-a
 git add .
 git commit -m "create feature-a branch with a mock feature in notes.txt"
 git log --oneline
@@ -58,22 +54,10 @@ git log --oneline
 ✅ *Check*: View the file with `cat notes.txt`.
 ```bash
 git checkout main
-<<<<<<< HEAD
-<<<<<<< HEAD
 echo "create a different mock feature" > "notes.txt"
 cat notes.txt
 git add .
 git commit -m "update main with a different mock feature in notes.txt"
-=======
-echo "create a difference mock feature" > "notes.txt"
-cat notes.txt
->>>>>>> 5fa716c (create feature-a branch with a mock feature in notes.txt)
-=======
-echo "create a different mock feature in notes.txt on main" > "notes.txt"
-cat notes.txt
-git add .
-git commit -m "update main with a different mock feature in notes.txt"
->>>>>>> feature-a
 ```
 ---
 
@@ -88,7 +72,7 @@ git commit -m "update main with a different mock feature in notes.txt"
 Edit using your favorite text editor to combine or keep one version.
 
 ```bash
-git merge -no-ff feature-a -m "merge feature-a onto main again"
+git merge feature-a
 ```
 ---
 
@@ -99,14 +83,9 @@ git merge -no-ff feature-a -m "merge feature-a onto main again"
 
 ✅ *Check*: Only one commit should appear in the history after squashing.
 ```bash
-git switch feature-a
-echo "add feature 2 to notes.txt on feature-a" >> notes.txt
-git commit -am "add feature 2 to notes.txt on feature-a"
-echo "add feature 3 to notes.txt on feature-a" >> notes.txt
-git commit -am "add feature 3 to notes.txt on feature-a"
-git push
-git switch main
-git merge --squash feature-a
+git log --oneline
+git merge --squash feature-a -m "squash feature-a onto main" 
+git log --oneline
 ```
 ---
 
@@ -116,7 +95,13 @@ git merge --squash feature-a
 
 
 ✅ *Check*: Run `git branch` to confirm deletion.
-
+```bash
+git log --oneline --all
+git branch -D feature-a
+git push origin --delete feature-a
+git branch
+git log --oneline --all
+```
 ## Hands-On #2: Merge Strategies
 
 ### Exercise 7: Use a Merge Strategy (`--no-ff`)
@@ -125,7 +110,9 @@ git merge --squash feature-a
 
 
 ✅ *Check*: `git log` should show a merge commit.
+```bash
 
+```
 ---
 
 ### Exercise 8: Fast-Forward Merge

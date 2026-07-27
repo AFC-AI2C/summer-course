@@ -22,11 +22,27 @@ These exercises walk through working with Git remotes and contributing to shared
 Do this in your WSL distro for practice on the command line!
 
 1. Create a new folder called `git_example`
+```bash
+mkdir git_example
+```
 2. Change into the new folder
+```bash
+cd git_example
+```
 3. Create a new file called `first_file.txt` with some text inside
+```bash
+echo "Today is July 27" > first_files.txt
+```
 4. Initialize the git repository
+```bash
+git init
+```
 5. Make your first commit
-
+```bash
+git add .
+git commit -m "first commit with today's date"
+git branch -M main                              #Older Git installations default to master instead of main. This rename the branch.
+```
 Do this part in GitHub
 
 1. Create a new repository in GitHub under your personal account.
@@ -39,7 +55,8 @@ Do this part in GitHub
 This step sets up your local repository to "track" the remote repository under the name `origin`.
 
 ```bash
-git remote add origin {your_url}
+git remote add origin https://github.com/greenspb/lesson03exercises.git
+git remote -v
 ```
 
 ✅ *Check*: Run `git remote -v` to verify the remote is added.
@@ -51,7 +68,7 @@ git remote add origin {your_url}
 **Goal**: Push local commits to the remote repository.
 
 ```bash
-git push -u origin main
+git push -u origin main             #note: This required token authentication.
 ```
 
 ✅ *Check*: Visit the GitHub repo and confirm your code appears.
@@ -86,7 +103,11 @@ Option 2
 2. Then pull the changes using the command below.
 
 ```bash
-git pull origin main
+git pull origin main --rebase       #git needs a merge style to resolve the conflicts
+vim first_files.txt
+git status
+git rebase --continue
+git log --oneline
 ```
 
 ✅ *Check*: Git should update your local files if there are changes on GitHub.
@@ -111,7 +132,7 @@ git pull origin main
 **Goal**: Work on your forked copy locally.
 
 ```bash
-git clone https://github.com/{YOUR_USERNAME}/Spoon-Knife.git
+git clone https://github.com/greenspb/Spoon-Knife.git
 cd Spoon-Knife
 ```
 
@@ -125,7 +146,7 @@ cd Spoon-Knife
 
 Example:
 ```bash
-echo "This is my name!" >> {my name}.md
+echo "This is my name!" >> Ben.md
 git add {my name}.md
 git commit -m "Added a file from me"
 git push origin main
@@ -160,3 +181,7 @@ git merge upstream/main
 ✅ *Check*: You can now pull updates from the original repo into your fork.
 
 🎯 What command does fetch and merge in one?
+
+```bash
+git pull
+```

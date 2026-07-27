@@ -174,19 +174,18 @@ The `turtle` module lets you draw by moving a virtual "pen" around the screen. H
 
 ```python
 import turtle
-
 t = turtle.Turtle()       # create a turtle to draw with
 t.forward(100)            # move forward 100 pixels
 t.right(90)               # turn right 90 degrees
 t.left(90)                # turn left 90 degrees
 t.penup()                 # lift the pen (move without drawing)
 t.pendown()               # put the pen down (start drawing)
-t.goto(x, y)              # jump to a specific position
+#t.goto(x, y)              # jump to a specific position
 t.color("green")          # set the pen color
 t.begin_fill()            # start filling a shape
 t.end_fill()              # fill the shape with the current color
 t.circle(50)              # draw a circle with radius 50
-turtle.done()             # keep the window open when finished
+#turtle.done()             # keep the window open when finished
 ```
 
 **Your task:**
@@ -203,6 +202,85 @@ turtle.done()             # keep the window open when finished
 > **Note:** The turtle window may open behind other windows — check your taskbar if you don't see it.
 
 **Expected result:** A simple nature scene with a sun, grass, a pond, and a row of trees.
+
+```python
+import turtle
+t = turtle.Turtle()       # create a turtle to draw with
+t.screen.bgcolor('#2afad4')
+t.speed(0)
+
+#yellow sun
+t.penup()                 # lift the pen (move without drawing)
+t.goto(775, 100)             # jump to a specific position
+t.pendown()               # put the pen down (start drawing)
+t.color("yellow")          # set the pen color
+t.fillcolor('yellow')
+t.begin_fill()            # start filling a shape
+t.circle(250)             # draw a circle with radius 250
+t.end_fill()              # fill the shape with the current color
+
+#green grass
+t.penup()                 # lift the pen (move without drawing)
+t.goto(-1000, -150)             # jump to a specific position
+t.pendown()               # put the pen down (start drawing)
+t.color('#6db409')          # set the pen color
+t.fillcolor('#6db409')
+t.begin_fill()            # start filling a shape
+t.forward(2000)            # move forward 100 pixels
+t.right(90)               # turn right 90 degrees
+t.forward(350)
+t.right(90)
+t.forward(2000)
+t.right(90)
+t.forward(350)
+t.end_fill()              # fill the shape with the current color
+
+#tree
+for i in range(3):
+    #tree trunk
+    x_offset = 175
+    y_scaler = 1.1
+    tree_height = 75
+    t.penup()                 # lift the pen (move without drawing)
+    t.goto(-800 + i*x_offset, -125)             # jump to a specific position
+    t.pendown()               # put the pen down (start drawing)
+    t.color("brown")          # set the pen color
+    t.fillcolor('brown')
+    t.begin_fill()            # start filling a shape
+    t.right(90)
+    t.forward(20)            # move forward 100 pixels
+    t.right(90)               # turn right 90 degrees
+    t.forward(75 * y_scaler * (i+1)**1.25)
+    t.right(90)
+    t.forward(20)
+    t.right(90)
+    t.forward(75 * y_scaler * (i+1)**1.25)
+    t.end_fill()              # fill the shape with the current color
+    #tree leaves
+    t.penup()                 # lift the pen (move without drawing)
+    tree_tops = (-740, -530, -340)
+    t.goto(tree_tops[i], -125)             # jump to a specific position
+    t.pendown()               # put the pen down (start drawing)
+    my_colors = ('green','#b46d09','#ec2910')
+    t.color(my_colors[i])          # set the pen color
+    t.fillcolor(my_colors[i])             #
+    t.begin_fill()            # start filling a shape
+    circle_sizes = (50,80,100)
+    t.circle(circle_sizes[i])             # draw a circle with radius 50
+    t.end_fill()              # fill the shape with the current color    
+
+#pond
+for x in range(512,587):
+    t.penup()                 # lift the pen (move without drawing)
+    t.goto(x, -310)             # jump to a specific position
+    t.pendown()               # put the pen down (start drawing)
+    my_color = 'blue'
+    t.color(my_color)          # set the pen color
+    t.fillcolor(my_color)             #'#32a8a4'
+    t.begin_fill()            # start filling a shape
+    t.circle(75)             # draw a circle with radius 50
+    t.end_fill()              # fill the shape with the current color
+```
 
 ### Challenge
 

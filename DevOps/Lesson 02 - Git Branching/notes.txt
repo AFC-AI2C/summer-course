@@ -3,4 +3,6 @@ create a feature that mocks the exercises in notes.txt on the feature-a branch
 add feature 2 to notes.txt on feature-a
 add feature 3 to notes.txt on feature-a
 add feature 4 to notes.txt on feature-a
-add feature 5 to notes.txt on feature-a
+add feature 5 to notes.txt on feature-anew feature 1 on git_branching_exercises_new_branch_3
+new feature 2 on git_branching_exercises_new_branch_3
+new feature 3 on git_branching_exercises_new_branch_3

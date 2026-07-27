@@ -38,6 +38,45 @@ Simulated average total: 13.47
 Theoretical average:     13.5
 ```
 
+```python
+import math, random
+def roll(sides):
+    return random.randint(1, sides)
+
+def roll_many(num_dice, sides):
+    return [roll(sides) for dice in range(num_dice)]
+
+def roll_stats(rolls_list):
+    return {'average': math.floor( sum(rolls_list)/len(rolls_list) * 10) / 10 , 'total': sum(rolls_list)}
+
+def is_crit(roll):
+    if roll == 20:
+        return 'CRITICAL HIT!'
+    elif roll == 1:
+        return 'CRITICAL MISS!'
+    else:
+        return roll
+
+#movement 
+r = roll_many(2,6)
+print(r, roll_stats(r))
+
+#attack check
+print(is_crit(roll(20)))
+
+#damage
+r = roll_many(3,6)
+print(r, roll_stats(r))
+
+#damage loop
+total_history = []
+for i in range(1000):
+    r = roll_many(3,8)
+    total_history.append(roll_stats(r)['total'])
+
+print(f'The mean of sample totals of three die (n = 1000) is {math.floor(sum(total_history)/len(total_history) * 100) / 100}.')
+```
+
 ### Challenge
 
 Use `random.seed(42)` at the top of your program and run it twice. Notice that the results are identical both times — explain in a comment why this happens and when it might be useful. Then remove the seed and use `random.choice()` to pick a random battle quote from a list of at least five strings and print it at the end.
@@ -74,6 +113,32 @@ Distance to station:    902.35 units
 Orbit circumference:    40030.17 km
 Kinetic energy (fuel):  1520100000000.0 J
 Log10 of velocity:      3.89
+```
+
+```python
+import math
+def distance(x1, y1, x2, y2):
+    return math.sqrt( (x1-x2)**2 + (y1-y2)**2 )
+
+def orbit_circumference(radius):
+    return math.pi * 2 * radius
+
+def fuel_needed(mass, velocity):
+    return math.floor( 0.5 * mass * velocity ** 2 * 100) / 100
+
+ship_pos    = (0, 0)
+station_pos = (143, 892)
+orbit_radius = 6371        # km (Earth's radius)
+ship_mass    = 50000       # kg
+ship_velocity = 7800       # m/s
+
+distance(*ship_pos, *station_pos)
+
+print(f'=== NAVIGATION REPORT ===')
+print(f'Distance to station:    {distance(*ship_pos, *station_pos):.02f} units')
+print(f'Orbit circumference:    {orbit_circumference(orbit_radius):.02f} km')
+print(f'Kinetic energy (fuel):  {fuel_needed(ship_mass, ship_velocity):.02f} J')
+print(f'Log10 of velocity:      {math.log(ship_velocity, 10):.02f}')
 ```
 
 ### Challenge

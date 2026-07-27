@@ -155,6 +155,23 @@ Use `math.degrees()` and `math.radians()` to write a function `bearing(x1, y1, x
 
 The `turtle` module lets you draw by moving a virtual "pen" around the screen. Here are the key commands you'll need:
 
+```bash
+#this block is not necessary
+#python -m venv venv_problem_set_3
+#source ./venv_problem_set_3/bin/activate
+#python --version
+#pip install turtle
+#pip list
+#pip freeze
+#pip freeze >> requirements.txt
+#deactivate
+#echo "venv_problem_set_3" >> .gitignore
+#git status
+#pip list
+#pip install -r .\requirements.txt
+#pip list
+```
+
 ```python
 import turtle
 

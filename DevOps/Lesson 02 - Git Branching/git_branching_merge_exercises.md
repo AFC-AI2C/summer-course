@@ -181,3 +181,22 @@ git log --oneline --graph
 
 
 ✅ *Check*: Use `git log --graph --oneline --all` to visually compare linear (rebase) vs. branched (merge) history.
+```bash
+git log --oneline --graph --all
+git switch -c git_branching_exercises_new_branch_4
+echo "new feature 1 on git_branching_exercises_new_branch_4" >> notes.txt
+git commit -am "add feature 1 on branch 4"
+echo "new feature 2 on git_branching_exercises_new_branch_4" >> notes.txt
+git commit -am "add feature 2 on branch 4"
+git branch main
+git switch -c git_branching_exercises_new_branch_5
+echo "new feature 1 on git_branching_exercises_new_branch_5" >> notes.txt
+git commit -am "add feature 1 on branch 5"
+echo "new feature 2 on git_branching_exercises_new_branch_5" >> notes.txt
+git commit -am "add feature 2 branch 5"
+git switch main
+git merge --no-ff git_branching_exercises_new_branch_5 -m "merge git_branching_exercises_new_branch_5 onto main"
+git switch git_branching_exercises_new_branch_4
+git rebase main
+git log --oneline --graph --all
+```

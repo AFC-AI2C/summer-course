@@ -159,14 +159,20 @@ git log --oneline --graph
 
 
 ✅ *Check*: `git log` will show a single commit from the squash.
+```bash
 git log --oneline --graph
+git switch git_branching_exercises_new_branch_3
+echo "new feature 1 on git_branching_exercises_new_branch_3" >> notes.txt
+git commit -am "add feature 1"
+echo "new feature 2 on git_branching_exercises_new_branch_3" >> notes.txt
+git commit -am "add feature 2"
+echo "new feature 3 on git_branching_exercises_new_branch_3" >> notes.txt
+git commit -am "add feature 3"
 git switch main
-git commit --allow-empty -m "new empty commit on main"
-git switch git_branching_exercises_new_branch 
-git commit --allow-empty -m "new empty commit on feature branch"
+git merge --squash git_branching_exercises_new_branch_3
+git commit -m "squash git_branching_exercises_new_branch_3 onto main"
 git log --oneline --graph
-git rebase main
-git log --oneline --graph
+```
 ---
 
 ### Exercise 11: Rebase vs Merge – Compare Histories

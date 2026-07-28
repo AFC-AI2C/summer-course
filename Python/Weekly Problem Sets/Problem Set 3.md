@@ -51,22 +51,23 @@ def roll_stats(rolls_list):
 
 def is_crit(roll):
     if roll == 20:
-        return 'CRITICAL HIT!'
+        return (roll,'CRITICAL HIT!')
     elif roll == 1:
-        return 'CRITICAL MISS!'
+        return (roll,'CRITICAL MISS!')
     else:
-        return roll
+        return (roll, ' ')
 
-#movement 
 r = roll_many(2,6)
-print(r, roll_stats(r))
+print('=== MOVEMENT CHECK (2d6) ===')
+print(f'Roll 1: {r[0]}   Roll 2: {r[1]}   Total: {roll_stats(r)['total']}')
 
-#attack check
-print(is_crit(roll(20)))
-
-#damage
+r = is_crit(roll(20))
+print('=== ATTACK CHECK (1d20) ===')
+print(f'Roll: {r[0]} — {r[1]}')
+  
 r = roll_many(3,6)
-print(r, roll_stats(r))
+print('=== DAMAGE ROLL (3d8) ===')
+print(f'Rolls: {r}   Total: {roll_stats(r)['total']}   Average: {roll_stats(r)['average']}')
 
 #damage loop
 total_history = []
@@ -74,7 +75,9 @@ for i in range(1000):
     r = roll_many(3,8)
     total_history.append(roll_stats(r)['total'])
 
-print(f'The mean of sample totals of three die (n = 1000) is {math.floor(sum(total_history)/len(total_history) * 100) / 100}.')
+print('=== SIMULATION (1000 damage rolls) ===')
+print(f'Simulated average total: {math.floor(sum(total_history)/len(total_history) * 100) / 100}')
+print('Theoretical average:     13.5')
 ```
 
 ### Challenge
@@ -180,12 +183,12 @@ t.right(90)               # turn right 90 degrees
 t.left(90)                # turn left 90 degrees
 t.penup()                 # lift the pen (move without drawing)
 t.pendown()               # put the pen down (start drawing)
-#t.goto(x, y)              # jump to a specific position
+t.goto(x, y)              # jump to a specific position
 t.color("green")          # set the pen color
 t.begin_fill()            # start filling a shape
 t.end_fill()              # fill the shape with the current color
 t.circle(50)              # draw a circle with radius 50
-#turtle.done()             # keep the window open when finished
+turtle.done()             # keep the window open when finished
 ```
 
 **Your task:**
@@ -280,6 +283,8 @@ for x in range(512,587):
     t.begin_fill()            # start filling a shape
     t.circle(75)             # draw a circle with radius 50
     t.end_fill()              # fill the shape with the current color
+
+t.done()
 ```
 
 ### Challenge
@@ -303,6 +308,27 @@ Add a `for` loop that uses `random.randint()` to place **10 trees** at random x-
   - If the distance is > 10, print `WARM`.
   - Otherwise print `HOT!`
 - When the player guesses correctly, print the number of guesses it took, and use `math.log2()` to print the "information-theoretic" minimum guesses needed (i.e. `math.ceil(math.log2(100))`). Add a comment explaining what this number means.
+
+```python
+import random, math
+secret_number = random.randint(1,100)
+guess = None
+guesses = 0
+while guess != secret_number:
+    guess = int(input("Guess the number between 1 and 100: "))
+    guesses += 1
+    distance = math.fabs(secret_number - guess)
+    if guess == secret_number:
+        print(f'You guessed correctly. It took you {guesses} guesses. Compare that to {math.ceil(math.log2(100))}, which is the "information-theoretic" minimum guesses if you receive feedback "higher" or "lower".')
+    elif distance > 40:
+        print('ICE COLD')
+    elif distance > 20:
+        print('COLD')
+    elif distance > 10:
+        print('WARM')
+    else:
+        print('HOT')
+```
 
 **Example run:**
 
@@ -355,7 +381,49 @@ after each full loop of 4 sides: the side length has grown
 - Use `turtle.done()` to keep the window open when finished.
  
 > **Hint:** Start with a side length of `10`. After each side, add `5`. With 10 laps that's 40 sides drawn, growing from length 10 up to 205.
- 
+
+```python
+import turtle
+t = turtle.Turtle()       # create a turtle to draw with
+t.speed(0)
+laps = int(input("How many times do you want to go around the square? "))
+t.color("green")          # set the pen color
+side_len = 400 / (2*laps)
+t.penup()
+t.goto(0,0)
+t.pendown()
+t.setheading(45)               # turn right 90 degrees
+t.forward(side_len / 2)
+sides_drawn = 0
+i = 1
+while (sides_drawn < laps * 4):
+    if sides_drawn % 2 == 0:
+        i += 1
+    sides_drawn += 1
+    t.right(90)               # turn right 90 degrees
+    t.forward(side_len * 2*i)            # move forward 100 pixels
+t.penup()
+
+# t = turtle.Turtle()       # create a turtle to draw with
+# t.speed(0)
+# laps = int(input("How many times do you want to go around the square? "))
+# t.color("green")          # set the pen color
+# side_len = 10
+# t.penup()
+# t.goto(0,0)
+# t.pendown()
+# t.setheading(45)               # turn right 90 degrees
+# t.forward(side_len / 2)
+# sides_drawn = 0
+# while (sides_drawn < laps * 4):
+#     t.right(90)               # turn right 90 degrees
+#     t.forward(side_len)            # move forward 100 pixels
+#     sides_drawn += 1
+#     side_len += 5
+# t.penup()
+# t.done()
+```
+
 **Example run:**
  
 ```

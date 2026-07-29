@@ -28,17 +28,34 @@ _______________________________________________________________________________
 1. What type of company is Moderna, and what technology do they use for drug development?
 
    _______________________________________________________________________________
+```Moderna is a biotechnology company that has developed a pipeline based on mRNA technology to support various vaccines and therapeutic programs.
 
+Moderna credits their partnership with AWS for allowing them to deliver their mRNA products much faster than traditional timelines, specifically noting that the technology provided the computing power necessary to support their research, development, and genomics work.```
    _______________________________________________________________________________
 
 2. How did AWS cloud services accelerate Moderna's drug discovery process and development timeline?
 
    _______________________________________________________________________________
+```According to the speaker, AWS Data Exchange accelerated Moderna’s processes by connecting the team to the right data vendors and simplifying the procurement of necessary datasets for their epidemiologists. By centralizing data cataloging, organization, and flow into one tool, the company reduced data ingestion time by 50 to 60 percent (0:56-1:09).
 
+This improved pipeline allowed the team to:
+
+Streamline the ingestion of real-world evidence used to track RSV globally (0:22-0:28).
+Visualize data and create KPI metrics that help stakeholders make informed business decisions (0:46-0:50).
+Provide immediate visibility to stakeholders regarding what data to expect, which increased overall project efficiency```
    _______________________________________________________________________________
 
 3. What specific AWS capabilities did Moderna leverage for their workflows?
+```Moderna leveraged the following AWS capabilities for their workflows:
 
+Amazon Data Exchange (ADX): Used to connect with the right data vendors and securely bring third-party data directly into their systems.
+Data Warehouse: Used to store ingested information, allowing for centralized cataloging and organization.
+
+o support their workflows, Moderna leverages several AWS services, including:
+
+Amazon Connect: Used to build their global, automated, omnichannel contact center (OC3).
+Amazon Lex and AWS Lambda: Used to build an in-house, conversational AI engine ("Radeon") to detect customer intent.
+Additional Services: They utilize Amazon CloudWatch and Kinesis to support their data-driven, scalable platform.```
    _______________________________________________________________________________
 
 4. **Discussion:** Why would Moderna's intense data analysis workflows be difficult with traditional on-premise infrastructure?
@@ -130,7 +147,9 @@ _______________________________________________________________________________
 1. What business challenges was Mazda facing with their on-premises infrastructure?
 
    _______________________________________________________________________________
+```Transactions were being processed on an on-premises server and storage infrastructure that created heavy workloads and made inventory difficult to manage across different business functions.
 
+Demand forecasting became cumbersome, and their system lacked the scalability required to support long-term global growth initiatives while managing 250,000 repair parts and accessories.```
    _______________________________________________________________________________
 
    _______________________________________________________________________________
@@ -138,19 +157,23 @@ _______________________________________________________________________________
 2. What specific operational issues did they need to solve? (Think about inventory, forecasting, and data analysis)
 
    _______________________________________________________________________________
+```Inventory Management: Difficulty tracking and managing inventory efficiently across various business functions and regions.
 
+Forecasting: Demand forecasting processes were slow, cumbersome, and limited in frequency.
+
+Data Analysis: A need to expand analysis data to account for demand forecasting by country, region, and globally.```
    _______________________________________________________________________________
 
 3. What results did they achieve after migrating to Oracle Cloud Infrastructure?
    
-   * Cost reduction: _______________
-   * Performance increase: _______________
-   * Total Cost of Ownership (TCO) impact: _______________
+   * Cost reduction: _______________ ```Cut costs by 50%```
+   * Performance increase: _______________ ```Boosted performance by 70%```
+   * Total Cost of Ownership (TCO) impact: _______________ ```Led to a reduction in the five-year total cost of ownership```
 
 4. How did the cloud change their forecasting capabilities?
 
-   * Before: _______________
-   * After: _______________
+   * Before: _______________ ```Ran forecasts on a monthly basis```
+   * After: _______________ ```Able to run daily forecasts and adjust production up or down based on real-time demand```
 
 5. **Discussion:** Why is "on-demand forecasting" and the ability to "move production up or down with demand" only possible with cloud infrastructure?
 
@@ -180,24 +203,48 @@ _______________________________________________________________________________
 1. What was Netflix's business evolution that required massive infrastructure changes?
 
    _______________________________________________________________________________
-
+```Netflix transitioned from a DVD-by-mail service to a global streaming platform, and later expanded into live events and advertising. Moving from physical disc logistics to streaming high-definition video to tens of millions of concurrent users required moving away from traditional, fixed-capacity datacenters to an elastic cloud architecture.```
    _______________________________________________________________________________
 
 2. What scale has Netflix achieved using cloud infrastructure?
    
-   * Number of members: _______________
-   * Geographic reach: _______________
+   * Number of members: _______________ ```Over 280 million paid subscribers worldwide.```
+   * Geographic reach: _______________ ```Available in more than 190 countries.```
 
 3. How does Netflix handle sudden traffic spikes in the cloud? What AWS capabilities do they use?
 
    _______________________________________________________________________________
+``` To manage massive, sudden spikes in viewer traffic (such as major content releases or live broadcasts), Netflix relies on multi-region architecture and automated scaling:
 
+- Traffic Spike Strategy:
+
+-- Multi-Region Redundancy: Operations are active across four AWS Regions simultaneously. If one region encounters an issue or severe overload, traffic can be dynamically shifted to another region.
+
+-- Hybrid Auto-Scaling: Uses predictive pre-scaling to spin up compute capacity ahead of expected viewing spikes, combined with reactive auto-scaling to handle sudden surges.
+
+- AWS Capabilities & Services Used:
+
+-- Thousands of Auto-Scaling Groups (ASGs): Dynamically adjusts virtual machine (EC2) capacity.
+
+-- Amazon Aurora: Relational database management providing low-latency replication across regions.
+
+-- Amazon EKS (Elastic Kubernetes Service): Container orchestration for microservices at scale.
+
+-- Amazon EMR (Elastic MapReduce): Large-scale batch processing and big data analytics.
+
+-- Amazon S3: Scalable object storage for raw media assets and video files. ```
    _______________________________________________________________________________
 
 4. What benefits does Netflix gain from using AWS for global streaming delivery?
 
    _______________________________________________________________________________
+```Speed & Agility: Engineering teams can rapidly experiment, deploy, and scale microservices without managing physical server hardware.
 
+Global Reach & Low Latency: AWS's global infrastructure footprint enables Netflix to serve users across the globe with high availability and reliability.
+
+Performance & Cost Efficiency: Migrating critical databases to services like Amazon Aurora provided up to 75% performance improvements and 28% cost savings, reducing maintenance overhead.
+
+Resilience: Multi-region active-active deployment minimizes single points of failure and prevents global service outages during peak events.```
    _______________________________________________________________________________
 
 5. **Discussion:** Why would it be impractical for Netflix to build their own data centers to handle this global scale?

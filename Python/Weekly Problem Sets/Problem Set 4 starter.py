@@ -41,6 +41,8 @@ def process_reports(report_list: list[str]) -> tuple[dict[str, Soldier], set[str
         if soldier_obj.rank not in unique_ranks:
             unique_ranks.append(soldier_obj.rank)
     
+    unique_ranks = set(unique_ranks)
+    
     return roster, unique_ranks
 
 
@@ -191,15 +193,12 @@ class Pantry:
 
 def create_recipes(recipe_data: dict[str, list[str]]) -> list[Recipe]:
     """Convert recipe dictionary to list of Recipe objects."""
+    recipe_list = []
+    
     
     for key, value in recipe_data.items():
         recipe_obj = Recipe(key, value)
-
-        try:
-            global recipe_list
-            recipe_list.append(recipe_obj)
-        except:
-            recipe_list = [recipe_obj]
+        recipe_list.append(recipe_obj)
 
     return recipe_list
 
@@ -312,8 +311,11 @@ Most common word: '{common_word}' — {common_count} times
 
     def filter_stopwords(self, stop_words: set[str]) -> None:
         """Remove stop words from the word list."""
-        for word in stop_words:
-            self.words.remove(word)
+        go_words = []
+        for word in self.words:
+            if word not in stop_words:
+                go_words.append(word)
+        self.words = go_words
 
 
 # # My original self-testing section for problem 3:
@@ -468,7 +470,7 @@ def group_by_species(registry: dict[str, Animal]) -> dict[str, list[Animal]]:
 
 # I kept testing code exactly the same from the solutions file so as to preserve validation
 if __name__ == "__main__":
-    TESTING_PROBLEM = 1
+    TESTING_PROBLEM = 3
 
     if TESTING_PROBLEM == 1:
         reports = [

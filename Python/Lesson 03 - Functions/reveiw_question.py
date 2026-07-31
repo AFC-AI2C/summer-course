@@ -33,7 +33,7 @@ def fizz_buzz(beg: int, end: int) -> int:
     return counter
 
 count = fizz_buzz(start_input, end_input)
-print(f"There were {count} fizz_buzz numbers")
+print(f"There were {count} fizz_buzz numbers \n")
 
 
 #Work on this becacse its not looping

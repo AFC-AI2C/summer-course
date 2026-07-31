@@ -336,7 +336,7 @@ while True:
         "name" : name,
         "fitness" : fitness_score,
         "rank" : rank,
-        "serivce" : tis
+        "service" : tis
     })
 
     another_input = input("Do you want to enter another Soldier (Y/N): ").upper()
@@ -358,14 +358,14 @@ for soldier in soldiers:
     if overall_check:
         print()
         print("Soldiers Inforamation")
-        print(f"Soldier Name:     {name} ")
-        print(f"Fitness Score:    {fitness_score} ")
-        print(f"Rank:             {rank}")
-        print(f"Years in Service: {tis} ")
+        print(f"Soldier Name:     (soldier{name}) ")
+        print(f"Fitness Score:    (soldier{fitness_score}) ")
+        print(f"Rank:             (soldier{rank})")
+        print(f"Years in Service: (soldier{tis}) ")
         print()
         print(" === MISSION CLEARANCE REPORT === ")
         print()
-        print(f"Soldier: {name}")
+        print(f"Soldier: (soldier{name})")
         print(f"    Fitness Check: {'PASS' if fitness_check else 'fail'} ")
         print(f"    Rank check   : {'PASS' if rank_check else 'fail'} ")
         print(f"    Service Check: {'PASS' if tis_check else 'fail'} ")
@@ -375,8 +375,8 @@ for soldier in soldiers:
 
     else:
         print("Service Memeber did not meet standard")
-        print(f"Name: {name} ")
-        print(f"Rank: {rank}")
+        print(f"Name: (soldier{name}) ")
+        print(f"Rank: (soldier{rank})")
 
 
 

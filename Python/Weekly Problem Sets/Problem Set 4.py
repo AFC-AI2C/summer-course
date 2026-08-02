@@ -230,6 +230,45 @@ print(f"Santos : {'deployed' if roster['Santos'].deployed else 'available'}")
 print(f"Kowalski : {'deployed' if roster['Kowalski'].deployed else 'available'}")
 
 
+# ### Challenge
+
+#Write a function `fitness_report(roster)` that builds and returns a dictionary with three keys —
+# `"high"`, `"medium"`, and `"low"` — each mapping to a list of soldier names in that fitness band (high ≥ 80, medium 60–79, low < 60). Access the `fitness` attribute from each `Soldier` object using a `for` loop. Use `.append()` to build each list and `.sort()` to sort the names. Print the full report.
+
+def fitness_report(roster):
+
+    report = {
+        "high" :[],
+        "medium" : [],
+        "low": []
+            }
+
+    for name in roster:
+        soldier = roster[name]
+
+        if soldier.fitness >= 80:
+            report["high"].append(name)
+
+        elif soldier.fitness >= 60:
+            report["medium"].append(name)
+
+        else:
+            report["low"].append(name)
+
+    report["high"].sort()
+    report["medium"].sort()
+    report["low"].sort()
+
+    return report
+
+fitness = fitness_report(roster)
+print("\n Fitness Report:")
+for level, soldier in fitness.items():
+    print(f"{level}: {soldier}")
+
+
+
+
 
     
 

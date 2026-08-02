@@ -160,7 +160,7 @@ def show_available(roster):
 
     available_names.sort()
     
-    return available_names
+    print(available_names)
 
 
     

@@ -1,22 +1,42 @@
-#space explorer
+import math  # Supports math.dist() for coordinates.
+# Python 3.7 (via PEP 557) introduced dataclasses as a standard library.
+from dataclasses import dataclass, field, InitVar
+
+#from typing import Literal  #Implements type hinting with specific string values.
+#allow_resources = Literal['crystal', 'gas']  #Implements type hinting with specific string values.
+#from enum import Enum       #  #Implements type hinting with dynamic values.
+
+### Delete if not necessary.
+### Implements Dictionary Mapping + Data Class.
+### Instead of creating separate variable names like earth = Planet(...),
+### store them ina dictionary keyed by their name.
+### Using dataclaseses makes defining the Planet structure clean and readable.
+
+@dataclass
 class Spacecraft():
-    def __init__(self, name, fuel_level, fuel_efficiency):
-        self._name = name
-        self._fuel_level = fuel_level
-        self._fuel_efficiency = fuel_efficiency
-        #self.max_fuel = 200_000
+    """Manages travel between planets, including tracking fuel and launching to destinations."""
+
+    name: str
+    fuel_efficiency: int
+    max_fuel: int = 200_000
+    # Assigns fuel_level as a mutable variable using initial_fuel_level as an initial argument. 
+    initial_fuel_level: InitVar[int]
+    fuel_level: int = field(init=False)
+
+    def __post_init__(self, name, initial_fuel_level: int):
+        self.fuel_level = initial_fuel_level
 
     def add_fuel(self, amount):
-        self._fuel_level += amount
-        #self._fuel_level = min(self._fuel_level, self._fuel_level + amount)
-        #self._fuel_level = max(self._fuel_level, 0)
+        self.fuel_level += amount
+        #self.fuel_level = min(self.fuel_level, self.fuel_level + amount)
+        #self.fuel_level = max(self.fuel_level, 0)
 
     def calc_fuel(self, distance):
-        return distance / self._fuel_efficiency
+        return distance / self.fuel_efficiency
 
     def has_enough_fuel(self, distance):
-#        return self._fuel_level >= self.calc_fuel(distance)     #one-liner
-        if self._fuel_level >= self.calc_fuel(distance):
+#        return self.fuel_level >= self.calc_fuel(distance)     #one-liner
+        if self.fuel_level >= self.calc_fuel(distance):
 #            print(f"{self.name} has enough fuel. \t | Fuel Needed: {self.calc_fuel(distance)} \t Fuel Level: {self.fuel_level}")
             return True
         else:
@@ -25,10 +45,10 @@ class Spacecraft():
 
     def launch(self, distance):
         if self.has_enough_fuel(distance):
-            self._fuel_level -= self.calc_fuel(distance)
+            self.fuel_level -= self.calc_fuel(distance)
             print(f"{self._name} launched successfully and completed the journey.")
         else:
-            print(f"Fuel Warning for {self._name} | Fuel Needed: {self.calc_fuel(distance)} \t Fuel Level: {self._fuel_level} \t Add fuel before launch.")
+            print(f"FUEL WARNING: Launch aborted. Fuel Level: {self.fuel_level} \t Fuel Needed: {self.calc_fuel(distance)}")
 
 if __name__ == '__main__':
     my_ship = Spacecraft("McQueen's Motorcycle", 100, 5)
@@ -36,19 +56,6 @@ if __name__ == '__main__':
     my_ship.launch(1000)
     my_ship.add_fuel(100)
     my_ship.launch(1000)
-
-
-#from typing import Literal  #Implements type hinting with specific string values.
-#allow_resources = Literal['crystal', 'gas']  #Implements type hinting with specific string values.
-#from enum import Enum       #  #Implements type hinting with dynamic values.
-
-import math  # Supports math.dist() for coordinates.
-# Implements Dictionary Mapping + Data Class.
-# Instead of creating separate variable names like earth = Planet(...),
-# store them ina dictionary keyed by their name.
-# Using dataclaseses makes defining the Planet structure clean and readable.
-# Python 3.7 (via PEP 557) introduced dataclasses as a standard library.
-from dataclasses import dataclass
 
 @dataclass
 class Planet:
@@ -100,7 +107,7 @@ class Player():
     """
 
     name: str
-    difficulty: int = 3  #  #Initialize parameter with default.
+    difficulty: int = 3  #  #Initialize parameter with default. Affects starting credits and spacecraft.
     spacecraft: Spacecraft = field(init=False)
     _current_planet: Planet = field(init=False, default_factory=lambda: Planet(
             "Earth", (149.6, 0.0, 0.0), 0, 0, "Earth-like"
@@ -114,15 +121,23 @@ class Player():
 
   def __post_init__(self):
     # Calculate spacecraft settings based on difficulty.
-    if self.difficulty == 3:
-      fuel_level = 100
-      fuel_efficiency = 1
-    else:
-      # Optional fallback/default logic if difficulty != 3
-      fuel_level = 100
-      fuel_efficiency = 1
+    if self.difficulty == 1:
+        initial_fuel_level = 120
+        fuel_efficiency = 1.2
+    elif self.difficulty == 2:
+        initial_fuel_level = 110
+        fuel_efficiency = 1.1
+    elif self.difficulty == 3:
+        initial_fuel_level = 100
+        fuel_efficiency = 1
+    elif self.difficulty == 4:
+        initial_fuel_level = 90
+        fuel_efficiency = 0.9
+    elif self.difficulty == 5:
+        initial_fuel_level = 80
+        fuel_efficiency = 0.8
 
-    self.spacecraft = Spacecraft(self.name, fuel_level, fuel_efficiency)
+    self.spacecraft = Spacecraft(self.name, initial_fuel_level, fuel_efficiency)
     self._credits = 500 * (5 - self.difficulty)
 
     def planet_update(self, destination: 'Planet'):

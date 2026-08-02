@@ -174,6 +174,7 @@ def show_available(roster):
 
 
 def dispatch(roster, name):
+    name = name.title()
     if name in roster:
         soldier = roster[name]
 
@@ -231,6 +232,7 @@ print(f"Kowalski : {'deployed' if roster['Kowalski'].deployed else 'available'}"
 
 
     
+
 
 
 

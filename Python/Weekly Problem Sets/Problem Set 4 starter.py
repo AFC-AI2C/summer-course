@@ -41,6 +41,7 @@ def show_available(roster: dict[str, Soldier]) -> None:
 
 def dispatch(roster: dict[str, Soldier], name: str) -> None:
     """Dispatch a soldier by name, or print an error if not available."""
+    name = name.title()
     if name in roster.keys():
         if roster[name].deployed:
             print(f"Dispatching {name}...\t\t{name} is already deployed.")

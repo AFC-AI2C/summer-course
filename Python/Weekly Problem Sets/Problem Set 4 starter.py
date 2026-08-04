@@ -190,7 +190,7 @@ class Animal:
         self.origin = origin
 
     def __str__(self) -> str:
-        return f"{self.nam} ({self.species}, {self.age} years, from {self.origin})"
+        return f"{self.name} ({self.species}, {self.age} years, from {self.origin})"
 
     def get_info(self) -> None:
         """Print detailed information about the animal."""
@@ -202,16 +202,16 @@ def build_registry(raw_data: list[str]) -> dict[str, Animal]:
     registry = {}
     for entry in raw_data:
         name, species, age, origin = [field.strip() for field in entry.split(',')]
-        registry.update({name: Animal(name, species, age, origin)})
+        registry[name] = Animal(name, species, int(age), origin)
     return registry
 
 
 def analyze_registry(registry: dict[str, Animal]) -> None:
     """Analyze and print statistics about the zoo registry."""
     print(f"{len(registry)} animals registered.")
-    unique_species = set([animal.species for animal in registry.values()])
+    unique_species = {animal.species for animal in registry.values()}
     print(f"Unique species: {unique_species}")
-    origins = set([animal.origin for animal in registry.values()])
+    origins = {animal.origin for animal in registry.values()}
     print(f"Animals come from {len(origins)} distinct regions.")
     print()
 

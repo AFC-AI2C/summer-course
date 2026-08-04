@@ -65,27 +65,6 @@ def fitness_report(roster: dict[str, Soldier]) -> dict[str, list[str]]:
         report[group].sort()
     return report
 
-# if __name__ == "__main__":
-#     reports = [
-#         "SANTOS | Private | Fitness:91 | Status:available",
-#         "KOWALSKI | Corporal | Fitness:74 | Status:deployed",
-#         "OKAFOR | Sergeant | Fitness:88 | Status:available",
-#         "BRIGGS | Private | Fitness:55 | Status:available",
-#         "NAKAMURA | Corporal | Fitness:82 | Status:deployed",
-#         "REYES | Sergeant | Fitness:79 | Status:available",
-#     ]
-#     my_roster, my_unique_ranks = process_reports(reports)
-#     print(my_unique_ranks)
-#     show_available(my_roster)
-#     my_checks = ["Santos", "Kowalski"]
-#     for s_name in my_checks:
-#         dispatch(my_roster, s_name)
-#     for s_name in my_checks:
-#         if my_roster[s_name.title()].deployed == True:
-#             print(f"{s_name:<15}: deployed")
-#         else:
-#             print(f"{s_name:<15}: available")
-#     print(fitness_report(roster=my_roster))
 
 # problem 2
 class Recipe:
@@ -149,19 +128,9 @@ def check_recipes(recipes: list[Recipe], pantry: Pantry) -> None:
     all_ingredients.sort()
     print(f"All unique ingredients ({len(all_ingredients)}): {all_ingredients}")
 
-# if __name__ == "__main__":
-#     recipe_data = {
-#         "omelette":        ["eggs", "butter", "salt", "pepper", "cheese"],
-#         "pancakes":        ["flour", "eggs", "milk", "butter", "sugar", "salt"],
-#         "tomato pasta":    ["pasta", "tomatoes", "garlic", "olive oil", "salt", "pepper"],
-#         "grilled cheese":  ["bread", "cheese", "butter"],
-#     }
-#     pantry_items = ["eggs", "butter", "salt", "pepper", "cheese", "milk", "bread", "garlic"]
-#     recipes = create_recipes(recipe_data)
-#     pantry = Pantry(pantry_items)
-#     check_recipes(recipes, pantry)
 
 # Did not attempt challenge.
+
 
 # problem 3
 class LyricAnalyzer:
@@ -209,94 +178,53 @@ class LyricAnalyzer:
         self.words = [word for word in self.words if word not in stop_words]
         self.print_report()
 
-if __name__ == "__main__":
-    lyrics = """
-        High school seemed like such a blur
-        I didn't have much interest in sports or school elections
-        And in class I dreamed all day
-        Of a rock 'n' roll weekend
-
-        And the girl in the front of the room
-        So close yet so far, y'know she never seemed to notice
-        That this silly schoolboy crush
-        Wasn't just pretend
-
-        Life goes by so fast
-        You only want to do what you think is right
-        Close your eyes and then it's past;
-        Story of my life
-
-        And I went down my old neighborhood
-        The faces have all changed, there's no one left to talk to
-        And the pool hall I loved as a kid
-        Is now a 7-11
-
-        I went downtown to look for a job
-        I had no training, no experience to speak of
-        I looked at the holes in my jeans
-        And turned and headed back
-        See Social Distortion Live
-        Get tickets as low as $83
-
-        Life goes by so fast
-        You only want to do what you think is right
-        Close your eyes and then it's past;
-        Story of my life
-
-        And good times come and good times go
-        I only wish the good times would last a little longer
-        And I think about the good times we had
-        And why they had to end
-
-        So I sit at the edge of my bed
-        I strum my guitar and I sing an outlaw love song
-        Thinkin' about what you're doin' now
-        And when you're coming back
-
-        Life goes by so fast
-        You only want to do what you think is right
-        Close your eyes and then it's past;
-        Story of my life
-        """
-    analysis = LyricAnalyzer(lyrics)
-    analysis.print_report()
-    stop_words = {"a", "the", "you", "your", "in", "on", "we", "be", "got", "and", "i", "of", "to", "so"}
-    analysis.filter_stopwords(stop_words)
 
 # problem 4
 class Animal:
     """Represents a zoo animal with species, age, and origin."""
 
     def __init__(self, name: str, species: str, age: int, origin: str):
-        pass
+        self.name = name
+        self.species = species
+        self.age = age
+        self.origin = origin
 
     def __str__(self) -> str:
-        pass
+        return f"{self.nam} ({self.species}, {self.age} years, from {self.origin})"
 
     def get_info(self) -> None:
         """Print detailed information about the animal."""
-        pass
+        print(f"Name:\t {self.name}\nSpecies: {self.species}\nAge:\t {self.age}\nOrigin:\t {self.origin}\n")
 
 
 def build_registry(raw_data: list[str]) -> dict[str, Animal]:
     """Parse raw data strings and return dictionary of Animal objects."""
-    pass
+    registry = {}
+    for entry in raw_data:
+        name, species, age, origin = [field.strip() for field in entry.split(',')]
+        registry.update({name: Animal(name, species, age, origin)})
+    return registry
 
 
 def analyze_registry(registry: dict[str, Animal]) -> None:
     """Analyze and print statistics about the zoo registry."""
-    pass
-
+    print(f"{len(registry)} animals registered.")
+    unique_species = set([animal.species for animal in registry.values()])
+    print(f"Unique species: {unique_species}")
+    origins = set([animal.origin for animal in registry.values()])
+    print(f"Animals come from {len(origins)} distinct regions.")
+    print()
 
 def group_by_species(registry: dict[str, Animal]) -> dict[str, list[Animal]]:
     """Group animals by species and return the groupings."""
     pass
 
+
 # This will only execute if this script is executed directly, not imported
 if __name__ == "__main__":
     # you can use this variable to test problems independently
     # while you're working locally
-    TESTING_PROBLEM = 1
+    TESTING_PROBLEM = 4
 
     if TESTING_PROBLEM == 1:
         reports = [
@@ -309,6 +237,18 @@ if __name__ == "__main__":
         ]
 
         # add your own testing here for problem 1
+        my_roster, my_unique_ranks = process_reports(reports)
+        print(my_unique_ranks)
+        show_available(my_roster)
+        my_checks = ["Santos", "Kowalski"]
+        for s_name in my_checks:
+            dispatch(my_roster, s_name)
+        for s_name in my_checks:
+            if my_roster[s_name.title()].deployed == True:
+                print(f"{s_name:<15}: deployed")
+            else:
+                print(f"{s_name:<15}: available")
+        print(fitness_report(roster=my_roster))
 
     elif TESTING_PROBLEM == 2:
         recipe_data = {
@@ -336,6 +276,9 @@ if __name__ == "__main__":
         ]
 
         # add your own testing here for problem 2
+        recipes = create_recipes(recipe_data)
+        pantry = Pantry(pantry_items)
+        check_recipes(recipes, pantry)
 
     elif TESTING_PROBLEM == 3:
         lyrics = """
@@ -348,6 +291,58 @@ kicking your can all over the place singing
 we will we will rock you
 """
         # add your own testing here for problem 3
+        lyrics = """
+            High school seemed like such a blur
+            I didn't have much interest in sports or school elections
+            And in class I dreamed all day
+            Of a rock 'n' roll weekend
+
+            And the girl in the front of the room
+            So close yet so far, y'know she never seemed to notice
+            That this silly schoolboy crush
+            Wasn't just pretend
+
+            Life goes by so fast
+            You only want to do what you think is right
+            Close your eyes and then it's past;
+            Story of my life
+
+            And I went down my old neighborhood
+            The faces have all changed, there's no one left to talk to
+            And the pool hall I loved as a kid
+            Is now a 7-11
+
+            I went downtown to look for a job
+            I had no training, no experience to speak of
+            I looked at the holes in my jeans
+            And turned and headed back
+            See Social Distortion Live
+            Get tickets as low as $83
+
+            Life goes by so fast
+            You only want to do what you think is right
+            Close your eyes and then it's past;
+            Story of my life
+
+            And good times come and good times go
+            I only wish the good times would last a little longer
+            And I think about the good times we had
+            And why they had to end
+
+            So I sit at the edge of my bed
+            I strum my guitar and I sing an outlaw love song
+            Thinkin' about what you're doin' now
+            And when you're coming back
+
+            Life goes by so fast
+            You only want to do what you think is right
+            Close your eyes and then it's past;
+            Story of my life
+        """
+        analysis = LyricAnalyzer(lyrics)
+        analysis.print_report()
+        stop_words = {"a", "the", "you", "your", "in", "on", "we", "be", "got", "and", "i", "of", "to", "so"}
+        analysis.filter_stopwords(stop_words)
 
     elif TESTING_PROBLEM == 4:
         raw_data = [
@@ -362,6 +357,15 @@ we will we will rock you
         ]
 
         # add your own testing here for problem 4
+        registry = build_registry(raw_data)
+        analyze_registry(registry)
+        name = input("Enter an animal name to look up: ").strip().title()
+        print()
+        if registry.get(name):
+            registry[name].get_info()
+        else:
+            print("not found")
+
 
     else:
         print("There are only 4 problems!")

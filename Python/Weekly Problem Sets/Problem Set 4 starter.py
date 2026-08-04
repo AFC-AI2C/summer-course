@@ -21,12 +21,12 @@ def process_reports(report_list: list[str]) -> tuple[dict[str, Soldier], set[str
     roster = dict()
     unique_ranks = set()
     for report in report_list:    
-        #raw_name, raw_rank, raw_fitness, raw_status = report.split("|")
+        raw_name, raw_rank, raw_fitness, raw_status = report.split("|")
         name = raw_name.strip().title()
         rank = raw_rank.strip().upper()
         fitness_val = int(raw_fitness.split(":")[1].strip())
         status_val = raw_status.split(":")[1].strip().lower()
-        deplyed = status_val == "deployed"
+        deployed = status_val == "deployed"
         soldier = Soldier(name, rank, fitness_val, deployed)
         roster[name] = soldier
         unique_ranks.add(rank)
@@ -35,14 +35,14 @@ def process_reports(report_list: list[str]) -> tuple[dict[str, Soldier], set[str
 
 def show_available(roster: dict[str, Soldier]) -> None:
     """Display all available soldiers, sorted alphabetically."""
-    available_names = {s.name for s in roster.values() if not v.deployed}
+    available_names = [s.name for s in roster.values() if not s.deployed]
     available_names.sort()
     print(available_names)
 
 def dispatch(roster: dict[str, Soldier], name: str) -> None:
     """Dispatch a soldier by name, or print an error if not available."""
-    if name in roster:
-        
+    if name in roster.keys():
+        if roster[name].deployed:
             print(f"Dispatching {name}...\t\t{name} is already deployed.")
         else:
             roster[name].dispatch()

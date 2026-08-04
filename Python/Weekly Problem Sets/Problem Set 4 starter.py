@@ -20,65 +20,49 @@ def process_reports(report_list: list[str]) -> tuple[dict[str, Soldier], set[str
     """Parse report strings and return (roster_dict, ranks_set)."""
     roster = dict()
     unique_ranks = set()
-    for report in reports:    
-        report_as_list = report.split("|")
-        report_as_list = [an_item.strip() for an_item in report_as_list]
-        sldr_keys = ["name", "rank", "fitness", "deployed"]
-        report_as_dict = dict(zip(sldr_keys, report_as_list))
-        # Processes name.
-        report_as_dict["name"] = report_as_dict["name"].title()
-        # Pocesses rank.
-        report_as_dict["rank"] = report_as_dict["rank"].upper()
-        # Processes fitness.
-        report_as_dict["fitness"] = int(report_as_list[2].split(":")[1])
-        # Processes deployed.
-        report_as_dict["deployed"] = report_as_list[3].split(":")[1]
-        if report_as_dict["deployed"] == "available":
-            report_as_dict["deployed"] = False
-        elif report_as_dict["deployed"] == "deployed":
-            report_as_dict["deployed"] = True
-#        report_as_dict["deployed"].lower()  # Per assignment specifications.
-        report_as_list = [report_as_dict["name"], report_as_dict["rank"], report_as_dict["fitness"], report_as_dict["deployed"]]
-        roster[report_as_dict["name"]] = Soldier(*report_as_list)
-        unique_ranks.add(report_as_dict["rank"])
-    return (roster, unique_ranks)
+    for report in report_list:    
+        #raw_name, raw_rank, raw_fitness, raw_status = report.split("|")
+        name = raw_name.strip().title()
+        rank = raw_rank.strip().upper()
+        fitness_val = int(raw_fitness.split(":")[1].strip())
+        status_val = raw_status.split(":")[1].strip().lower()
+        deplyed = status_val == "deployed"
+        soldier = Soldier(name, rank, fitness_val, deployed)
+        roster[name] = soldier
+        unique_ranks.add(rank)
+    return roster, unique_ranks
 
 
 def show_available(roster: dict[str, Soldier]) -> None:
     """Display all available soldiers, sorted alphabetically."""
-    available_soldiers = {k:v for k,v in roster.items() if v.deployed == False}
-    alphabetic_available = list(available_soldiers.keys())
-    alphabetic_available.sort()
-#    for s_name in alphabetic_available:
-#        print(available_soldiers[s_name])
-    print(alphabetic_available)
+    available_names = {s.name for s in roster.values() if not v.deployed}
+    available_names.sort()
+    print(available_names)
 
 def dispatch(roster: dict[str, Soldier], name: str) -> None:
     """Dispatch a soldier by name, or print an error if not available."""
     if name in roster:
-        if roster[name].deployed == True:
+        
             print(f"Dispatching {name}...\t\t{name} is already deployed.")
         else:
             roster[name].dispatch()
             print(f"Dispatching {name}...\t\tDone. Status set to deployed.")
-
+    else:
+        print(f"Soldier '{name}' not found in roster.")
 
 def fitness_report(roster: dict[str, Soldier]) -> dict[str, list[str]]:
     """Return a dict with 'high', 'medium', 'low' fitness bands."""
-    high_list = []
-    med_list = []
-    low_list = []
-    for name in roster:
-        if roster[name].fitness >= 80:
-            high_list.append(name)
-        elif roster[name].fitness >= 60:
-            med_list.append(name)
+    report = {"high": [], "medium": [], "low": []}
+    for soldier in roster.values():
+        if soldier.fitness >= 80:
+            report["high"].append(soldier.name)
+        elif soldier.fitness >= 60:
+            report["medium"].append(soldier.name)
         else:
-            low_list.append(name)
-    high_list.sort()
-    med_list.sort()
-    low_list.sort()
-    return {"high": high_list, "medium": med_list, "low": low_list}
+            report["low"].append(soldier.name)
+    for group in report:
+        report[group].sort()
+    return report
 
 if __name__ == "__main__":
     reports = [

@@ -149,45 +149,119 @@ def check_recipes(recipes: list[Recipe], pantry: Pantry) -> None:
     all_ingredients.sort()
     print(f"All unique ingredients ({len(all_ingredients)}): {all_ingredients}")
 
-if __name__ == "__main__":
-    recipe_data = {
-        "omelette":        ["eggs", "butter", "salt", "pepper", "cheese"],
-        "pancakes":        ["flour", "eggs", "milk", "butter", "sugar", "salt"],
-        "tomato pasta":    ["pasta", "tomatoes", "garlic", "olive oil", "salt", "pepper"],
-        "grilled cheese":  ["bread", "cheese", "butter"],
-    }
-    pantry_items = ["eggs", "butter", "salt", "pepper", "cheese", "milk", "bread", "garlic"]
-    recipes = create_recipes(recipe_data)
-    pantry = Pantry(pantry_items)
-    check_recipes(recipes, pantry)
+# if __name__ == "__main__":
+#     recipe_data = {
+#         "omelette":        ["eggs", "butter", "salt", "pepper", "cheese"],
+#         "pancakes":        ["flour", "eggs", "milk", "butter", "sugar", "salt"],
+#         "tomato pasta":    ["pasta", "tomatoes", "garlic", "olive oil", "salt", "pepper"],
+#         "grilled cheese":  ["bread", "cheese", "butter"],
+#     }
+#     pantry_items = ["eggs", "butter", "salt", "pepper", "cheese", "milk", "bread", "garlic"]
+#     recipes = create_recipes(recipe_data)
+#     pantry = Pantry(pantry_items)
+#     check_recipes(recipes, pantry)
+
+# Did not attempt challenge.
 
 # problem 3
 class LyricAnalyzer:
     """Analyzes song lyrics for word frequency."""
 
     def __init__(self, lyrics: str):
-        pass
+        self.lyrics = lyrics
+        self.words = lyrics.lower().replace(',', '').replace('.', '').replace('!', '').replace("'", "").replace('"', '').replace('?', '').replace(';', '').split()
 
     def count_words(self) -> dict[str, int]:
         """Return dictionary mapping words to their counts."""
-        pass
+        word_set = set(self.words)
+        return {word:sum([lyric == word for lyric in self.words]) for word in word_set} 
 
     def unique_word_count(self) -> int:
         """Return the number of unique words."""
-        pass
+        return len(set(self.words))
 
     def most_common_word(self) -> tuple[str, int]:
         """Return (word, count) for the most frequent word."""
-        pass
+        word_counts = self.count_words()
+        words_by_freq = sorted(word_counts, key=lambda word: word_counts[word])
+        word, count = words_by_freq[-1], word_counts[words_by_freq[-1]]
+#        word = [word for word, freq in word_counts.items() if freq == count]
+#        if len(word) == 1:
+#            word = word[0]
+        return (word, count)
 
     def print_report(self) -> None:
         """Print complete word analysis report."""
-        pass
+        # Prints word counts in alphabetical order.
+        alphabetical_list = sorted(set(self.words))
+        max_word_length = max([len(word) for word in alphabetical_list])
+        word_counts = self.count_words()
+        for word in alphabetical_list:
+            print(f"{word:<{max_word_length}}: {word_counts[word]}")
+        print('')
+        print(f'Unique words: {self.unique_word_count()}')
+        word, count = self.most_common_word()
+        print(f"Most common word: '{word}' - {count} times")
+        print('')
 
     def filter_stopwords(self, stop_words: set[str]) -> None:
-        """Remove stop words from the word list."""
-        pass
+        """Remove stop words from the word list.""" 
+        self.words = [word for word in self.words if word not in stop_words]
+        self.print_report()
 
+if __name__ == "__main__":
+    lyrics = """
+        High school seemed like such a blur
+        I didn't have much interest in sports or school elections
+        And in class I dreamed all day
+        Of a rock 'n' roll weekend
+
+        And the girl in the front of the room
+        So close yet so far, y'know she never seemed to notice
+        That this silly schoolboy crush
+        Wasn't just pretend
+
+        Life goes by so fast
+        You only want to do what you think is right
+        Close your eyes and then it's past;
+        Story of my life
+
+        And I went down my old neighborhood
+        The faces have all changed, there's no one left to talk to
+        And the pool hall I loved as a kid
+        Is now a 7-11
+
+        I went downtown to look for a job
+        I had no training, no experience to speak of
+        I looked at the holes in my jeans
+        And turned and headed back
+        See Social Distortion Live
+        Get tickets as low as $83
+
+        Life goes by so fast
+        You only want to do what you think is right
+        Close your eyes and then it's past;
+        Story of my life
+
+        And good times come and good times go
+        I only wish the good times would last a little longer
+        And I think about the good times we had
+        And why they had to end
+
+        So I sit at the edge of my bed
+        I strum my guitar and I sing an outlaw love song
+        Thinkin' about what you're doin' now
+        And when you're coming back
+
+        Life goes by so fast
+        You only want to do what you think is right
+        Close your eyes and then it's past;
+        Story of my life
+        """
+    analysis = LyricAnalyzer(lyrics)
+    analysis.print_report()
+    stop_words = {"a", "the", "you", "your", "in", "on", "we", "be", "got", "and", "i", "of", "to", "so"}
+    analysis.filter_stopwords(stop_words)
 
 # problem 4
 class Animal:

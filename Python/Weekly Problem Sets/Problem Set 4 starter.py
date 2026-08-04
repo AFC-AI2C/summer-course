@@ -41,7 +41,7 @@ def process_reports(report_list: list[str]) -> tuple[dict[str, Soldier], set[str
         report_as_list = [report_as_dict["name"], report_as_dict["rank"], report_as_dict["fitness"], report_as_dict["deployed"]]
         roster[report_as_dict["name"]] = Soldier(*report_as_list)
         unique_ranks.add(report_as_dict["rank"])
-    return roster, unique_ranks
+    return (roster, unique_ranks)
 
 
 def show_available(roster: dict[str, Soldier]) -> None:

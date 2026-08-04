@@ -7,6 +7,11 @@ response = requests.get(f"{BASE_URL}/posts/1")
 print(response.status_code)
 print(response.reason)
 
+print(response.request)
+
+response.json()
+
+
 
 
 

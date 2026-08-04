@@ -97,7 +97,9 @@ class Recipe:
 
     def can_make(self, pantry_set: set[str]) -> bool:
         """Check if all ingredients are in the pantry."""
-        return all([pantry_item in self.ingredients for pantry_item in pantry_set])
+#        return all(ingredient in pantry_set for ingredient in self.ingredients) # Equivalent result to line below.
+        return set(self.ingredients).issubset(pantry_set)
+#       return set(self.ingredients) <= pantry_set # Equivalent result to line above.
 
     def missing_ingredients(self, pantry_set: set[str]) -> list[str]:
         """Return sorted list of missing ingredients."""

@@ -267,15 +267,164 @@ for level, soldier in fitness.items():
     print(f"{level}: {soldier}")
 
 
+############################################################################################################################################
+# ## Problem 2 — Recipe Ingredient Checker 🍳
+
+# *You're building a tool that helps cooks figure out what they can make with what's in their kitchen, and what they're missing.*
+
+# **You are given the following recipes and pantry:**
+
+# ```python
+# recipe_data = {
+#     "omelette":        ["eggs", "butter", "salt", "pepper", "cheese"],
+#     "pancakes":        ["flour", "eggs", "milk", "butter", "sugar", "salt"],
+#     "tomato pasta":    ["pasta", "tomatoes", "garlic", "olive oil", "salt", "pepper"],
+#     "grilled cheese":  ["bread", "cheese", "butter"],
+# }
+
+# pantry_items = ["eggs", "butter", "salt", "pepper", "cheese", "milk", "bread", "garlic"]
+# ```
+
+# **Your task:**
+
+# - **Create a `Recipe` class** with the following:
+#   - An `__init__` method that accepts `name` and `ingredients` (a list of strings)
+#   - Store these as instance attributes
+#   - Add a `can_make(pantry_set)` method that returns `True` if all ingredients are in the pantry set, `False` otherwise
+#   - Add a `missing_ingredients(pantry_set)` method that returns a **sorted list** of ingredients not in the pantry
+
+# - **Create a `Pantry` class** with the following:
+#   - An `__init__` method that accepts a list of ingredient strings
+#   - Store the ingredients internally as a **set** for efficient lookups
+#   - Add an `add_ingredients(extra_ingredients)` method that adds new ingredients to the pantry
+#   - Add a `has(ingredient)` method that returns `True` if the ingredient is in the pantry
+
+# - Create a function `create_recipes(recipe_data)` that:
+#   - Takes the recipe dictionary shown above
+#   - Returns a list of `Recipe` objects
+
+# - Create a function `check_recipes(recipes, pantry)` that:
+#   - Takes a list of `Recipe` objects and a `Pantry` object
+#   - Uses a `for` loop to check each recipe
+#   - Prints whether each recipe can be made and — if not — what's missing
+#   - At the end, print a list of all **unique ingredients** across all recipes, sorted alphabetically
+
+# **Expected output:**
+
+# ```
+# === RECIPE CHECKER ===
+# omelette       : CAN MAKE ✓
+# pancakes       : MISSING — ['flour', 'sugar']
+# tomato pasta   : MISSING — ['olive oil', 'pasta', 'tomatoes']
+# grilled cheese : CAN MAKE ✓
+
+# All unique ingredients (13): ['bread', 'butter', 'cheese', 'eggs', ...]
+# ```
+
+# ### Challenge
+
+# In your `__main__` block, ask the user for a comma-separated list of extra ingredients, parse them with `.split(",")` and `.strip()`, 
+# add them to the pantry using the `.add_ingredients()` method, then call `check_recipes()` 
+# again and print which recipes became newly available.
 
 
+
+recipe_data = {
+    "omelette":        ["eggs", "butter", "salt", "pepper", "cheese"],
+    "pancakes":        ["flour", "eggs", "milk", "butter", "sugar", "salt"],
+    "tomato pasta":    ["pasta", "tomatoes", "garlic", "olive oil", "salt", "pepper"],
+    "grilled cheese":  ["bread", "cheese", "butter"],
+ }
+
+pantry_items = ["eggs", "butter", "salt", "pepper", "cheese", "milk", "bread", "garlic"]
+
+
+class Recipe:
+    def __init__(self, name, ingredients):
+        self.name = name
+        self.ingredients = ingredients
+
+    def can_make(self, pantry_items):
+        
+        for ingredient in self.ingredients:
+            if ingredient not in pantry_items:
+                
+                return False
+        return True 
+          
     
+    def missing_ingredients(self, pantry_set):
+        missing = []
+        for ingredient in self.ingredients:
+            if ingredient not in pantry_set:
+                ingredient = missing.append(ingredient)
+
+        missing.sort()
+
+        return missing
 
 
+class Pantry:
+    def __init__(self, pantry_items):
+        self.ingredients =set(pantry_items)
 
 
+    def add_ingredients(self,extra_ingredients):
+        self.ingredients.update(extra_ingredients)
+
+
+    def has(self,ingredient):
+        if ingredient in self.ingredients:
+            return True
+        else:
+            return False
+
+
+def create_recipes(recipe_data):
+    recipes = []
+    for recipe_name in recipe_data:
+        ingredients = recipe_data[recipe_name]
+        new_recipe = Recipe(recipe_name, ingredients)
+        recipes.append(new_recipe)
+    return recipes
+
+
+def check_recipes(recipes, pantry):
+    all_ingredients = set()
+    for recipe in recipes:
+        if recipe.can_make(pantry)is True:
+            print(f"{recipe.name: <15} : CAN MAKE ✓")
+        else:
+            print(f"{recipe.name: <15} : MISSING, {recipe.missing_ingredients(pantry)}")
+        
             
-            
+  
+
+    all_ingredients.update(recipe.ingredients)
+    sorted_ingredients = sorted(all_ingredients)
+    print(f"All unique ingredients({len(sorted_ingredients)}) : {sorted_ingredients}")
+
+print(" === RECIPE CHECKER === ")
+
+
+
+pantry = Pantry(pantry_items)
+
+recipe= create_recipes(recipe_data)
+
+check_recipes(recipe, pantry.ingredients)
+
+
+
+
+
+
+
+
+
+
+
+
 
         
 
@@ -284,6 +433,12 @@ for level, soldier in fitness.items():
 
 
 
+
+        
+
+       
+
+    
 
 
 

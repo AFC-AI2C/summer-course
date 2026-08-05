@@ -347,7 +347,7 @@ def check_recipes(recipes, pantry):
             print(f"{recipe.name:<15}: CAN MAKE ✓")
         else:
             print(
-                f"{recipe.name:<15}: MISSING — {recipe.missing_ingredients(pantry)}"
+                f"{recipe.name:<15}: MISSING — {recipe.missing_ingredients(pantry.get_items())}"
             )
 
         all_ingredients.update(recipe.ingredients)

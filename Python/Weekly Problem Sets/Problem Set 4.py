@@ -321,7 +321,7 @@ class Pantry:
     def has(self, ingredient):
         return ingredient in self.ingredients
 
-    def get_item(self):
+    def get_items(self):
         return self.ingredients
 
 
@@ -343,7 +343,7 @@ def check_recipes(recipes, pantry):
 
     for recipe in recipes:
 
-        if recipe.can_make(pantry.get_item()):
+        if recipe.can_make(pantry.get_items()):
             print(f"{recipe.name:<15}: CAN MAKE ✓")
         else:
             print(
@@ -390,6 +390,7 @@ if __name__ == "__main__":
 
 
     
+
 
 
 

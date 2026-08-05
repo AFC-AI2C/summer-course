@@ -267,6 +267,122 @@ for level, soldier in fitness.items():
     print(f"{level}: {soldier}")
 
 
+################
+
+recipe_data = {
+    "omelette":        ["eggs", "butter", "salt", "pepper", "cheese"],
+    "pancakes":        ["flour", "eggs", "milk", "butter", "sugar", "salt"],
+    "tomato pasta":    ["pasta", "tomatoes", "garlic", "olive oil", "salt", "pepper"],
+    "grilled cheese":  ["bread", "cheese", "butter"],
+}
+
+pantry_items = [
+    "eggs",
+    "butter",
+    "salt",
+    "pepper",
+    "cheese",
+    "milk",
+    "bread",
+    "garlic"
+]
+
+
+class Recipe:
+    def __init__(self, name, ingredients):
+        self.name = name
+        self.ingredients = ingredients
+
+    def can_make(self, pantry_items):
+        for ingredient in self.ingredients:
+            if ingredient not in pantry_items:
+                return False
+        return True
+
+    def missing_ingredients(self, pantry_set):
+        missing = []
+
+        for ingredient in self.ingredients:
+            if ingredient not in pantry_set:
+                missing.append(ingredient)
+
+        missing.sort()
+
+        return missing
+
+
+class Pantry:
+    def __init__(self, pantry_items):
+        self.ingredients = set(pantry_items)
+
+    def add_ingredients(self, extra_ingredients):
+        self.ingredients.update(extra_ingredients)
+
+    def has(self, ingredient):
+        return ingredient in self.ingredients
+
+
+def create_recipes(recipe_data):
+    recipes = []
+
+    for recipe_name in recipe_data:
+        ingredients = recipe_data[recipe_name]
+
+        new_recipe = Recipe(recipe_name, ingredients)
+
+        recipes.append(new_recipe)
+
+    return recipes
+
+
+def check_recipes(recipes, pantry):
+    all_ingredients = set()
+
+    for recipe in recipes:
+
+        if recipe.can_make(pantry):
+            print(f"{recipe.name:<15}: CAN MAKE ✓")
+        else:
+            print(
+                f"{recipe.name:<15}: MISSING — {recipe.missing_ingredients(pantry)}"
+            )
+
+        all_ingredients.update(recipe.ingredients)
+
+    sorted_ingredients = sorted(all_ingredients)
+
+    print(
+        f"\nAll unique ingredients ({len(sorted_ingredients)}): {sorted_ingredients}"
+    )
+
+
+if __name__ == "__main__":
+
+    print("=== RECIPE CHECKER ===")
+
+    pantry = Pantry(pantry_items)
+
+    recipes = create_recipes(recipe_data)
+
+    # First check
+    check_recipes(recipes, pantry.ingredients)
+
+
+    # Challenge section
+    print("\nAdd extra ingredients to your pantry:")
+
+    user_input = input("> ")
+
+    extra_ingredients = [
+        ingredient.strip()
+        for ingredient in user_input.split(",")
+    ]
+
+    pantry.add_ingredients(extra_ingredients)
+
+    print("\n=== UPDATED RECIPE CHECK ===")
+
+    check_recipes(recipes, pantry.ingredients)
 
 
 

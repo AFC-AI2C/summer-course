@@ -343,7 +343,7 @@ def check_recipes(recipes, pantry):
 
     for recipe in recipes:
 
-        if recipe.can_make(pantry):
+        if recipe.can_make(pantry.get_item()):
             print(f"{recipe.name:<15}: CAN MAKE ✓")
         else:
             print(

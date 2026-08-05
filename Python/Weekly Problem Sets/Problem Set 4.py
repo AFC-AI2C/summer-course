@@ -321,7 +321,7 @@ class Pantry:
     def has(self, ingredient):
         return ingredient in self.ingredients
 
-    def get_items(self):
+    def get_item(self):
         return self.ingredients
 
 

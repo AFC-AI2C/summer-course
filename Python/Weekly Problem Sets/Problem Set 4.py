@@ -321,6 +321,9 @@ class Pantry:
     def has(self, ingredient):
         return ingredient in self.ingredients
 
+    def get_items(self):
+        return self.ingredients
+
 
 def create_recipes(recipe_data):
     recipes = []

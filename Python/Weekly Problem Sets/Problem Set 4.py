@@ -266,7 +266,7 @@ print("\n Fitness Report:")
 for level, soldier in fitness.items():
     print(f"{level}: {soldier}")
 
-if __name__ == "__main__":
+
 
 
 ################
@@ -361,7 +361,7 @@ def check_recipes(recipes, pantry):
     )
 
 
-if __name__ == "__main__":
+
 
     print("=== RECIPE CHECKER ===")
 
@@ -491,7 +491,7 @@ class LyricAnalyzer():
         for word in sorted(counts):
             print(f"{word} : {counts[word]}")
 
-        print(f"Unique words: {self.unique_word_count}")
+        print(f"Unique words: {self.unique_word_count()}")
 
         word, count = self.most_common_word()
 
@@ -510,8 +510,7 @@ we will we will rock you
     
     analyzer = LyricAnalyzer(lyrics)
 
-    print(analyzer.words)
-
+    analyzer.print_report()
 
             
             

@@ -60,14 +60,7 @@
 # ```
 
 
-reports = [
-    "SANTOS | Private | Fitness:91 | Status:available",
-    "KOWALSKI | Corporal | Fitness:74 | Status:deployed",
-    "OKAFOR | Sergeant | Fitness:88 | Status:available",
-    "BRIGGS | Private | Fitness:55 | Status:available",
-    "NAKAMURA | Corporal | Fitness:82 | Status:deployed",
-    "REYES | Sergeant | Fitness:79 | Status:available"
-    ]
+
 
 
 #**Create a `Soldier` class** 
@@ -157,10 +150,24 @@ def show_available(roster):
 
         if not soldier.deployed:
             available_names.append(name)
-
-    available_names.sort()
     
+    available_names.sort()
+
     print(available_names)
+
+if __name__ == "__main__":
+    reports = [
+    "SANTOS | Private | Fitness:91 | Status:available",
+    "KOWALSKI | Corporal | Fitness:74 | Status:deployed",
+    "OKAFOR | Sergeant | Fitness:88 | Status:available",
+    "BRIGGS | Private | Fitness:55 | Status:available",
+    "NAKAMURA | Corporal | Fitness:82 | Status:deployed",
+    "REYES | Sergeant | Fitness:79 | Status:available"
+    ]
+
+    roster, ranks = process_reports(reports)
+
+    show_available(roster)  
 
 
     
@@ -362,31 +369,34 @@ def check_recipes(recipes, pantry):
 
 
 
+if __name__ == "__main__":
 
-print("=== RECIPE CHECKER ===")
+    print("=== RECIPE CHECKER ===")
 
-pantry = Pantry(pantry_items)
-recipes = create_recipes(recipe_data)
+    pantry = Pantry(pantry_items)
+    recipes = create_recipes(recipe_data)
 
     # First check
-check_recipes(recipes, pantry)
+    check_recipes(recipes, pantry)
 
 
     # Challenge section
-print("\nAdd extra ingredients to your pantry:")
+    print("\nAdd extra ingredients to your pantry:")
 
-user_input = input("> ")
+    user_input = input("> ")
 
-extra_ingredients = [
+    extra_ingredients = [
         ingredient.strip()
         for ingredient in user_input.split(",")
     ]
 
-pantry.add_ingredients(extra_ingredients)
+    pantry.add_ingredients(extra_ingredients)
 
-print("\n=== UPDATED RECIPE CHECK ===")
 
-check_recipes(recipes, pantry)
+
+    print("\n=== UPDATED RECIPE CHECK ===")
+
+    check_recipes(recipes, pantry)
 
 
 
@@ -484,7 +494,7 @@ class LyricAnalyzer():
     def print_report(self):
         counts = self.count_words()
 
-        
+
         print(" === Word Count === ")
 
         for word in sorted(counts):
@@ -501,7 +511,8 @@ class LyricAnalyzer():
 
         analyzer.print_report()
 
-            
+
+
             
 
 

@@ -56,7 +56,8 @@ def show_available(roster):
 
     available_names.sort()
 
-    return available_names
+    for name in available_names:
+        print(name)
 
 
 def dispatch(roster, name):
@@ -120,7 +121,7 @@ if __name__ == "__main__":
     print(f"Ranks on file: {ranks}")
 
     print("\nAvailable soldiers:")
-    print(show_available(roster))
+    show_available(roster)
 
     print("\nDispatching Santos...")
     dispatch(roster, "Santos")

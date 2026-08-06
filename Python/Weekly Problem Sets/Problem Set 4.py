@@ -370,7 +370,7 @@ def check_recipes(recipes, pantry):
     recipes = create_recipes(recipe_data)
 
     # First check
-    check_recipes(recipes, pantry.ingredients)
+    check_recipes(recipes, pantry)
 
 
     # Challenge section
@@ -387,7 +387,7 @@ def check_recipes(recipes, pantry):
 
     print("\n=== UPDATED RECIPE CHECK ===")
 
-    check_recipes(recipes, pantry.ingredients)
+    check_recipes(recipes, pantry)
 
 
 

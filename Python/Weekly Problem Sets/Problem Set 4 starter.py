@@ -138,6 +138,10 @@ class LyricAnalyzer:
 
     def __init__(self, lyrics: str):
         self.lyrics = lyrics
+        # can do the following instead
+        #punctuation = ":,.!\"';"
+        #for punct in punctuation:
+        #   lyrics.replace(punct, "")
         self.words = lyrics.lower().replace(',', '').replace('.', '').replace('!', '').replace("'", "").replace('"', '').replace('?', '').replace(';', '').split()
 
     def count_words(self) -> dict[str, int]:

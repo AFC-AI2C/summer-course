@@ -84,6 +84,10 @@ Add tests in `tests/test_book.py` that verify:
 
 **Hint**: You can test multiple cases in one test function or create separate test functions for each case.
 
+```python
+'Python/Lesson 11 - Testing/app/book.py'
+```
+
 ---
 
 ### Exercise 3: Test the `format_book_info()` Function

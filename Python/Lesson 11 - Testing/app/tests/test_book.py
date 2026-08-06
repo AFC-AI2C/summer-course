@@ -87,3 +87,19 @@ class TestBook:
 # - validate_isbn()
 # - format_book_info()
 # - books_by_decade()
+
+    def test_validateisbn():
+        assert validate_isbn('1234567890') is True
+        assert validate_isbn('1234567890123') is True
+        assert validate_isbn('123-456-789-0"') is True 
+        assert validate_isbn('123 456 789 0') is True 
+        assert validate_isbn('123') is False 
+        assert validate_isbn('12345678901234') is False
+        assert validate_isbn('12345678AB') is False 
+        assert validate_isbn(1234567890) is False 
+        assert validate_isbn('') is True 
+        assert validate_isbn('') is True 
+        assert validate_isbn('') is True 
+        assert validate_isbn('') is True 
+        assert validate_isbn('') is True 
+        assert validate_isbn('') is True  

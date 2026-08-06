@@ -497,25 +497,16 @@ class LyricAnalyzer():
 
         print(f"Most common word: {word} -- {count} times")
 
-if __name__ == "__main__":
-    lyrics = """
-we will we will rock you
-we will we will rock you
-buddy youre a boy make a big noise
-playing in the street gonna be a big man someday
-you got mud on your face you big disgrace
-kicking your can all over the place singing
-we will we will rock you
-"""
     
-    analyzer = LyricAnalyzer(lyrics)
+        analyzer = LyricAnalyzer(lyrics)
 
-    analyzer.print_report()
+        analyzer.print_report()
 
             
             
 
-        
+
+
 
 
 

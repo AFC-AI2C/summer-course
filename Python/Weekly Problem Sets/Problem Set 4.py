@@ -495,21 +495,27 @@ class LyricAnalyzer():
         counts = self.count_words()
 
 
-        print(" === Word Count === ")
 
-        for word in sorted(counts):
-            print(f"{word} : {counts[word]}")
 
-        print(f"Unique words: {self.unique_word_count()}")
+    print(" === Word Count === ")
 
-        word, count = self.most_common_word()
+    for word in sorted(counts):
+        print(f"{word} : {counts[word]}")
 
-        print(f"Most common word: {word} -- {count} times")
+    print(f"Unique words: {self.unique_word_count()}")
+
+    word, count = self.most_common_word()
+
+    print(f"Most common word: {word} -- {count} times")
 
     
-        analyzer = LyricAnalyzer(lyrics)
+if __name__ == "__main__":
 
-        analyzer.print_report()
+    lyrics = "Hello world hello Python world"
+
+    analyzer = LyricAnalyzer(lyrics)
+
+    analyzer.print_report()
 
 
 

@@ -389,7 +389,7 @@ def check_recipes(recipes, pantry):
 
     check_recipes(recipes, pantry.ingredients)
 
-if __name__ == "__main__":
+
 
 
 

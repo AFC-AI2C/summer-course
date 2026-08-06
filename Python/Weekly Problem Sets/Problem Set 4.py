@@ -267,6 +267,72 @@ if __name__ == "__main__":
 
 ################################################################
 
+class LyricAnalyzer:
+    def __init__(self, lyrics):
+        self.lyrics = lyrics
+
+        processed = lyrics.lower()
+        processed = processed.replace(".", "")
+        processed = processed.replace(",", "")
+        processed = processed.replace("!", "")
+        processed = processed.replace(":", "")
+        processed = processed.replace("'", "")
+        processed = processed.replace('"', "")
+        processed = processed.replace("?", "")
+
+        self.words = processed.split()
+
+
+    def count_words(self):
+        counts = {}
+
+        for word in self.words:
+            if word in counts:
+                counts[word] += 1
+            else:
+                counts[word] = 1
+
+        return counts
+
+
+    def unique_word_count(self):
+        return len(set(self.words))
+
+
+    def most_common_word(self):
+        counts = self.count_words()
+
+        word = max(counts, key=counts.get)
+
+        return (word, counts[word])
+
+
+    def print_report(self):
+        counts = self.count_words()
+
+        print("=== WORD COUNT ===")
+
+        for word in sorted(counts):
+            print(f"{word} : {counts[word]}")
+
+        print(f"Unique words: {self.unique_word_count()}")
+
+        word, count = self.most_common_word()
+
+        print(f"Most common word: {word} -- {count} times")
+
+    
+if __name__ == "__main__":
+
+    lyrics = """
+    Hello world hello Python world
+    Hello Python
+    """
+
+    analyzer = LyricAnalyzer(lyrics)
+
+    analyzer.print_report()
+        
 
 
 

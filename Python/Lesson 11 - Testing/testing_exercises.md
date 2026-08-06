@@ -37,7 +37,7 @@ Run tests with coverage:
 
 ```powershell
 # Windows PowerShell
-$env:PYTHONPATH="." ; pytest
+$env:PYTHONPATH="/." ; pytest
 ```
 
 ```bash

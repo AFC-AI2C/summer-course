@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 Run the demo to see the system in action:
 ```bash
-python demo.py
+
 ```
 
 ## Running Tests

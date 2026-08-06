@@ -307,13 +307,24 @@ class LyricAnalyzer:
         return (word, counts[word])
 
 
+    # ADD THIS METHOD
+    def filter_stopwords(self, stop_words):
+        filtered_words = []
+
+        for word in self.words:
+            if word not in stop_words:
+                filtered_words.append(word)
+
+        self.words = filtered_words
+
+
     def print_report(self):
         counts = self.count_words()
 
         print("=== WORD COUNT ===")
 
         for word in sorted(counts):
-            print(f"{word} : {counts[word]}")
+            print(f"{word}: {counts[word]}")
 
         print(f"Unique words: {self.unique_word_count()}")
 
@@ -321,32 +332,4 @@ class LyricAnalyzer:
 
         print(f"Most common word: {word} -- {count} times")
 
-    
-if __name__ == "__main__":
-
-    lyrics = """
-    Hello world hello Python world
-    Hello Python
-    """
-
-    analyzer = LyricAnalyzer(lyrics)
-
-    analyzer.print_report()
         
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-

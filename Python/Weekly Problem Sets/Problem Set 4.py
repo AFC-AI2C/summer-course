@@ -363,31 +363,30 @@ def check_recipes(recipes, pantry):
 
 
 
-    print("=== RECIPE CHECKER ===")
+print("=== RECIPE CHECKER ===")
 
-    pantry = Pantry(pantry_items)
-
-    recipes = create_recipes(recipe_data)
+pantry = Pantry(pantry_items)
+recipes = create_recipes(recipe_data)
 
     # First check
-    check_recipes(recipes, pantry)
+check_recipes(recipes, pantry)
 
 
     # Challenge section
-    print("\nAdd extra ingredients to your pantry:")
+print("\nAdd extra ingredients to your pantry:")
 
-    user_input = input("> ")
+user_input = input("> ")
 
-    extra_ingredients = [
+extra_ingredients = [
         ingredient.strip()
         for ingredient in user_input.split(",")
     ]
 
-    pantry.add_ingredients(extra_ingredients)
+pantry.add_ingredients(extra_ingredients)
 
-    print("\n=== UPDATED RECIPE CHECK ===")
+print("\n=== UPDATED RECIPE CHECK ===")
 
-    check_recipes(recipes, pantry)
+check_recipes(recipes, pantry)
 
 
 

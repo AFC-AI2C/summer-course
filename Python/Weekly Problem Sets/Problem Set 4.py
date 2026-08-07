@@ -332,4 +332,84 @@ class LyricAnalyzer:
 
         print(f"Most common word: {word} -- {count} times")
 
-        
+
+###################################################################################
+
+class Animal:
+    def __init__(self, name, species, age, origin):
+        self.name = name
+        self.species = species
+        self.age = age
+        self.origin = origin
+
+    def __str__(self):
+        return f"{self.name} ({self.species}, {self.age} years, from {self.origin})"
+
+    def get_info(self):
+        print(f"Name: {self.name}")
+        print(f"Species: {self.species}")
+        print(f"Age: {self.age} years")
+        print(f"Origin: {self.origin}")
+
+
+def build_registry(raw_data):
+    registry = {}
+
+    for entry in raw_data:
+        parts = entry.split(",")
+
+        name = parts[0].strip()
+        species = parts[1].strip()
+        age = parts[2].strip()
+        origin = parts[3].strip()
+
+        age = int(age)
+
+        animal = Animal(name, species, age, origin)
+
+        registry[name] = animal
+
+    return registry
+
+
+def analyze_registry(registry):
+    species = set()
+    origins = set()
+
+    for name in registry:
+        animal = registry[name]
+
+        species.add(animal.species)
+        origins.add(animal.origin)
+
+    print(f"Total animals: {len(registry)}")
+    print(f"Unique species: {species}")
+    print(f"Distinct origins: {len(origins)}")
+
+
+if __name__ == "__main__":
+
+    raw_data = [
+        "Simba, lion, 7, Africa",
+        "Pebbles, penguin, 3, Antarctica",
+        "Kovu, lion, 4, Africa",
+        "Bubbles, dolphin, 12, Ocean",
+        "Mango, parrot, 6, South America",
+        "Nala, lion, 5, Africa",
+        "Splash, dolphin, 8, Ocean",
+        "Crackers, parrot, 2, South America",
+    ]
+
+    registry = build_registry(raw_data)
+
+    analyze_registry(registry)
+
+    animal_name = input("\nEnter animal name: ")
+
+    animal_name = animal_name.strip().title()
+
+    if animal_name in registry:
+        registry[animal_name].get_info()
+    else:
+        print("Animal not found")
+

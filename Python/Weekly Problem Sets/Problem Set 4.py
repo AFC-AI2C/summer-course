@@ -386,6 +386,24 @@ def analyze_registry(registry):
     print(f"Unique species: {species}")
     print(f"Distinct origins: {len(origins)}")
 
+def group_by_species(registry):
+    grouped = {}
+
+    for name in registry:
+        animal = registry[name]
+
+        species = animal.species
+
+        if species not in grouped:
+            grouped[species] = []
+
+        grouped[species].append(animal)
+    return grouped
+
+   
+
+
+
 
 if __name__ == "__main__":
 
@@ -404,6 +422,17 @@ if __name__ == "__main__":
 
     analyze_registry(registry)
 
+    grouped = group_by_species(registry)
+
+    for species, animals in grouped.items():
+        name = []
+
+        for animal in animals:
+            name.append(animal.name)
+
+        print(f"{species}: {', '.join(name)}")
+
+
     animal_name = input("\nEnter animal name: ")
 
     animal_name = animal_name.strip().title()
@@ -412,4 +441,7 @@ if __name__ == "__main__":
         registry[animal_name].get_info()
     else:
         print("Animal not found")
+
+
+        
 

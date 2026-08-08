@@ -82,5 +82,34 @@ def flatten(input_list: list) -> list:
     return result
 
 
+def fibonacci(n:int)-> int:
+
+    if n == 0:
+        return 0
+
+    if n == 1:
+        return 1
+
+    return fibonacci(n - 1) + (n - 2)
+
+
+def count_ways(n:int)->int:
+    if n == 0:
+        return 0
+    
+    if n == 1:
+        return 1
+
+    return count_ways(n-1) + count_ways(n-2)
+
+def grid_paths(m:int, n:int)->int:
+    if m == 1 or n ==1:
+        return 1
+
+    
+    move_down = grid_paths(m -1, n) 
+    move_right = grid_paths(m, n -1) 
+    return move_down + move_right
+    
 
     

@@ -63,5 +63,24 @@ def length(list):
     return(result)
 
 
-    s
+## Challenge Problem
+def flatten(input_list: list) -> list:
+    # base case
+    if input_list == []:
+        return []
+
+    # work / recurse
+    if isinstance(input_list[0], list):
+        first_element = flatten(input_list[0])
+    else:
+        first_element = [input_list[0]]
+
+    # recurse remaining elements
+    remaining_elements = flatten(input_list[1:])
+
+    result = first_element + remaining_elements
+    return result
+
+
+
     

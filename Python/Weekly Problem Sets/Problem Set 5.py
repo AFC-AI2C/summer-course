@@ -110,6 +110,25 @@ def grid_paths(m:int, n:int)->int:
     move_down = grid_paths(m -1, n) 
     move_right = grid_paths(m, n -1) 
     return move_down + move_right
-    
+
+
+## Challenge Problem
+def permutations(lst: list) -> list[list]:
+    # base case
+    if len(lst) == 0:
+        return [[]]
+
+    result = []
+
+    # for each element, make it the first and permute the rest
+    for i in range(len(lst)):
+        current = lst[i]
+        remaining = lst[:i] + lst[i + 1 :]
+
+        # multiple recursive calls (one per remaining element)
+        for perm in permutations(remaining):
+            result.append([current] + perm)
+
+    return result
 
     

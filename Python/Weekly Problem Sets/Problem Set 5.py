@@ -54,12 +54,12 @@ def palindrome_checker(string: str) -> bool:
     result = palindrome_checker(string[1:-1])
     return result
 
-def lenght(list):
+def length(list):
     #base Case
     if len(list) ==[]:
         return 0
 
-    result =  1 + lenght(list[1:])
+    result =  1 + length(list[1:])
     return(result)
 
 

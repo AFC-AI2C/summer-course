@@ -21,6 +21,9 @@
 
 def recursive_squares(n:int)-> list[int]:
     """Base Case"""
+
+    if n == 0:
+        return []
     if n == 1:
         return [1]
 

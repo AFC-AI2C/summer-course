@@ -188,3 +188,85 @@ def partial_update_user(user_id: int, updates: dict) -> dict:
 
     return {}
 
+
+##########################################################################
+
+def search_movie(api_key: str, query: str) -> dict:
+    url = f"https://api.themoviedb.org/3/search/movie"
+    parameter = {"api_key": api_key, "query" : query}
+    response = requests.get(url, params=parameter)
+
+    if response.status_code ==200:
+        data = response.json()
+
+        results = data.get("results", [])
+
+
+        if results:
+            return results[0]
+
+    return {}
+
+
+def get_github_user(token: str, username: str) -> dict:
+    url = f"https://api.github.com/users/{username}"
+    headers = {"Authorization": f"Bearer {token}"} 
+    response = requests.get(url, headers=headers)
+
+
+
+    if response.status_code ==201:
+        return response.json()
+
+    return{}
+
+def create_gist(token: str, description: str, filename: str, content: str) -> str:
+    url = f"https://api.github.com/gists"
+    headers = {"Authorization": f"Bearer {token}"}
+    data = {
+        "description": description,
+        "public": True,
+        "files": {
+            filename: {
+                "content": content
+            }
+        }
+
+    }
+    response = requests.post(url, headers=headers, json=data)
+
+    if response.status_code == 201:
+        return response.json().get("id", "")
+
+    return ""
+
+def delete_gist(token: str, gist_id: str) -> bool:
+    url = f"https://api.github.com/gists/{gist_id}"
+    headers = {"Authorization": f"Bearer {token}"}
+    response = requests.delete(url, headers=headers)
+
+    return response.status_code == 204
+
+
+####################################################################################
+
+def get_spotify_track_info(access_token: str, track_id: str) -> dict:
+    url = f"https://api.spotify.com/v1/tracks/{track_id}"
+    headers = {"Authorization": f"Bearer {access_token}"}
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        data = response.json()
+        return {
+            "name": data.get("name", ""),
+            "artist": data.get("artists", [{}])[0].get("name", ""),
+            "album": data.get("album", {}).get("name", ""),
+            "duration_ms": data.get("duration_ms", 0),
+        }
+
+    return {}
+
+
+
+
+

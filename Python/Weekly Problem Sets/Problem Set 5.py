@@ -215,7 +215,7 @@ def get_github_user(token: str, username: str) -> dict:
 
 
 
-    if response.status_code ==201:
+    if response.status_code ==200:
         return response.json()
 
     return{}

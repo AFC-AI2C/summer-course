@@ -131,4 +131,60 @@ def permutations(lst: list) -> list[list]:
 
     return result
 
+##################################################################################################
     
+import requests
+
+def get_user(user_id: int) -> dict:
+    url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        return response.json()
+
+    return{}
+
+def create_user(name: str, job:str) ->dict:
+    url = f"https://jsonplaceholder.typicode.com/users"
+    response = requests.post(url, json={"name": name, "job": job})
+
+    if response.status_code == 201:
+        return response.json()
+
+    return{}
+
+def update_user(user_id: int, name: str, job: str) -> dict:
+    url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
+    response = requests.put(url, json={"name": name, "job": job})
+
+    if response.status_code == 200:
+        return response.json()
+
+    return{}
+
+def delete_user(user_id: int) -> bool:
+    url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
+    response = requests.delete(url)
+
+    return response.status_code ==200
+
+## Challenge Problems
+def get_all_users() -> list[dict]:
+    url = "https://jsonplaceholder.typicode.com/users"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        return response.json()
+
+    return []
+
+
+def partial_update_user(user_id: int, updates: dict) -> dict:
+    url = f"https://jsonplaceholder.typicode.com/users/{user_id}"
+    response = requests.patch(url, json=updates)
+
+    if response.status_code == 200:
+        return response.json()
+
+    return {}
+

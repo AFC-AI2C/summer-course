@@ -51,6 +51,9 @@
 - [Common Azure Services (10 minute video)](https://www.youtube.com/watch?v=L5N9S8pKpOw)
 - [Learn Docker](https://www.udemy.com/course/docker-mastery/)
 
+## Online Labs
+- [KodeKloud](https://kodekloud.com/)
+
 # DoD/Army/AI2C Material
 
 - [Coding Katas](https://github.com/afc-ai2c/coding-katas/) (practice small skills)
